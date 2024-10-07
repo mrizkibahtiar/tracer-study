@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+app.get('/loginPage', (req, res) => {
+    res.render('login');
+})
+
 app.listen(3000, function () {
     console.log('server running');
 })

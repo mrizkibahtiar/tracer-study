@@ -8,7 +8,6 @@ media.exports = {
     },
     login: async (req, res) => {
         const { nisn, password } = req.body;
-
         if (!nisn || !password) {
             return res.status(400).json({
                 status: 'fail',
