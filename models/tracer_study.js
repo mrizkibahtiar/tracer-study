@@ -35,10 +35,25 @@ const TracerStudySchema = new mongoose.Schema({
         type: String
     },      // hanya diisi jika berwirausaha
     feedback: {
-        type: String
+        type: mongoose.Schema.ObjectId,
+        ref: 'Feedback',
+
     }         // bisa diisi oleh semua alumni
 });
 
 
 const TracerStudy = mongoose.model('TracerStudy', TracerStudySchema);
 module.exports = TracerStudy;
+
+TracerStudy.create({
+    userId: '123',
+    kegiatanSetelahLulus: 'bekerja',
+    tahunLulus: 2018,
+    durasiSebelumKegiatan: 3,
+    namaPerusahaan: 'PT. ABC',
+    posisi: 'Manager',
+    namaInstitusi: 'Universitas ABC',
+    jurusan: 'Ilmu Komputer',
+    jenisUsaha: 'Pengembangan Bisnis',
+    feedback: 'Sangat memuaskan'
+})
