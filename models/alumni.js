@@ -4,7 +4,6 @@ const alumniSchema = new mongoose.Schema({
     nisn: {
         type: String,
         required: true,
-        unique: true
     },
     password: {
         type: String,
