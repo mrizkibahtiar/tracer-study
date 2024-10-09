@@ -19,11 +19,11 @@ app.set('view engine', 'ejs')
 app.use('/assets', express.static('public'))
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('pages/index');
 })
 
 app.get('/loginPage', (req, res) => {
-    res.render('login');
+    res.render('pages/login');
 })
 
 app.listen(3000, function () {

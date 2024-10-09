@@ -2,7 +2,7 @@
 const User = require('../models/user');
 const mongoose = require('mongoose');
 
-media.exports = {
+module.exports = {
     index: async (req, res) => {
         const data = await User.find();
     },
