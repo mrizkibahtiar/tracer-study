@@ -23,7 +23,10 @@ app.use(session({
     secret: '12345-67890-09876-54321',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }
+    cookie: {
+        maxAge: null,
+        secure: true
+    }
 }))
 
 connectDb(URL)
