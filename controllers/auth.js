@@ -1,6 +1,7 @@
 const Alumni = require('../models/alumni');
 const Admin = require('../models/admin');
 const mongoose = require('mongoose');
+const { isAlumni, isAdmin } = require('../middleware/auth');
 
 
 
@@ -23,12 +24,13 @@ module.exports = {
             return res.render('login', { error: 'Password incorrect' });
         }
         if (alumni) {
-            req.session.user = { nisn: alumni.nisn, role: 'alumni' };
+            req.session.user = { ...alumni, role: 'alumni' };
             req.session.save();
             return res.redirect('/alumni');
         } else {
-            req.session.user = { email: admin.email, role: 'admin' };
+            req.session.user = { ...admin, role: 'admin' };
             req.session.save();
+            console.log(req.session.user)
             return res.redirect('/admin');
         }
 
