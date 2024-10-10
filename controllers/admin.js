@@ -12,6 +12,9 @@ module.exports = {
             console.log(admin);
             return res.render('pages/admin/dashboard', { admin: admin });
         }
+    },
 
+    alumniForm: async function (req, res) {
+        res.render('pages/admin/alumni_form');
     }
 }
