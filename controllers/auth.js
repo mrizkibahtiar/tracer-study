@@ -23,17 +23,19 @@ module.exports = {
             return res.render('login', { error: 'Password incorrect' });
         }
         if (alumni) {
-            req.session.destroy();
-            req.session.user = alumni;
+            req.session.user = { nisn: alumni.nisn, role: 'alumni' };
+            req.session.save();
             return res.redirect('/alumni');
         } else {
-            req.session.user = admin;
+            req.session.user = { email: admin.email, role: 'admin' };
+            req.session.save();
             return res.redirect('/admin');
         }
 
         res.redirect('/');
     },
     logout: async (req, res) => {
+        req.session.destroy();
         res.redirect('/');
     }
 }
