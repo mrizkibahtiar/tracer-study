@@ -2,14 +2,653 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>Tracer Study SMK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ini halaman dashboard</title>
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="coderthemes" name="author">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme Config Js -->
+    <script src="assets/js/config.js"></script>
 </head>
 
 <body>
-    <h1>Halo Selamat Datang <%= alumni.name %>
-    </h1>
+
+    <div class="flex wrapper">
+        <%- include('../../components/navbar_alumni') %>
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="page-content">
+                <header class="app-header flex justify-between items-center px-4 gap-3">
+                    <!-- Sidenav Menu Toggle Button -->
+                    <button id="button-toggle-menu" class="nav-link p-2">
+                        <span class="sr-only">Menu Toggle Button</span>
+                        <span class="flex items-center justify-center h-6 w-6">
+                            <i class="mgc_menu_line text-xl"></i>
+                        </span>
+                    </button>
+
+                    <!-- Topbar Brand Logo -->
+                    <!-- <a href="index.html" class="logo-box">
+                        <div class="logo-light">
+                            <img src="../assets/images/logo-light.png" class="logo-lg h-6" alt="Light logo">
+                            <img src="../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
+                        </div>
+
+                        <div class="logo-dark">
+                            <img src="../assets/images/logo-dark.png" class="logo-lg h-6" alt="Dark logo">
+                            <img src="../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
+                        </div>
+                    </a> -->
+                    <div class="flex gap-6">
+                        <!-- Fullscreen Toggle Button -->
+                        <div class="md:flex hidden">
+                            <button data-toggle="fullscreen" type="button" class="nav-link p-2">
+                                <span class="sr-only">Fullscreen Mode</span>
+                                <span class="flex items-center justify-center h-6 w-6">
+                                    <i class="mgc_fullscreen_line text-2xl"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Light/Dark Toggle Button -->
+                        <div class="flex">
+                            <button id="light-dark-mode" type="button" class="nav-link p-2">
+                                <span class="sr-only">Light/Dark Mode</span>
+                                <span class="flex items-center justify-center h-6 w-6">
+                                    <i class="mgc_moon_line text-2xl"></i>
+                                </span>
+                            </button>
+                        </div>
+
+                        <!-- Profile Dropdown Button -->
+                        <div class="relative">
+                            <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
+                                class="nav-link">
+                                <img src="../assets/images/users/user-6.jpg" alt="user-image" class="rounded-full h-10">
+                            </button>
+                            <div
+                                class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                    href="auth-login.html">
+                                    <i class="mgc_lock_line  me-2"></i>
+                                    <span>Lock Screen</span>
+                                </a>
+                                <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
+                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                    href="/logout">
+                                    <i class="mgc_exit_line  me-2"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </header>
+
+
+
+                <main class="flex-grow w-full p-6">
+
+                    <!-- Page Title Start -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Selamat Datang <%=
+                                alumni.name %>
+                        </h4>
+
+                        <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
+                            <div class="flex items-center gap-2">
+                                <a href="/admin"
+                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumni</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Page Title End -->
+
+                    <div class="grid 2xl:grid-cols-4 gap-6 mb-6">
+
+                        <div class="2xl:col-span-3">
+                            <!-- <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
+                                <div class="card">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="text-base mb-1 text-gray-600 dark:text-gray-400">Project
+                                                    Dashboard</h4>
+                                                <p
+                                                    class="font-normal text-sm text-gray-400 truncate dark:text-gray-500">
+                                                    New
+                                                    Task Assign</p>
+                                            </div>
+
+                                            <div>
+                                                <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
+                                                    data-fc-placement="left-start" type="button">
+                                                    <i class="mgc_more_1_fill text-xl"></i>
+                                                </button>
+
+                                                <div
+                                                    class="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_add_circle_line"></i> Add
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_edit_line"></i> Edit
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_copy_2_line"></i> Copy
+                                                    </a>
+                                                    <div class="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_delete_line"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-end">
+                                            <div class="flex-grow">
+                                                <p class="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i
+                                                        class="mgc_alarm_2_line"></i> 4 Hrs ago</p>
+                                            </div>
+                                            <div class="flex">
+                                                <a href="javascript:void(0);">
+                                                    <img src="assets/images/users/avatar-1.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                                <a href="javascript:void(0);" class="-ms-2">
+                                                    <img src="assets/images/users/avatar-2.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="text-base mb-1 text-gray-600 dark:text-gray-400">Admin
+                                                    Template
+                                                </h4>
+                                                <p
+                                                    class="font-normal text-sm text-gray-400 truncate dark:text-gray-500">
+                                                    New
+                                                    Task Assign</p>
+                                            </div>
+                                            <div>
+                                                <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
+                                                    data-fc-placement="left-start" type="button">
+                                                    <i class="mgc_more_1_fill text-xl"></i>
+                                                </button>
+
+                                                <div
+                                                    class="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_add_circle_line"></i> Add
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_edit_line"></i> Edit
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_copy_2_line"></i> Copy
+                                                    </a>
+                                                    <div class="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_delete_line"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-end">
+                                            <div class="flex-grow">
+                                                <p class="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i
+                                                        class="mgc_alarm_2_line"></i> 3 Hrs ago</p>
+                                            </div>
+                                            <div class="flex">
+                                                <a href="javascript:void(0);">
+                                                    <img src="assets/images/users/avatar-3.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                                <a href="javascript:void(0);" class="-ms-2">
+                                                    <img src="assets/images/users/avatar-4.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="text-base mb-1 text-gray-600 dark:text-gray-400">Client
+                                                    Project
+                                                </h4>
+                                                <p
+                                                    class="font-normal text-sm text-gray-400 truncate dark:text-gray-500">
+                                                    New
+                                                    Task Assign</p>
+                                            </div>
+                                            <div>
+                                                <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
+                                                    data-fc-placement="left-start" type="button">
+                                                    <i class="mgc_more_1_fill text-xl"></i>
+                                                </button>
+
+                                                <div
+                                                    class="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_add_circle_line"></i> Add
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_edit_line"></i> Edit
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_copy_2_line"></i> Copy
+                                                    </a>
+                                                    <div class="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_delete_line"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-end">
+                                            <div class="flex-grow">
+                                                <p class="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i
+                                                        class="mgc_alarm_2_line"></i> 5 Hrs ago</p>
+                                            </div>
+                                            <div class="flex">
+                                                <a href="javascript:void(0);">
+                                                    <img src="assets/images/users/avatar-5.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                                <a href="javascript:void(0);" class="-ms-2">
+                                                    <img src="assets/images/users/avatar-6.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="text-base mb-1 text-gray-600 dark:text-gray-400">Figma Design
+                                                </h4>
+                                                <p
+                                                    class="font-normal text-sm text-gray-400 truncate dark:text-gray-500">
+                                                    New
+                                                    Task Assign</p>
+                                            </div>
+                                            <div>
+                                                <button class="text-gray-600 dark:text-gray-400" data-fc-type="dropdown"
+                                                    data-fc-placement="left-start" type="button">
+                                                    <i class="mgc_more_1_fill text-xl"></i>
+                                                </button>
+
+                                                <div
+                                                    class="hidden fc-dropdown fc-dropdown-open:opacity-100 opacity-0 w-36 z-50 mt-2 transition-[margin,opacity] duration-300 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-2">
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_add_circle_line"></i> Add
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_edit_line"></i> Edit
+                                                    </a>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_copy_2_line"></i> Copy
+                                                    </a>
+                                                    <div class="h-px bg-gray-200 dark:bg-gray-700 my-2 -mx-2"></div>
+                                                    <a class="flex items-center gap-1.5 py-1.5 px-3.5 rounded text-sm transition-all duration-300 bg-transparent text-danger hover:bg-danger/5"
+                                                        href="javascript:void(0)">
+                                                        <i class="mgc_delete_line"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-end">
+                                            <div class="flex-grow">
+                                                <p class="text-[13px] text-gray-400 dark:text-gray-500 font-semibold"><i
+                                                        class="mgc_alarm_2_line"></i> 1 Day ago</p>
+                                            </div>
+                                            <div class="flex">
+                                                <a href="javascript:void(0);">
+                                                    <img src="assets/images/users/avatar-7.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                                <a href="javascript:void(0);" class="-ms-2">
+                                                    <img src="assets/images/users/avatar-8.jpg"
+                                                        class="rounded-full h-8 w-8 border-2 border-gray-300 dark:border-gray-700"
+                                                        alt="friend">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="grid lg:grid-cols-3 gap-6">
+                                <div class="col-span-1">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <h4 class="card-title">Monthly Target</h4>
+
+                                            <div id="monthly-target" class="apex-charts my-8"
+                                                data-colors="#0acf97,#3073F1">
+                                            </div>
+
+                                            <div class="flex justify-center">
+                                                <div class="w-1/2 text-center">
+                                                    <h5>Pending</h5>
+                                                    <p class="fw-semibold text-muted">
+                                                        <i class="mgc_round_fill text-primary"></i> Projects
+                                                    </p>
+                                                </div>
+                                                <div class="w-1/2 text-center">
+                                                    <h5>Done</h5>
+                                                    <p class="fw-semibold text-muted">
+                                                        <i class="mgc_round_fill text-success"></i> Projects
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lg:col-span-2">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <div class="flex justify-between items-center">
+                                                <h4 class="card-title">Project Statistics</h4>
+                                                <div class="flex gap-2">
+                                                    <button type="button"
+                                                        class="btn btn-sm bg-primary/25 text-primary hover:bg-primary hover:text-white">
+                                                        All
+                                                    </button>
+                                                    <button type="button"
+                                                        class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
+                                                        6M
+                                                    </button>
+                                                    <button type="button"
+                                                        class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
+                                                        1Y
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div dir="ltr" class="mt-2">
+                                                <div id="crm-project-statistics" class="apex-charts"
+                                                    data-colors="#cbdcfc,#3073F1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Grid End -->
+
+
+                    <div class="flex w-full gap-6">
+                        <div class="flex w-full gap-6">
+                            <div class="2xl:col-span-2 md:col-span-2">
+                                <div class="card">
+                                    <div class="p-6">
+                                        <div class="flex justify-between items-center">
+                                            <h4 class="card-title">Project Overview</h4>
+                                        </div>
+
+                                        <div class="grid md:grid-cols-2 items-center gap-4">
+                                            <div class="md:order-1 order-2">
+                                                <div class="flex flex-col gap-6">
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <i
+                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-primary/25 text-lg text-primary"></i>
+                                                        </div>
+                                                        <div class="flex-grow ms-3">
+                                                            <h5 class="fw-semibold mb-1">Product Design</h5>
+                                                            <ul class="flex items-center gap-2">
+                                                                <li class="list-inline-item"><b>26</b> Total
+                                                                    Projects
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                </li>
+                                                                <li class="list-inline-item"><b>4</b> Employees</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <i
+                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-danger/25 text-lg text-danger"></i>
+                                                        </div>
+                                                        <div class="flex-grow ms-3">
+                                                            <h5 class="fw-semibold mb-1">Web Development</h5>
+                                                            <ul class="flex items-center gap-2">
+                                                                <li class="list-inline-item"><b>30</b> Total
+                                                                    Projects
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                </li>
+                                                                <li class="list-inline-item"><b>5</b> Employees</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <i
+                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-success/25 text-lg text-success"></i>
+                                                        </div>
+                                                        <div class="flex-grow ms-3">
+                                                            <h5 class="fw-semibold mb-1">Illustration Design</h5>
+                                                            <ul class="flex items-center gap-2">
+                                                                <li class="list-inline-item"><b>12</b> Total
+                                                                    Projects
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                </li>
+                                                                <li class="list-inline-item"><b>3</b> Employees</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center">
+                                                        <div class="flex-shrink-0">
+                                                            <i
+                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-warning/25 text-lg text-warning"></i>
+                                                        </div>
+                                                        <div class="flex-grow ms-3">
+                                                            <h5 class="fw-semibold mb-1">UI/UX Design</h5>
+                                                            <ul class="flex items-center gap-2">
+                                                                <li class="list-inline-item"><b>8</b> Total Projects
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                </li>
+                                                                <li class="list-inline-item"><b>4</b> Employees</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="md:order-2 order-1">
+                                                <div id="project-overview-chart" class="apex-charts"
+                                                    data-colors="#3073F1,#ff679b,#0acf97,#ffbc00"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- Grid End -->
+                        <div class="flex flex-col w-full">
+                            <div class="flex w-full gap-6 mb-6">
+                                <div class="col-span-1">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div
+                                                        class="w-12 h-12 flex justify-center items-center rounded text-primary bg-primary/25">
+                                                        <i class="mgc_document_2_line text-xl"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow">
+                                                    <h5 class="mb-1">Active Projects</h5>
+                                                    <p>85</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-1">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div
+                                                        class="w-12 h-12 flex justify-center items-center rounded text-success bg-success/25">
+                                                        <i class="mgc_group_line text-xl"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow">
+                                                    <h5 class="mb-1">Total Employees</h5>
+                                                    <p>32</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex w-full gap-6 mb-6">
+                                <div class="col-span-1">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div
+                                                        class="w-12 h-12 flex justify-center items-center rounded text-info bg-info/25">
+                                                        <i class="mgc_star_line text-xl"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow">
+                                                    <h5 class="mb-1">Project Reviews</h5>
+                                                    <p>40</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-1">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 me-3">
+                                                    <div
+                                                        class="w-12 h-12 flex justify-center items-center rounded text-info bg-warning/25">
+                                                        <i class="mgc_new_folder_line text-xl"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow">
+                                                    <h5 class="mb-1">Project Reviews</h5>
+                                                    <p>40</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- Grid End -->
+
+
+                    </div>
+
+
+                </main>
+
+                <!-- Footer Start -->
+                <footer class="footer h-16 flex items-center px-6 bg-white shadow dark:bg-gray-800">
+                    <div class="flex justify-center w-full gap-4">
+                        <div>
+                            <script>document.write(new Date().getFullYear())</script> © SMK Serayu - All rights
+                            reserved
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer End -->
+
+            </div>
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button data-toggle="back-to-top"
+        class="fixed hidden h-10 w-10 items-center justify-center rounded-full z-10 bottom-20 translate-x-52 end-14 p-2.5 bg-primary cursor-pointer shadow-lg text-white">
+        <i class="mgc_arrow_up_line text-lg"></i>
+    </button>
+
+
+    <!-- Plugin Js -->
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <script src="assets/libs/%40frostui/tailwindcss/frostui.js"></script>
+
+    <!-- App Js -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Apexcharts js -->
+    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Dashboard Project Page js -->
+    <script src="assets/js/pages/dashboard.js"></script>
+
 </body>
 
 </html>
