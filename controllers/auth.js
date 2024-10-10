@@ -23,11 +23,11 @@ module.exports = {
             return res.render('login', { error: 'Password incorrect' });
         }
         if (alumni) {
+            req.session.destroy();
             req.session.user = alumni;
             return res.redirect('/alumni');
         } else {
             req.session.user = admin;
-            console.log(req.session.user);
             return res.redirect('/admin');
         }
 
