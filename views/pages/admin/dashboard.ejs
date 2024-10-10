@@ -24,14 +24,12 @@
 <body>
 
     <div class="flex wrapper">
-        <%- include('../../components/navbarAdmin') %>
+        <%- include('../../components/navbar_admin') %>
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
 
             <div class="page-content">
-
-                <!-- Topbar Start -->
                 <header class="app-header flex justify-between items-center px-4 gap-3">
                     <!-- Sidenav Menu Toggle Button -->
                     <button id="button-toggle-menu" class="nav-link p-2">
@@ -43,19 +41,18 @@
 
                     <!-- Topbar Brand Logo -->
                     <!-- <a href="index.html" class="logo-box">
-                    <div class="logo-light">
-                        <img src="assets/images/logo-light.png" class="logo-lg h-6" alt="Light logo">
-                        <img src="assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
-                    </div>
+                        <div class="logo-light">
+                            <img src="../assets/images/logo-light.png" class="logo-lg h-6" alt="Light logo">
+                            <img src="../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
+                        </div>
 
-                    <div class="logo-dark">
-                        <img src="assets/images/logo-dark.png" class="logo-lg h-6" alt="Dark logo">
-                        <img src="assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
-                    </div>
-                </a> -->
-
-
-                    <div class="flex gap-3">
+                        <div class="logo-dark">
+                            <img src="../assets/images/logo-dark.png" class="logo-lg h-6" alt="Dark logo">
+                            <img src="../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
+                        </div>
+                    </a> -->
+                    <div class="flex gap-6">
+                        <!-- Fullscreen Toggle Button -->
                         <div class="md:flex hidden">
                             <button data-toggle="fullscreen" type="button" class="nav-link p-2">
                                 <span class="sr-only">Fullscreen Mode</span>
@@ -79,7 +76,7 @@
                         <div class="relative">
                             <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
                                 class="nav-link">
-                                <img src="assets/images/users/user-6.jpg" alt="user-image" class="rounded-full h-10">
+                                <img src="../assets/images/users/user-6.jpg" alt="user-image" class="rounded-full h-10">
                             </button>
                             <div
                                 class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
@@ -97,9 +94,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Fullscreen Toggle Button -->
+
                 </header>
-                <!-- Topbar End -->
 
                 <!-- Topbar Search Modal -->
                 <!-- <div>
@@ -132,18 +128,8 @@
 
                         <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
                             <div class="flex items-center gap-2">
-                                <a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400">Konrix</a>
-                            </div>
-
-                            <div class="flex items-center gap-2">
-                                <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
-                                <a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400">Menu</a>
-                            </div>
-
-                            <div class="flex items-center gap-2">
-                                <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
-                                <a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400"
-                                    aria-current="page">Dashboard</a>
+                                <a href="/admin"
+                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Admin</a>
                             </div>
                         </div>
                     </div>
@@ -481,7 +467,8 @@
                                                         <div class="flex-grow ms-3">
                                                             <h5 class="fw-semibold mb-1">Product Design</h5>
                                                             <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>26</b> Total Projects
+                                                                <li class="list-inline-item"><b>26</b> Total
+                                                                    Projects
                                                                 </li>
                                                                 <li class="list-inline-item">
                                                                     <div class="w-1 h-1 rounded bg-gray-400"></div>
@@ -499,7 +486,8 @@
                                                         <div class="flex-grow ms-3">
                                                             <h5 class="fw-semibold mb-1">Web Development</h5>
                                                             <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>30</b> Total Projects
+                                                                <li class="list-inline-item"><b>30</b> Total
+                                                                    Projects
                                                                 </li>
                                                                 <li class="list-inline-item">
                                                                     <div class="w-1 h-1 rounded bg-gray-400"></div>
@@ -517,7 +505,8 @@
                                                         <div class="flex-grow ms-3">
                                                             <h5 class="fw-semibold mb-1">Illustration Design</h5>
                                                             <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>12</b> Total Projects
+                                                                <li class="list-inline-item"><b>12</b> Total
+                                                                    Projects
                                                                 </li>
                                                                 <li class="list-inline-item">
                                                                     <div class="w-1 h-1 rounded bg-gray-400"></div>
@@ -647,7 +636,8 @@
                 <footer class="footer h-16 flex items-center px-6 bg-white shadow dark:bg-gray-800">
                     <div class="flex justify-center w-full gap-4">
                         <div>
-                            <script>document.write(new Date().getFullYear())</script> © SMK Serayu - All rights reserved
+                            <script>document.write(new Date().getFullYear())</script> © SMK Serayu - All rights
+                            reserved
                         </div>
                     </div>
                 </footer>
