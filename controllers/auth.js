@@ -1,7 +1,6 @@
 const Alumni = require('../models/alumni');
 const Admin = require('../models/admin');
 const mongoose = require('mongoose');
-const { isAlumni, isAdmin } = require('../middleware/auth');
 
 
 
