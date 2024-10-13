@@ -108,29 +108,7 @@
                 </header>
                 <!-- Topbar End -->
 
-                <!-- Topbar Search Modal -->
-                <div>
-                    <div id="topbar-search-modal" class="fc-modal hidden w-full h-full fixed top-0 start-0 z-50">
-                        <div
-                            class="fc-modal-open:opacity-100 fc-modal-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-12 sm:mx-auto">
-                            <div
-                                class="mx-auto max-w-2xl overflow-hidden rounded-xl bg-white shadow-2xl transition-all dark:bg-slate-800">
-                                <div class="relative">
-                                    <div
-                                        class="pointer-events-none absolute top-3.5 start-4 text-gray-900 text-opacity-40 dark:text-gray-200">
-                                        <i class="mgc_search_line text-xl"></i>
-                                    </div>
-                                    <input type="search"
-                                        class="h-12 w-full border-0 bg-transparent ps-11 pe-4 text-gray-900 placeholder-gray-500 dark:placeholder-gray-300 dark:text-gray-200 focus:ring-0 sm:text-sm"
-                                        placeholder="Search...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <main class="flex-grow p-6">
-
                     <!-- Page Title Start -->
                     <div class="flex justify-between items-center mb-6">
                         <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Masukkan Alumni</h4>
@@ -144,36 +122,68 @@
                             <div class="flex items-center gap-2">
                                 <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
                                 <a href="/admin/alumni-form"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Form
+                                    class="text-sm font-medium text-slate-700 dark:text-slat            await alumni.save();e-400">Masukkan
                                     Alumni</a>
                             </div>
                         </div>
                     </div>
                     <!-- Page Title End -->
 
-                    <div class="grid lg:grid-cols-4 gap-6">
+
+
+                    <div class=" bg-white p-6 rounded-md">
                         <!-- konten disini -->
-                        <h1>Ini Form</h1>
+                        <form method="post" action="">
+                            <div class="grid lg:grid-cols-2 gap-6">
+                                <div class="grid lg:grid-cols-1 w-full">
+                                    <div class="flex flex-col">
+                                        <div class="mb-3">
+                                            <label for="name"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama</label>
+                                            <input type="text" class="form-input" name="name" id="name"
+                                                aria-describedby="emailHelp" placeholder="Masukkan Nama">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nisn"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                            <input type="text" class="form-input" id="nisn" aria-describedby="emailHelp"
+                                                name="nisn" placeholder="Masukkan NISN">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
+                                            <input type="password" class="form-input" name="password"
+                                                id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid lg:grid-cols-1 w-full">
+                                    <div class="flex flex-col">
+                                        <div class="mb-3">
+                                            <label for="InputEmail"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                            <input type="email" class="form-input" id="InputEmail"
+                                                aria-describedby="emailHelp" placeholder="Masukkan email (Opsional)">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="graduationYear"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
+                                                Lulus</label>
+                                            <input type="number" class="form-input" id="graduationYear"
+                                                aria-describedby="graduationYear"
+                                                placeholder="Masukkan Tahun Lulus (Opsional)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn bg-primary text-white">Submit</button>
+                        </form>
                     </div>
                 </main>
 
-                <!-- Footer Start -->
-                <footer class="footer h-16 flex items-center px-6 bg-white shadow dark:bg-gray-800">
-                    <div class="flex justify-center w-full gap-4">
-                        <div>
-                            <script>document.write(new Date().getFullYear())</script> © SMK Serayu - All rights
-                            reserved
-                        </div>
-                    </div>
-                </footer>
-                <!-- Footer End -->
-
+                <%- include('../../components/footer') %>
             </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
     </div>
 
     <!-- Back to Top Button -->
