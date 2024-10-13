@@ -30,7 +30,6 @@ const tracerStudySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         optional: true,
         ref: 'Feedback'
-
     }
 });
 
