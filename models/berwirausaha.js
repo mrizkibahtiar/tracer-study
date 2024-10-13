@@ -30,7 +30,6 @@ const berwirausahaSchema = new mongoose.Schema({
     challenges: {
         type: String,
         optional: true
-
     }, // Tantangan yang dihadapi
 });
 
