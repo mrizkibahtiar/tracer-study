@@ -6,6 +6,7 @@ const { isAdmin } = require('../middleware/auth');
 
 router.get('/admin', isAdmin, adminController.index);
 router.get('/admin/alumni-form', isAdmin, adminController.alumniForm);
+router.post('/admin/alumni-form', isAdmin, adminController.store);
 
 
 module.exports = router;
