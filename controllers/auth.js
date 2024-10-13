@@ -17,10 +17,10 @@ module.exports = {
         const admin = await Admin.findOne({ email: nisn });
         const user = alumni || admin;
         if (!user) {
-            return res.render('login', { error: 'User not found' });
+            return res.render('pages/login', { error: 'User not found' });
         }
         if (user.password !== password) {
-            return res.render('login', { error: 'Password incorrect' });
+            return res.render('pages/login', { error: 'Password incorrect' });
         }
         if (alumni) {
             req.session.user = { ...alumni, role: 'alumni' };
@@ -32,8 +32,6 @@ module.exports = {
             console.log(req.session.user)
             return res.redirect('/admin');
         }
-
-        res.redirect('/');
     },
     logout: async (req, res) => {
         req.session.destroy();
