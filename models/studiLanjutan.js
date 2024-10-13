@@ -25,13 +25,7 @@ const studiLanjutanSchema = new mongoose.Schema({
     scholarship: {
         type: String,
         optional: true
-
     }, // Beasiswa jika ada
-    previousDegree: {
-        type: String,
-        optional: true
-
-    }, // Gelar sebelumnya
 });
 
 const StudiLanjutan = mongoose.model('StudiLanjutan', studiLanjutanSchema);
