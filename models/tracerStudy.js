@@ -8,7 +8,7 @@ const tracerStudySchema = new mongoose.Schema({
     },
     activity: {
         type: String,
-        equired: true,
+        required: true,
         enum: ["Bekerja", "Melanjutkan Studi", "Berwirausaha", "Belum ada kegiatan"]
     },
     pekerjaanId: {
