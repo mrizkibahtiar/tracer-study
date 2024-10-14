@@ -10,16 +10,16 @@ module.exports = {
         const { nisn, password } = req.body;
         const alumni = await Alumni.findOne({
             $or: [
-                { nisn: nisn },
-                { email: nisn }
+                { nisn: nisn.trim() },
+                { email: nisn.trim() }
             ]
         });
-        const admin = await Admin.findOne({ email: nisn });
+        const admin = await Admin.findOne({ email: nisn.trim() });
         const user = alumni || admin;
         if (!user) {
             return res.render('pages/login', { error: 'User not found' });
         }
-        if (user.password !== password) {
+        if (user.password !== password.trim()) {
             return res.render('pages/login', { error: 'Password incorrect' });
         }
         if (alumni) {
