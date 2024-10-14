@@ -29,6 +29,8 @@
     <!-- Main Css -->
     <link href="assets/landing/css/style.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="assets/styles/style.css">
+
 </head>
 
 <body>
@@ -38,10 +40,14 @@
         id="navbar">
         <div class="container">
 
-            <div class="flex lg:flex-nowrap flex-wrap items-center">
+            <div class="flex lg:flex-nowrap flex-wrap items-center lg:gap-32">
 
                 <a class='flex items-center' href='/'>
-                    <h1 class="text-3xl font-semibold text-primary">Tracer Study SMK</h1>
+                    <p>
+                        <span class="font-bold text-2xl text-primary sm:text-sm">TRACER STUDY</span>
+                        <br>
+                        <span class="text-sm font-semibold"> SMK Berbasis Pesantren Subulul Huda </span>
+                    </p>
                 </a>
 
                 <div class="lg:hidden flex items-center ms-auto px-2.5">
@@ -53,7 +59,7 @@
 
                 <div class="navigation hs-collapse transition-all duration-300 lg:basis-auto basis-full grow hidden items-center justify-center lg:flex mx-auto overflow-hidden mt-6 lg:mt-0 nav-light"
                     id="navbarCollapse">
-                    <ul class="navbar-nav flex-col lg:flex-row gap-y-2 flex lg:items-center justify-center"
+                    <ul class="navbar-nav flex-col lg:flex-row gap-y-2 flex lg:items-center justify-evenly"
                         id="navbar-navlist">
                         <li
                             class="nav-item mx-1.5 transition-all text-dark lg:text-black group-[&.is-sticky]:text-dark all duration-300 hover:text-primary [&.active]:!text-primary group-[&.is-sticky]:[&.active]:text-primary">
@@ -72,13 +78,14 @@
                                 href="#penilaian">Penilaian</a>
                         </li>
                     </ul>
-                    <div class="ms-auto shrink inline-flex gap-2 mt-4 lg:mt-0">
+                    <div class="ms-auto shrink inline-flex gap-2 mt-4 lg:mt-0 ml-5">
                         <a href="/loginPage"
                             class="py-2 px-6 inline-flex items-center gap-2 rounded-md text-base text-white bg-primary hover:bg-primaryDark transition-all duration-500 font-medium">
-                            <span class="hidden sm:block">Login</span>
+                            Login
                         </a>
                     </div>
                 </div>
+
             </div>
 
         </div>
@@ -94,13 +101,19 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 items-center">
                 <div class="text-sm py-20 px-10">
-                    <span
+                    <!-- <span
                         class="inline-flex py-2 text-lg text-black font-medium items-center justify-center rounded-full">
-                        <i data-lucide="minus"></i> Bantu SMK Lebih maju dengan mengisi tracer study</span>
+                        <i data-lucide="minus"></i></span> -->
                     <h1 class="md:text-6xl/tight text-4xl text-dark tracking-normal leading-normal font-bold mb-4 mt-6">
-                        Sekolah Kejuruan Terbaik <span class="text-primary"> Hanya Di Sini! </span></h1>
-                    <p class="text-base font-medium text-muted leading-7 mt-5 capitalize">SMK Serayu Lorem ipsum, dolor
-                        sit amet consectetur adipisicing elit. Repellendus esse ab hic totam, provident quod.</p>
+                        Selamat Datang ! <span class="text-primary"> Tracer Study</span>
+                    </h1>
+                    <p class="text-lg">
+                        Platform yang memfasilitasi para alumni dalam memperbarui informasi terkait karir dan
+                        pendidikan. Data yang dihimpun akan digunakan untuk evaluasi program sekolah dan
+                        mendukung keterhubungan antara alumni, sekolah, dan industri.
+                    </p>
+
+                    </p>
                     <!-- <div class="flex flex-wrap items-center justify-center gap-3 lg:justify-normal mt-9">
                         <img src="assets/landing/images/store.png" class="h-14" alt="apple image">
                         <img src="assets/landing/images/google.png" class="h-14" alt="google image">
