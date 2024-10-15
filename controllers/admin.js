@@ -21,30 +21,30 @@ module.exports = {
 
     store: async function (req, res) {
         const { name, nisn, password, email, graduationYear } = req.body;
+
         try {
-            if (email && password) {
-                const alumni = await Alumni.create({
-                    nisn: nisn,
-                    name: name,
-                    password: password,
-                    email: email,
-                    graduationYear: graduationYear
-                });
-                res.redirect('/admin/alumni-form');
-                return alumni
-            } else {
-                const alumni = Alumni.create({
-                    nisn: nisn,
-                    name: name,
-                    password: password,
-                });
-                res.redirect('/admin/alumni-form');
-                return alumni
-            }
+            // Membuat objek untuk alumni
+            const alumniData = {
+                nisn: nisn,
+                name: name,
+                password: password,
+                // Hanya menambahkan email dan graduationYear jika ada
+                ...(email && { email: email }),
+                ...(graduationYear && { graduationYear: graduationYear })
+            };
+
+            // Membuat alumni
+            const alumni = await Alumni.create(alumniData);
+
+            // Redirect setelah berhasil
+            res.render('pages/admin/alumni_form', { alumni: alumni });
+            console.log(alumni)
+            // return alumni;
         } catch (err) {
             console.log(err);
-            res.redirect('/admin/alumni-form');
+            // Jika terjadi error, redirect ke alumni-form dengan pesan error
+            res.redirect('/admin/alumni-form', { error: err })
         }
-        res.redirect('/admin');
     }
+
 }
