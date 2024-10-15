@@ -131,53 +131,70 @@
 
 
                     <div class=" bg-white p-6 rounded-md">
-                        <!-- konten disini -->
-                        <form method="post" action="">
-                            <div class="grid lg:grid-cols-2 gap-6">
-                                <div class="grid lg:grid-cols-1 w-full">
-                                    <div class="flex flex-col">
-                                        <div class="mb-3">
-                                            <label for="name"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama</label>
-                                            <input type="text" class="form-input" name="name" id="name"
-                                                aria-describedby="emailHelp" placeholder="Masukkan Nama">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="nisn"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
-                                            <input type="text" class="form-input" id="nisn" aria-describedby="emailHelp"
-                                                name="nisn" placeholder="Masukkan NISN">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
-                                            <input type="password" class="form-input" name="password"
-                                                id="exampleInputPassword1" placeholder="Password">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid lg:grid-cols-1 w-full">
-                                    <div class="flex flex-col">
-                                        <div class="mb-3">
-                                            <label for="InputEmail"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
-                                            <input type="email" class="form-input" id="InputEmail"
-                                                aria-describedby="emailHelp" placeholder="Masukkan email (Opsional)">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="graduationYear"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
-                                                Lulus</label>
-                                            <input type="number" class="form-input" id="graduationYear"
-                                                aria-describedby="graduationYear"
-                                                placeholder="Masukkan Tahun Lulus (Opsional)">
-                                        </div>
-                                    </div>
-                                </div>
+                        <% if(typeof error !=='undefined' ) { %>
+                            <div class="bg-danger/25 text-danger text-sm rounded-md p-4 my-3" role="alert">
+                                <span class="font-bold">Danger</span> alert! You should check in on some of
+                                those fields below.
                             </div>
+                            <% } %>
+                                <% if (typeof alumni !=='undefined' && alumni) { %>
+                                    <div class="bg-success/25 text-success text-sm rounded-md p-4 my-3" role="alert">
+                                        <span class="font-bold">Success</span> alert! You should check in on some of
+                                        those
+                                        fields
+                                        below.
+                                    </div>
+                                    <% } %>
+                                        <!-- konten disini -->
+                                        <form method="post" action="">
+                                            <div class="grid lg:grid-cols-2 gap-6">
+                                                <div class="grid lg:grid-cols-1 w-full">
+                                                    <div class="flex flex-col">
+                                                        <div class="mb-3">
+                                                            <label for="name"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama</label>
+                                                            <input type="text" class="form-input" name="name" id="name"
+                                                                aria-describedby="emailHelp"
+                                                                placeholder="Masukkan Nama">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="nisn"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                                            <input type="text" class="form-input" id="nisn"
+                                                                aria-describedby="emailHelp" name="nisn"
+                                                                placeholder="Masukkan NISN">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="exampleInputPassword1"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
+                                                            <input type="password" class="form-input" name="password"
+                                                                id="exampleInputPassword1" placeholder="Password">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="grid lg:grid-cols-1 w-full">
+                                                    <div class="flex flex-col">
+                                                        <div class="mb-3">
+                                                            <label for="InputEmail"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                            <input type="email" class="form-input" id="InputEmail"
+                                                                aria-describedby="emailHelp"
+                                                                placeholder="Masukkan email (Opsional)">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="graduationYear"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
+                                                                Lulus</label>
+                                                            <input type="number" class="form-input" id="graduationYear"
+                                                                aria-describedby="graduationYear"
+                                                                placeholder="Masukkan Tahun Lulus (Opsional)">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                            <button type="submit" class="btn bg-primary text-white">Submit</button>
-                        </form>
+                                            <button type="submit" class="btn bg-primary text-white">Submit</button>
+                                        </form>
                     </div>
                 </main>
 
