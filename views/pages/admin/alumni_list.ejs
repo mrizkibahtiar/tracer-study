@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from coderthemes.com/konrix/layouts/apps-calendar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Oct 2024 06:31:06 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <title>Tracer Study - SMK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="coderthemes" name="author">
+
+    <link href="../assets/images/smk-bp.png" rel="icon" type="image/png">
+
+    <!-- Gridjs Plugin css -->
+    <link href="../assets/libs/gridjs/theme/mermaid.min.css" rel="stylesheet" type="text/css">
+
+    <!-- App css -->
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons css -->
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme Config Js -->
+    <script src="../assets/js/config.js"></script>
+</head>
+
+<body>
+
+    <div class="flex wrapper">
+
+        <!-- Sidenav Menu -->
+        <%- include ('../../components/sidebar_admin') %>
+
+            <div class="page-content">
+
+                <%- include ('../../components/header_admin') %>
+
+                    <main class="flex-grow p-6">
+                        <!-- Page Title Start -->
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="text-slate-700 dark:text-slate-200 text-lg font-medium">Daftar Alumni</h4>
+
+                            <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
+                                <div class="flex items-center gap-2">
+                                    <a href="/admin"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumni</a>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
+                                    <a href="/admin/alumni-form"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Daftar Alumni</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page Title End -->
+
+                        <!-- Page Content Start -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="card-title">Basic</h4>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-sm text-slate-700 dark:text-slate-400 mb-4">The most basic list group is
+                                    an unordered list with list items and the proper classes. Build upon it with the
+                                    options that follow, or with your own CSS as needed.</p>
+
+                                <div id="table-gridjs"></div>
+                            </div>
+                        </div>
+                        <!-- Page Content End -->
+                    </main>
+
+                    <%- include('../../components/footer') %>
+            </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button data-toggle="back-to-top"
+        class="fixed hidden h-10 w-10 items-center justify-center rounded-full z-10 bottom-20 end-14 p-2.5 bg-primary cursor-pointer shadow-lg text-white">
+        <i class="mgc_arrow_up_line text-lg"></i>
+    </button>
+
+    <!-- Plugin Js -->
+    <script src="../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../assets/libs/feather-icons/feather.min.js"></script>
+    <script src="../assets/libs/%40frostui/tailwindcss/frostui.js"></script>
+
+    <!-- App Js -->
+    <script src="../assets/js/app.js"></script>
+
+    <!-- Gridjs Plugin js -->
+    <script src="../assets/libs/gridjs/gridjs.umd.js"></script>
+
+    <!-- Gridjs Demo js -->
+    <script src="../assets/js/pages/table-gridjs.js"></script>
+
+</body>
+
+</html>
