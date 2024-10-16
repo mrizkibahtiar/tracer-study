@@ -43,6 +43,11 @@ module.exports = {
         } catch (err) {
             res.redirect({ error: err }, '/admin/alumni-form',)
         }
-    }
+    },
+
+    viewAlumniList: async function (req, res) {
+        const alumni = await Alumni.find({});
+        return res.render('pages/admin/alumni_list', { alumni: alumni });
+    },
 
 }
