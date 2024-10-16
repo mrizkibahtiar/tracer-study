@@ -11,7 +11,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
     <meta content="coderthemes" name="author">
 
-    <link href="assets/images/smk-bp.png" rel="icon" type="image/png">
+    <link href="../assets/images/smk-bp.png" rel="icon" type="image/png">
 
     <!-- App css -->
     <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css">
@@ -83,16 +83,17 @@
                         <!-- Profile Dropdown Button -->
                         <div class="relative">
                             <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
-                                class="nav-link">
-                                <img src="../../assets/images/users/user-6.jpg" alt="user-image"
+                                class="nav-link mt-2">
+                                <img src="../../assets/images/profile-icon-light.png" alt="user-image"
                                     class="rounded-full h-10">
                             </button>
                             <div
                                 class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
                                 <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="auth-login.html">
-                                    <i class="mgc_lock_line  me-2"></i>
-                                    <span>Lock Screen</span>
+                                    href="/admin">
+                                    <span class="font-semibold">
+                                        Profile
+                                    </span>
                                 </a>
                                 <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
                                 <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
@@ -110,7 +111,7 @@
                 <main class="flex-grow p-6">
                     <!-- Page Title Start -->
                     <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Masukkan Alumni</h4>
+                        <h4 class="text-slate-700 dark:text-slate-200 text-lg font-medium">Form Alumni</h4>
 
                         <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
                             <div class="flex items-center gap-2">
@@ -121,81 +122,144 @@
                             <div class="flex items-center gap-2">
                                 <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
                                 <a href="/admin/alumni-form"
-                                    class="text-sm font-medium text-slate-700 dark:text-slat            await alumni.save();e-400">Masukkan
+                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Masukkan
                                     Alumni</a>
                             </div>
                         </div>
                     </div>
                     <!-- Page Title End -->
 
-
-
-                    <div class=" bg-white p-6 rounded-md">
-                        <% if(typeof error !=='undefined' ) { %>
-                            <div class="bg-danger/25 text-danger text-sm rounded-md p-4 my-3" role="alert">
-                                <span class="font-bold">Danger</span> alert! You should check in on some of
-                                those fields below.
+                    <div class="col-span-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Masukkan Alumni</h4>
                             </div>
-                            <% } %>
-                                <% if (typeof alumni !=='undefined' && alumni) { %>
-                                    <div class="bg-success/25 text-success text-sm rounded-md p-4 my-3" role="alert">
-                                        <span class="font-bold">Success</span> alert! You should check in on some of
-                                        those
-                                        fields
-                                        below.
+
+                            <div class="p-6">
+                                <% if(typeof error !=='undefined' ) { %>
+                                    <div class="alert bg-danger/25 text-danger text-sm rounded-md p-4 my-3"
+                                        role="alert">
+                                        <span class="font-bold">Danger</span> isi kolom yang diwajibkan
                                     </div>
                                     <% } %>
-                                        <!-- konten disini -->
-                                        <form method="post" action="">
-                                            <div class="grid lg:grid-cols-2 gap-6">
-                                                <div class="grid lg:grid-cols-1 w-full">
-                                                    <div class="flex flex-col">
-                                                        <div class="mb-3">
+                                        <% if (typeof alumni !=='undefined' && alumni) { %>
+                                            <div class="alert bg-success/25 text-success text-sm rounded-md p-4 my-3"
+                                                role="alert">
+                                                <span class="font-bold">Success</span> data berhasil disimpan!
+                                            </div>
+                                            <% } %>
+
+                                                <form method="post" action="/admin/alumni-form">
+                                                    <div class="grid grid-cols-1 md:grid-cols-2  gap-6 mb-3">
+                                                        <div class="md:col-span-2">
                                                             <label for="name"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama</label>
-                                                            <input type="text" class="form-input" name="name" id="name"
-                                                                aria-describedby="emailHelp"
-                                                                placeholder="Masukkan Nama">
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                                <span class="text-red-500">*</span></label>
+                                                            <input type="text" class="form-input" id="name"
+                                                                placeholder="Masukkan Nama Alumni " required
+                                                                name="name">
                                                         </div>
-                                                        <div class="mb-3">
+
+                                                        <div>
                                                             <label for="nisn"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN
+                                                                <span class="text-red-500">*</span></label>
                                                             <input type="text" class="form-input" id="nisn"
-                                                                aria-describedby="emailHelp" name="nisn"
-                                                                placeholder="Masukkan NISN">
+                                                                placeholder="Masukkan NISN" name="nisn" required>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="exampleInputPassword1"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
-                                                            <input type="password" class="form-input" name="password"
-                                                                id="exampleInputPassword1" placeholder="Password">
+                                                        <div>
+                                                            <label for="password"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password
+                                                                <span class="text-red-500">*</span></label>
+                                                            <input type="password" class="form-input" id="password"
+                                                                placeholder="Masukkan Password" required
+                                                                name="password">
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="grid lg:grid-cols-1 w-full">
-                                                    <div class="flex flex-col">
-                                                        <div class="mb-3">
-                                                            <label for="InputEmail"
+
+                                                        <div>
+                                                            <label for="email"
                                                                 class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
-                                                            <input type="email" class="form-input" id="InputEmail"
-                                                                aria-describedby="emailHelp"
-                                                                placeholder="Masukkan email (Opsional)">
+                                                            <input type="email" class="form-input" id="email"
+                                                                placeholder="Masukkan Email (Opsional)" name="email">
                                                         </div>
-                                                        <div class="mb-3">
+
+                                                        <div>
                                                             <label for="graduationYear"
                                                                 class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
                                                                 Lulus</label>
                                                             <input type="number" class="form-input" id="graduationYear"
-                                                                aria-describedby="graduationYear"
-                                                                placeholder="Masukkan Tahun Lulus (Opsional)">
+                                                                placeholder="Masukkan Tahun Lulus (Opsional)"
+                                                                name="graduationYear">
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <button type="submit" class="btn bg-primary text-white">Submit</button>
-                                        </form>
+
+                                                    </div>
+
+                                                    <button type="submit"
+                                                        class="btn bg-primary text-white">Submit</button>
+                                                </form>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- <% if(typeof error !=='undefined' ) { %>
+                            <div class="alert bg-danger/25 text-danger text-sm rounded-md p-4 my-3" role="alert">
+                                <span class="font-bold">Danger</span> isi kolom yang diwajibkan
+                            </div>
+                            <% } %>
+                                <% if (typeof alumni !=='undefined' && alumni) { %>
+                                    <div class="alert bg-success/25 text-success text-sm rounded-md p-4 my-3"
+                                        role="alert">
+                                        <span class="font-bold">Success</span> data berhasil disimpan!
+                                    </div>
+                                    <% } %>
+                                        
+                        <form method="post" action="">
+                            <div class="grid lg:grid-cols-2 gap-6">
+                                <div class="grid lg:grid-cols-1 w-full">
+                                    <div class="flex flex-col">
+                                        <div class="mb-3">
+                                            <label for="name"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama</label>
+                                            <input type="text" class="form-input" name="name" id="name"
+                                                aria-describedby="emailHelp" placeholder="Masukkan Nama">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="nisn"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                            <input type="text" class="form-input" id="nisn" aria-describedby="emailHelp"
+                                                name="nisn" placeholder="Masukkan NISN">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
+                                            <input type="password" class="form-input" name="password"
+                                                id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid lg:grid-cols-1 w-full">
+                                    <div class="flex flex-col">
+                                        <div class="mb-3">
+                                            <label for="InputEmail"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                            <input type="email" class="form-input" id="InputEmail"
+                                                aria-describedby="emailHelp" placeholder="Masukkan email (Opsional)">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="graduationYear"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
+                                                Lulus</label>
+                                            <input type="number" class="form-input" id="graduationYear"
+                                                aria-describedby="graduationYear"
+                                                placeholder="Masukkan Tahun Lulus (Opsional)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn bg-primary text-white">Submit</button>
+                        </form> -->
                 </main>
 
                 <%- include('../../components/footer') %>
@@ -221,6 +285,16 @@
 
     <!-- Calendar Js -->
     <script src="../assets/js/pages/apps-calendar.js"></script>
+
+    <script>
+        const alerts = document.querySelectorAll('.alert')
+        for (let i = 0; i < alerts.length; i++) {
+            setTimeout(() => {
+                alerts[i].remove();
+            }, 2500);
+        }
+
+    </script>
 
 </body>
 
