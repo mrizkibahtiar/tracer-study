@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from coderthemes.com/konrix/layouts/apps-calendar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Oct 2024 06:31:06 GMT -->
 
 <head>
@@ -28,241 +26,110 @@
     <div class="flex wrapper">
 
         <!-- Sidenav Menu -->
-        <%- include ('../../components/navbar_admin') %>
-            <!-- Sidenav Menu End  -->
-
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+        <%- include ('../../components/sidebar_admin') %>
 
             <div class="page-content">
 
-                <!-- Topbar Start -->
-                <header class="app-header flex justify-between items-center px-4 gap-3">
-                    <!-- Sidenav Menu Toggle Button -->
-                    <button id="button-toggle-menu" class="nav-link p-2">
-                        <span class="sr-only">Menu Toggle Button</span>
-                        <span class="flex items-center justify-center h-6 w-6">
-                            <i class="mgc_menu_line text-xl"></i>
-                        </span>
-                    </button>
+                <%- include ('../../components/header_admin') %>
 
-                    <!-- Topbar Brand Logo -->
-                    <!-- <a href="index.html" class="logo-box">
-                        <div class="logo-light">
-                            <img src="../../assets/images/logo-light.png" class="logo-lg h-6" alt="Light logo">
-                            <img src="../../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
-                        </div>
+                    <main class="flex-grow p-6">
+                        <!-- Page Title Start -->
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="text-slate-700 dark:text-slate-200 text-lg font-medium">Form Alumni</h4>
 
-                        <div class="logo-dark">
-                            <img src="../../assets/images/logo-dark.png" class="logo-lg h-6" alt="Dark logo">
-                            <img src="../../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
-                        </div>
-                    </a> -->
-                    <div class="flex gap-6">
-                        <!-- Fullscreen Toggle Button -->
-                        <div class="md:flex hidden">
-                            <button data-toggle="fullscreen" type="button" class="nav-link p-2">
-                                <span class="sr-only">Fullscreen Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_fullscreen_line text-2xl"></i>
-                                </span>
-                            </button>
-                        </div>
-
-                        <!-- Light/Dark Toggle Button -->
-                        <div class="flex">
-                            <button id="light-dark-mode" type="button" class="nav-link p-2">
-                                <span class="sr-only">Light/Dark Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_moon_line text-2xl"></i>
-                                </span>
-                            </button>
-                        </div>
-
-                        <!-- Profile Dropdown Button -->
-                        <div class="relative">
-                            <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
-                                class="nav-link mt-2">
-                                <img src="../../assets/images/profile-icon-light.png" alt="user-image"
-                                    class="rounded-full h-10">
-                            </button>
-                            <div
-                                class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/admin">
-                                    <span class="font-semibold">
-                                        Profile
-                                    </span>
-                                </a>
-                                <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/logout">
-                                    <i class="mgc_exit_line  me-2"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </header>
-                <!-- Topbar End -->
-
-                <main class="flex-grow p-6">
-                    <!-- Page Title Start -->
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-slate-700 dark:text-slate-200 text-lg font-medium">Form Alumni</h4>
-
-                        <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
-                            <div class="flex items-center gap-2">
-                                <a href="/admin"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumnni</a>
-                            </div>
-
-                            <div class="flex items-center gap-2">
-                                <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
-                                <a href="/admin/alumni-form"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Masukkan
-                                    Alumni</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Page Title End -->
-
-                    <div class="col-span-2">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Masukkan Alumni</h4>
-                            </div>
-
-                            <div class="p-6">
-                                <% if(typeof error !=='undefined' ) { %>
-                                    <div class="alert bg-danger/25 text-danger text-sm rounded-md p-4 my-3"
-                                        role="alert">
-                                        <span class="font-bold">Danger</span> isi kolom yang diwajibkan
-                                    </div>
-                                    <% } %>
-                                        <% if (typeof alumni !=='undefined' && alumni) { %>
-                                            <div class="alert bg-success/25 text-success text-sm rounded-md p-4 my-3"
-                                                role="alert">
-                                                <span class="font-bold">Success</span> data berhasil disimpan!
-                                            </div>
-                                            <% } %>
-
-                                                <form method="post" action="/admin/alumni-form">
-                                                    <div class="grid grid-cols-1 md:grid-cols-2  gap-6 mb-3">
-                                                        <div class="md:col-span-2">
-                                                            <label for="name"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
-                                                                <span class="text-red-500">*</span></label>
-                                                            <input type="text" class="form-input" id="name"
-                                                                placeholder="Masukkan Nama Alumni " required
-                                                                name="name">
-                                                        </div>
-
-                                                        <div>
-                                                            <label for="nisn"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN
-                                                                <span class="text-red-500">*</span></label>
-                                                            <input type="text" class="form-input" id="nisn"
-                                                                placeholder="Masukkan NISN" name="nisn" required>
-                                                        </div>
-                                                        <div>
-                                                            <label for="password"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password
-                                                                <span class="text-red-500">*</span></label>
-                                                            <input type="password" class="form-input" id="password"
-                                                                placeholder="Masukkan Password" required
-                                                                name="password">
-                                                        </div>
-
-                                                        <div>
-                                                            <label for="email"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
-                                                            <input type="email" class="form-input" id="email"
-                                                                placeholder="Masukkan Email (Opsional)" name="email">
-                                                        </div>
-
-                                                        <div>
-                                                            <label for="graduationYear"
-                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
-                                                                Lulus</label>
-                                                            <input type="number" class="form-input" id="graduationYear"
-                                                                placeholder="Masukkan Tahun Lulus (Opsional)"
-                                                                name="graduationYear">
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <button type="submit"
-                                                        class="btn bg-primary text-white">Submit</button>
-                                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <% if(typeof error !=='undefined' ) { %>
-                            <div class="alert bg-danger/25 text-danger text-sm rounded-md p-4 my-3" role="alert">
-                                <span class="font-bold">Danger</span> isi kolom yang diwajibkan
-                            </div>
-                            <% } %>
-                                <% if (typeof alumni !=='undefined' && alumni) { %>
-                                    <div class="alert bg-success/25 text-success text-sm rounded-md p-4 my-3"
-                                        role="alert">
-                                        <span class="font-bold">Success</span> data berhasil disimpan!
-                                    </div>
-                                    <% } %>
-                                        
-                        <form method="post" action="">
-                            <div class="grid lg:grid-cols-2 gap-6">
-                                <div class="grid lg:grid-cols-1 w-full">
-                                    <div class="flex flex-col">
-                                        <div class="mb-3">
-                                            <label for="name"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama</label>
-                                            <input type="text" class="form-input" name="name" id="name"
-                                                aria-describedby="emailHelp" placeholder="Masukkan Nama">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="nisn"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
-                                            <input type="text" class="form-input" id="nisn" aria-describedby="emailHelp"
-                                                name="nisn" placeholder="Masukkan NISN">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
-                                            <input type="password" class="form-input" name="password"
-                                                id="exampleInputPassword1" placeholder="Password">
-                                        </div>
-                                    </div>
+                            <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
+                                <div class="flex items-center gap-2">
+                                    <a href="/admin"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumnni</a>
                                 </div>
-                                <div class="grid lg:grid-cols-1 w-full">
-                                    <div class="flex flex-col">
-                                        <div class="mb-3">
-                                            <label for="InputEmail"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
-                                            <input type="email" class="form-input" id="InputEmail"
-                                                aria-describedby="emailHelp" placeholder="Masukkan email (Opsional)">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="graduationYear"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
-                                                Lulus</label>
-                                            <input type="number" class="form-input" id="graduationYear"
-                                                aria-describedby="graduationYear"
-                                                placeholder="Masukkan Tahun Lulus (Opsional)">
-                                        </div>
-                                    </div>
+
+                                <div class="flex items-center gap-2">
+                                    <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
+                                    <a href="/admin/alumni-form"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Masukkan
+                                        Alumni</a>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Page Title End -->
 
-                            <button type="submit" class="btn bg-primary text-white">Submit</button>
-                        </form> -->
-                </main>
+                        <div class="col-span-2">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Masukkan Alumni</h4>
+                                </div>
 
-                <%- include('../../components/footer') %>
+                                <div class="p-6">
+                                    <% if(typeof error !=='undefined' ) { %>
+                                        <div class="alert bg-danger/25 text-danger text-sm rounded-md p-4 my-3"
+                                            role="alert">
+                                            <span class="font-bold">Danger</span> isi kolom yang diwajibkan
+                                        </div>
+                                        <% } %>
+                                            <% if (typeof alumni !=='undefined' && alumni) { %>
+                                                <div class="alert bg-success/25 text-success text-sm rounded-md p-4 my-3"
+                                                    role="alert">
+                                                    <span class="font-bold">Success</span> data berhasil disimpan!
+                                                </div>
+                                                <% } %>
+
+                                                    <form method="post" action="/admin/alumni-form">
+                                                        <div class="grid grid-cols-1 md:grid-cols-2  gap-6 mb-3">
+                                                            <div class="md:col-span-2">
+                                                                <label for="name"
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                                    <span class="text-red-500">*</span></label>
+                                                                <input type="text" class="form-input" id="name"
+                                                                    placeholder="Masukkan Nama Alumni " required
+                                                                    name="name">
+                                                            </div>
+
+                                                            <div>
+                                                                <label for="nisn"
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">NISN
+                                                                    <span class="text-red-500">*</span></label>
+                                                                <input type="text" class="form-input" id="nisn"
+                                                                    placeholder="Masukkan NISN" name="nisn" required>
+                                                            </div>
+                                                            <div>
+                                                                <label for="password"
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Password
+                                                                    <span class="text-red-500">*</span></label>
+                                                                <input type="password" class="form-input" id="password"
+                                                                    placeholder="Masukkan Password" required
+                                                                    name="password">
+                                                            </div>
+
+                                                            <div>
+                                                                <label for="email"
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                                <input type="email" class="form-input" id="email"
+                                                                    placeholder="Masukkan Email (Opsional)"
+                                                                    name="email">
+                                                            </div>
+
+                                                            <div>
+                                                                <label for="graduationYear"
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
+                                                                    Lulus</label>
+                                                                <input type="number" class="form-input"
+                                                                    id="graduationYear"
+                                                                    placeholder="Masukkan Tahun Lulus (Opsional)"
+                                                                    name="graduationYear">
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <button type="submit"
+                                                            class="btn bg-primary text-white">Submit</button>
+                                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    <%- include('../../components/footer') %>
             </div>
     </div>
 
@@ -279,12 +146,6 @@
 
     <!-- App Js -->
     <script src="../assets/js/app.js"></script>
-
-    <!-- Fullcalendar Plugin Js -->
-    <script src="../assets/libs/fullcalendar/index.global.min.js"></script>
-
-    <!-- Calendar Js -->
-    <script src="../assets/js/pages/apps-calendar.js"></script>
 
     <script>
         const alerts = document.querySelectorAll('.alert')
