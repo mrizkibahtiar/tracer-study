@@ -24,12 +24,13 @@ const berwirausahaSchema = new mongoose.Schema({
     }, // Dalam bulan
     revenue: {
         type: Number,
-        optional: true
-
+        required: false,
+        default: null
     }, // Pendapatan jika ada
     challenges: {
         type: String,
-        optional: true
+        required: false,
+        default: null
     }, // Tantangan yang dihadapi
 });
 
