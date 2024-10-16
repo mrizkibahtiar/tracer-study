@@ -24,123 +24,32 @@
 <body>
 
     <div class="flex wrapper">
-        <%- include('../../components/navbar_admin') %>
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+        <%- include('../../components/sidebar_admin') %>
 
             <div class="page-content">
-                <header class="app-header flex justify-between items-center px-4 gap-3">
-                    <!-- Sidenav Menu Toggle Button -->
-                    <button id="button-toggle-menu" class="nav-link p-2">
-                        <span class="sr-only">Menu Toggle Button</span>
-                        <span class="flex items-center justify-center h-6 w-6">
-                            <i class="mgc_menu_line text-xl"></i>
-                        </span>
-                    </button>
+                <%- include ('../../components/header_admin') %>
 
-                    <!-- Topbar Brand Logo -->
-                    <!-- <a href="index.html" class="logo-box">
-                        <div class="logo-light">
-                            <img src="../assets/images/logo-light.png" class="logo-lg h-6" alt="Light logo">
-                            <img src="../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
-                        </div>
+                    <main class="flex-grow w-full p-6">
 
-                        <div class="logo-dark">
-                            <img src="../assets/images/logo-dark.png" class="logo-lg h-6" alt="Dark logo">
-                            <img src="../assets/images/logo-sm.png" class="logo-sm" alt="Small logo">
-                        </div>
-                    </a> -->
-                    <div class="flex gap-6">
-                        <!-- Fullscreen Toggle Button -->
-                        <div class="md:flex hidden">
-                            <button data-toggle="fullscreen" type="button" class="nav-link p-2">
-                                <span class="sr-only">Fullscreen Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_fullscreen_line text-2xl"></i>
-                                </span>
-                            </button>
-                        </div>
+                        <!-- Page Title Start -->
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Selamat Datang <%=
+                                    admin.name %>
+                            </h4>
 
-                        <!-- Light/Dark Toggle Button -->
-                        <div class="flex">
-                            <button id="light-dark-mode" type="button" class="nav-link p-2">
-                                <span class="sr-only">Light/Dark Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_moon_line text-2xl"></i>
-                                </span>
-                            </button>
-                        </div>
-
-                        <!-- Profile Dropdown Button -->
-                        <div class="relative">
-                            <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
-                                class="nav-link mt-2">
-                                <img src="../../assets/images/profile-icon-light.png" alt="user-image"
-                                    class="rounded-full h-10">
-                            </button>
-                            <div
-                                class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/admin">
-                                    <span class="font-semibold">
-                                        Profile
-                                    </span>
-                                </a>
-                                <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/logout">
-                                    <i class="mgc_exit_line  me-2"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </header>
-
-                <!-- Topbar Search Modal -->
-                <!-- <div>
-                    <div id="topbar-search-modal" class="fc-modal hidden w-full h-full fixed top-0 start-0 z-50">
-                        <div
-                            class="fc-modal-open:opacity-100 fc-modal-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-12 sm:mx-auto">
-                            <div
-                                class="mx-auto max-w-2xl overflow-hidden rounded-xl bg-white shadow-2xl transition-all dark:bg-slate-800">
-                                <div class="relative">
-                                    <div
-                                        class="pointer-events-none absolute top-3.5 start-4 text-gray-900 text-opacity-40 dark:text-gray-200">
-                                        <i class="mgc_search_line text-xl"></i>
-                                    </div>
-                                    <input type="search"
-                                        class="h-12 w-full border-0 bg-transparent ps-11 pe-4 text-gray-900 placeholder-gray-500 dark:placeholder-gray-300 dark:text-gray-200 focus:ring-0 sm:text-sm"
-                                        placeholder="Search...">
+                            <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
+                                <div class="flex items-center gap-2">
+                                    <a href="/admin"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Dashboard</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div> -->
+                        <!-- Page Title End -->
 
-                <main class="flex-grow w-full p-6">
+                        <div class="grid 2xl:grid-cols-4 gap-6 mb-6">
 
-                    <!-- Page Title Start -->
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Selamat Datang <%= admin.name
-                                %>
-                        </h4>
-
-                        <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
-                            <div class="flex items-center gap-2">
-                                <a href="/admin"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Dashboard</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Page Title End -->
-
-                    <div class="grid 2xl:grid-cols-4 gap-6 mb-6">
-
-                        <div class="2xl:col-span-3">
-                            <!-- <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
+                            <div class="2xl:col-span-3">
+                                <!-- <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6 mb-6">
                                 <div class="card">
                                     <div class="p-6">
                                         <div class="flex justify-between items-start">
@@ -389,252 +298,252 @@
                                 </div>
                             </div> -->
 
-                            <div class="grid lg:grid-cols-3 gap-6">
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <h4 class="card-title">Monthly Target</h4>
+                                <div class="grid lg:grid-cols-3 gap-6">
+                                    <div class="col-span-1">
+                                        <div class="card">
+                                            <div class="p-6">
+                                                <h4 class="card-title">Monthly Target</h4>
 
-                                            <div id="monthly-target" class="apex-charts my-8"
-                                                data-colors="#0acf97,#3073F1">
-                                            </div>
-
-                                            <div class="flex justify-center">
-                                                <div class="w-1/2 text-center">
-                                                    <h5>Pending</h5>
-                                                    <p class="fw-semibold text-muted">
-                                                        <i class="mgc_round_fill text-primary"></i> Projects
-                                                    </p>
+                                                <div id="monthly-target" class="apex-charts my-8"
+                                                    data-colors="#0acf97,#3073F1">
                                                 </div>
-                                                <div class="w-1/2 text-center">
-                                                    <h5>Done</h5>
-                                                    <p class="fw-semibold text-muted">
-                                                        <i class="mgc_round_fill text-success"></i> Projects
-                                                    </p>
+
+                                                <div class="flex justify-center">
+                                                    <div class="w-1/2 text-center">
+                                                        <h5>Pending</h5>
+                                                        <p class="fw-semibold text-muted">
+                                                            <i class="mgc_round_fill text-primary"></i> Projects
+                                                        </p>
+                                                    </div>
+                                                    <div class="w-1/2 text-center">
+                                                        <h5>Done</h5>
+                                                        <p class="fw-semibold text-muted">
+                                                            <i class="mgc_round_fill text-success"></i> Projects
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lg:col-span-2">
+                                        <div class="card">
+                                            <div class="p-6">
+                                                <div class="flex justify-between items-center">
+                                                    <h4 class="card-title">Project Statistics</h4>
+                                                    <div class="flex gap-2">
+                                                        <button type="button"
+                                                            class="btn btn-sm bg-primary/25 text-primary hover:bg-primary hover:text-white">
+                                                            All
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
+                                                            6M
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
+                                                            1Y
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div dir="ltr" class="mt-2">
+                                                    <div id="crm-project-statistics" class="apex-charts"
+                                                        data-colors="#cbdcfc,#3073F1"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="lg:col-span-2">
+                            </div>
+                        </div> <!-- Grid End -->
+
+
+                        <div class="flex w-full gap-6">
+                            <div class="flex w-full gap-6">
+                                <div class="2xl:col-span-2 md:col-span-2">
                                     <div class="card">
                                         <div class="p-6">
                                             <div class="flex justify-between items-center">
-                                                <h4 class="card-title">Project Statistics</h4>
-                                                <div class="flex gap-2">
-                                                    <button type="button"
-                                                        class="btn btn-sm bg-primary/25 text-primary hover:bg-primary hover:text-white">
-                                                        All
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
-                                                        6M
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
-                                                        1Y
-                                                    </button>
-                                                </div>
+                                                <h4 class="card-title">Project Overview</h4>
                                             </div>
 
-                                            <div dir="ltr" class="mt-2">
-                                                <div id="crm-project-statistics" class="apex-charts"
-                                                    data-colors="#cbdcfc,#3073F1"></div>
+                                            <div class="grid md:grid-cols-2 items-center gap-4">
+                                                <div class="md:order-1 order-2">
+                                                    <div class="flex flex-col gap-6">
+                                                        <div class="flex items-center">
+                                                            <div class="flex-shrink-0">
+                                                                <i
+                                                                    class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-primary/25 text-lg text-primary"></i>
+                                                            </div>
+                                                            <div class="flex-grow ms-3">
+                                                                <h5 class="fw-semibold mb-1">Product Design</h5>
+                                                                <ul class="flex items-center gap-2">
+                                                                    <li class="list-inline-item"><b>26</b> Total
+                                                                        Projects
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                    </li>
+                                                                    <li class="list-inline-item"><b>4</b> Employees</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex items-center">
+                                                            <div class="flex-shrink-0">
+                                                                <i
+                                                                    class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-danger/25 text-lg text-danger"></i>
+                                                            </div>
+                                                            <div class="flex-grow ms-3">
+                                                                <h5 class="fw-semibold mb-1">Web Development</h5>
+                                                                <ul class="flex items-center gap-2">
+                                                                    <li class="list-inline-item"><b>30</b> Total
+                                                                        Projects
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                    </li>
+                                                                    <li class="list-inline-item"><b>5</b> Employees</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex items-center">
+                                                            <div class="flex-shrink-0">
+                                                                <i
+                                                                    class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-success/25 text-lg text-success"></i>
+                                                            </div>
+                                                            <div class="flex-grow ms-3">
+                                                                <h5 class="fw-semibold mb-1">Illustration Design</h5>
+                                                                <ul class="flex items-center gap-2">
+                                                                    <li class="list-inline-item"><b>12</b> Total
+                                                                        Projects
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                    </li>
+                                                                    <li class="list-inline-item"><b>3</b> Employees</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex items-center">
+                                                            <div class="flex-shrink-0">
+                                                                <i
+                                                                    class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-warning/25 text-lg text-warning"></i>
+                                                            </div>
+                                                            <div class="flex-grow ms-3">
+                                                                <h5 class="fw-semibold mb-1">UI/UX Design</h5>
+                                                                <ul class="flex items-center gap-2">
+                                                                    <li class="list-inline-item"><b>8</b> Total Projects
+                                                                    </li>
+                                                                    <li class="list-inline-item">
+                                                                        <div class="w-1 h-1 rounded bg-gray-400"></div>
+                                                                    </li>
+                                                                    <li class="list-inline-item"><b>4</b> Employees</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="md:order-2 order-1">
+                                                    <div id="project-overview-chart" class="apex-charts"
+                                                        data-colors="#3073F1,#ff679b,#0acf97,#ffbc00"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> <!-- Grid End -->
+                            <div class="flex flex-col w-full">
+                                <div class="flex w-full gap-6 mb-6">
+                                    <div class="col-span-1">
+                                        <div class="card">
+                                            <div class="p-6">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div
+                                                            class="w-12 h-12 flex justify-center items-center rounded text-primary bg-primary/25">
+                                                            <i class="mgc_document_2_line text-xl"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h5 class="mb-1">Active Projects</h5>
+                                                        <p>85</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-1">
+                                        <div class="card">
+                                            <div class="p-6">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div
+                                                            class="w-12 h-12 flex justify-center items-center rounded text-success bg-success/25">
+                                                            <i class="mgc_group_line text-xl"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h5 class="mb-1">Total Employees</h5>
+                                                        <p>32</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex w-full gap-6 mb-6">
+                                    <div class="col-span-1">
+                                        <div class="card">
+                                            <div class="p-6">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div
+                                                            class="w-12 h-12 flex justify-center items-center rounded text-info bg-info/25">
+                                                            <i class="mgc_star_line text-xl"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h5 class="mb-1">Project Reviews</h5>
+                                                        <p>40</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-1">
+                                        <div class="card">
+                                            <div class="p-6">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div
+                                                            class="w-12 h-12 flex justify-center items-center rounded text-info bg-warning/25">
+                                                            <i class="mgc_new_folder_line text-xl"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow">
+                                                        <h5 class="mb-1">Project Reviews</h5>
+                                                        <p>40</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div> <!-- Grid End -->
+
+
                         </div>
-                    </div> <!-- Grid End -->
 
 
-                    <div class="flex w-full gap-6">
-                        <div class="flex w-full gap-6">
-                            <div class="2xl:col-span-2 md:col-span-2">
-                                <div class="card">
-                                    <div class="p-6">
-                                        <div class="flex justify-between items-center">
-                                            <h4 class="card-title">Project Overview</h4>
-                                        </div>
+                    </main>
 
-                                        <div class="grid md:grid-cols-2 items-center gap-4">
-                                            <div class="md:order-1 order-2">
-                                                <div class="flex flex-col gap-6">
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-primary/25 text-lg text-primary"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">Product Design</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>26</b> Total
-                                                                    Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>4</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-danger/25 text-lg text-danger"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">Web Development</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>30</b> Total
-                                                                    Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>5</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-success/25 text-lg text-success"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">Illustration Design</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>12</b> Total
-                                                                    Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>3</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-warning/25 text-lg text-warning"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">UI/UX Design</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>8</b> Total Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>4</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="md:order-2 order-1">
-                                                <div id="project-overview-chart" class="apex-charts"
-                                                    data-colors="#3073F1,#ff679b,#0acf97,#ffbc00"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- Grid End -->
-                        <div class="flex flex-col w-full">
-                            <div class="flex w-full gap-6 mb-6">
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-primary bg-primary/25">
-                                                        <i class="mgc_document_2_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Active Projects</h5>
-                                                    <p>85</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-success bg-success/25">
-                                                        <i class="mgc_group_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Total Employees</h5>
-                                                    <p>32</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full gap-6 mb-6">
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-info bg-info/25">
-                                                        <i class="mgc_star_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Project Reviews</h5>
-                                                    <p>40</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-info bg-warning/25">
-                                                        <i class="mgc_new_folder_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Project Reviews</h5>
-                                                    <p>40</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div> <!-- Grid End -->
-
-
-                    </div>
-
-
-                </main>
-
-                <%- include('../../components/footer') %>
+                    <%- include('../../components/footer') %>
             </div>
 
     </div>
