@@ -41,9 +41,7 @@ module.exports = {
             console.log(alumni)
             // return alumni;
         } catch (err) {
-            console.log(err);
-            // Jika terjadi error, redirect ke alumni-form dengan pesan error
-            res.redirect('/admin/alumni-form', { error: err })
+            res.redirect({ error: err }, '/admin/alumni-form',)
         }
     }
 
