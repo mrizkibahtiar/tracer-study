@@ -9,4 +9,6 @@ router.route('/admin/alumni-form')
     .get(isAdmin, adminController.alumniForm)
     .post(isAdmin, adminController.store);
 
+router.get('/admin/alumni-list', isAdmin, adminController.viewAlumniList);
+
 module.exports = router;
