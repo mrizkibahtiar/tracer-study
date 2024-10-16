@@ -6,6 +6,7 @@ const authRouter = require('./router/auth');
 const adminRouter = require('./router/admin');
 const URL = 'mongodb://localhost:27017/tracer-study';
 const bodyParser = require('body-parser');
+const { checkLogin } = require('./middleware/auth');
 const session = require('express-session');
 
 async function connectDb(URL) {
@@ -38,7 +39,7 @@ app.get('/', (req, res) => {
     res.render('pages/index');
 })
 
-app.get('/loginPage', (req, res) => {
+app.get('/loginPage', checkLogin, (req, res) => {
     res.render('pages/login');
 })
 
