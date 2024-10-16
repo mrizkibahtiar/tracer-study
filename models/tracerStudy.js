@@ -13,22 +13,22 @@ const tracerStudySchema = new mongoose.Schema({
     },
     pekerjaanId: {
         type: mongoose.Schema.Types.ObjectId,
-        optional: true,
+        required: false,
         ref: 'Pekerjaan'
     },
     studiLanjutanId: {
         type: mongoose.Schema.Types.ObjectId,
-        optional: true,
+        required: false,
         ref: 'StudiLanjutan'
     },
     berwirausahaId: {
         type: mongoose.Schema.Types.ObjectId,
-        optional: true,
+        required: false,
         ref: 'Berwirausaha'
     },
     feedbackId: {
         type: mongoose.Schema.Types.ObjectId,
-        optional: true,
+        required: false,
         ref: 'Feedback'
     }
 });
