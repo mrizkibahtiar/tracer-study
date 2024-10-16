@@ -15,11 +15,13 @@ const alumniSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: false
+        required: false,
+        default: null
     },
     graduationYear: {
         type: Number,
-        required: false
+        required: false,
+        default: null
     },
 }, { timestamps: true });
 
