@@ -20,11 +20,11 @@ const studiLanjutanSchema = new mongoose.Schema({
     duration: {
         type: Number,
         required: true
-
     }, // Dalam bulan
     scholarship: {
         type: String,
-        optional: true
+        required: false,
+        default: null
     }, // Beasiswa jika ada
 });
 
