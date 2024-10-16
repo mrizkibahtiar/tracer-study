@@ -23,13 +23,13 @@ const pekerjaanSchema = new mongoose.Schema({
     }, // Dalam bulan
     salary: {
         type: Number,
-        optional: true
-
+        required: false,
+        default: null
     }, // Opsional
     responsibilities: {
         type: String,
-        optional: true
-
+        required: false,
+        default: null
     }, // Tanggung jawab di pekerjaan
 });
 
