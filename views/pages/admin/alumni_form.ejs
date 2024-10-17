@@ -60,16 +60,19 @@
                                 </div>
 
                                 <div class="p-6">
-                                    <% if(typeof error !=='undefined' ) { %>
+                                    <% if (typeof error !=='undefined' ) { %>
                                         <div class="alert bg-danger/25 text-danger text-sm rounded-md p-4 my-3"
                                             role="alert">
-                                            <span class="font-bold">Danger</span> isi kolom yang diwajibkan
+                                            <span class="font-bold">Error :</span>
+                                            <%= error %>
                                         </div>
                                         <% } %>
-                                            <% if (typeof alumni !=='undefined' && alumni) { %>
+
+                                            <% if (typeof success !=='undefined' ) { %>
                                                 <div class="alert bg-success/25 text-success text-sm rounded-md p-4 my-3"
                                                     role="alert">
-                                                    <span class="font-bold">Success</span> data berhasil disimpan!
+                                                    <span class="font-bold">Success :</span>
+                                                    <%= success %>
                                                 </div>
                                                 <% } %>
 
@@ -97,15 +100,15 @@
                                                                     <span class="text-red-500">*</span></label>
                                                                 <input type="password" class="form-input" id="password"
                                                                     placeholder="Masukkan Password" required
-                                                                    name="password">
+                                                                    name="password" autocomplete="current-password">
                                                             </div>
 
                                                             <div>
                                                                 <label for="email"
                                                                     class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
                                                                 <input type="email" class="form-input" id="email"
-                                                                    placeholder="Masukkan Email (Opsional)"
-                                                                    name="email">
+                                                                    placeholder="Masukkan Email (Opsional)" name="email"
+                                                                    autocomplete="email">
                                                             </div>
 
                                                             <div>
