@@ -67,7 +67,7 @@
                                     an unordered list with list items and the proper classes. Build upon it with the
                                     options that follow, or with your own CSS as needed.</p>
 
-                                <div id="table-gridjs"></div>
+                                <div id="table-gridjs" data-alumni="<%= JSON.stringify(alumni) %>"></div>
                             </div>
                         </div>
                         <!-- Page Content End -->
@@ -94,8 +94,61 @@
     <!-- Gridjs Plugin js -->
     <script src="../assets/libs/gridjs/gridjs.umd.js"></script>
 
-    <!-- Gridjs Demo js -->
-    <script src="../assets/js/pages/table-gridjs.js"></script>
+    <script>
+        const alumniTableElement = document.getElementById("table-gridjs");
+        const dataAlumni = JSON.parse(alumniTableElement.getAttribute("data-alumni"));
+        const dataAlumniMap = dataAlumni.map((alumni, index) => [
+            index + 1,
+            alumni.name,
+            alumni.nisn,
+            alumni.email = alumni.email || "null",
+            alumni.graduationYear = alumni.graduationYear || "null",
+        ]);
+        console.log(dataAlumniMap);
+        class GridDatatable {
+            init() {
+                this.basicTableInit();
+            }
+            basicTableInit() {
+                alumniTableElement &&
+                    new gridjs.Grid({
+                        columns: [
+                            {
+                                name: "No",
+                                width: "fit-content",
+                                formatter: function (e) {
+                                    return gridjs.html('<span class="font-semibold">' + e + "</span>");
+                                },
+                            },
+                            {
+                                name: "Nama",
+                                formatter: function (e) {
+                                    return gridjs.html('<a href="">' + e + "</a>");
+                                },
+                            },
+                            "NISN",
+                            "Email",
+                            "Tahun Lulus",
+                            {
+                                name: "Actions",
+                                width: "120px",
+                                formatter: function (e) {
+                                    return gridjs.html("<a href='#' class='underline text-primary'>Details</a>");
+                                },
+                            },
+                        ],
+                        pagination: { limit: 5 },
+                        sort: !0,
+                        search: !0,
+                        data: dataAlumniMap
+                    }).render(alumniTableElement)
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function (e) {
+            new GridDatatable().init();
+        });
+
+    </script>
 
 </body>
 
