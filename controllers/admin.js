@@ -21,32 +21,34 @@ module.exports = {
 
     store: async function (req, res) {
         const { name, nisn, password, email, graduationYear } = req.body;
-
+        console.log(req.body);
         try {
             // Membuat objek untuk alumni
             const alumniData = {
-                nisn: nisn,
-                name: name,
-                password: password,
-                // Hanya menambahkan email dan graduationYear jika ada
-                ...(email && { email: email }),
-                ...(graduationYear && { graduationYear: graduationYear })
+                nisn: nisn.trim(),
+                name: name.trim(),
+                password: password.trim(),
+                ...(email && { email: email.trim() }),
+                ...(graduationYear && { graduationYear: graduationYear.trim() })
             };
 
             // Membuat alumni
             const alumni = await Alumni.create(alumniData);
 
-            // Redirect setelah berhasil
-            res.render('pages/admin/alumni_form', { alumni: alumni });
-            console.log(alumni)
-            // return alumni;
+            // Mengirim success message jika berhasil
+            res.render('pages/admin/alumni_form', { success: 'Alumni berhasil ditambahkan!', alumni: alumni });
         } catch (err) {
-            res.redirect({ error: err }, '/admin/alumni-form',)
+            if (err.code === 11000 && err.keyPattern.nisn) {
+                return res.render('pages/admin/alumni_form', { error: 'NISN sudah terdaftar. Mohon gunakan NISN lain.', alumni: req.body });
+            }
+            // Error lainnya
+            return res.render('pages/admin/alumni_form', { error: 'Terjadi kesalahan. Mohon coba lagi.', alumni: req.body });
         }
     },
 
     viewAlumniList: async function (req, res) {
         const alumni = await Alumni.find({});
+        console.log(alumni);
         return res.render('pages/admin/alumni_list', { alumni: alumni });
     },
 
