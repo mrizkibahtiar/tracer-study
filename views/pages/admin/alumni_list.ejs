@@ -22,6 +22,14 @@
 
     <!-- Theme Config Js -->
     <script src="../assets/js/config.js"></script>
+    <style>
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,13 +50,13 @@
 
                             <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
                                 <div class="flex items-center gap-2">
-                                    <a href="/admin"
+                                    <a href="/admin/alumni-list"
                                         class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumni</a>
                                 </div>
 
                                 <div class="flex items-center gap-2">
                                     <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
-                                    <a href="/admin/alumni-form"
+                                    <a href="/admin/alumni-list"
                                         class="text-sm font-medium text-slate-700 dark:text-slate-400">Daftar Alumni</a>
                                 </div>
                             </div>
@@ -57,17 +65,15 @@
 
                         <!-- Page Content Start -->
                         <div class="card">
-                            <div class="card-header">
+                            <!-- <div class="card-header">
                                 <div class="flex justify-between items-center">
                                     <h4 class="card-title">Basic</h4>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="p-6">
-                                <p class="text-sm text-slate-700 dark:text-slate-400 mb-4">The most basic list group is
-                                    an unordered list with list items and the proper classes. Build upon it with the
-                                    options that follow, or with your own CSS as needed.</p>
-
-                                <div id="table-gridjs" data-alumni="<%= JSON.stringify(alumni) %>"></div>
+                                <div class="table-responsive overflow-x-visible">
+                                    <div id="table-gridjs" data-alumni="<%= JSON.stringify(alumni) %>"></div>
+                                </div>
                             </div>
                         </div>
                         <!-- Page Content End -->
@@ -91,8 +97,7 @@
     <!-- App Js -->
     <script src="../assets/js/app.js"></script>
 
-    <!-- Gridjs Plugin js -->
-    <script src="../assets/libs/gridjs/gridjs.umd.js"></script>
+    <script src="https://unpkg.com/gridjs/dist/gridjs.production.min.js"></script>
 
     <script>
         const alumniTableElement = document.getElementById("table-gridjs");
@@ -101,10 +106,9 @@
             index + 1,
             alumni.name,
             alumni.nisn,
-            alumni.email = alumni.email || "null",
-            alumni.graduationYear = alumni.graduationYear || "null",
+            alumni.email = alumni.email || "kosong",
+            alumni.graduationYear = alumni.graduationYear || "kosong",
         ]);
-        console.log(dataAlumniMap);
         class GridDatatable {
             init() {
                 this.basicTableInit();
@@ -115,7 +119,6 @@
                         columns: [
                             {
                                 name: "No",
-                                width: "fit-content",
                                 formatter: function (e) {
                                     return gridjs.html('<span class="font-semibold">' + e + "</span>");
                                 },
@@ -131,13 +134,15 @@
                             "Tahun Lulus",
                             {
                                 name: "Actions",
-                                width: "120px",
-                                formatter: function (e) {
-                                    return gridjs.html("<a href='#' class='underline text-primary'>Details</a>");
+                                formatter: function (cell, row) {
+                                    const nisn = row.cells[2].data;
+                                    console.log(nisn);
+                                    return gridjs.html("<a href='/admin/alumni-list/" + nisn + "' class='underline text-primary'>Detail</a>");
                                 },
                             },
                         ],
                         pagination: { limit: 5 },
+                        resizable: !0,
                         sort: !0,
                         search: !0,
                         data: dataAlumniMap
