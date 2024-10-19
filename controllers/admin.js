@@ -39,10 +39,10 @@ module.exports = {
             res.render('pages/admin/alumni_form', { success: 'Alumni berhasil ditambahkan!', alumni: alumni });
         } catch (err) {
             if (err.code === 11000 && err.keyPattern.nisn) {
-                return res.render('pages/admin/alumni_form', { error: 'NISN sudah terdaftar. Mohon gunakan NISN lain.', alumni: req.body });
+                return res.render('pages/admin/alumni_form', { error: 'NISN sudah terdaftar. Mohon gunakan NISN lain.', name, nisn, email, graduationYear });
             }
             // Error lainnya
-            return res.render('pages/admin/alumni_form', { error: 'Terjadi kesalahan. Mohon coba lagi.', alumni: req.body });
+            return res.render('pages/admin/alumni_form', { error: 'Terjadi kesalahan. Mohon coba lagi.', name, nisn, email, graduationYear });
         }
     },
 
@@ -52,4 +52,20 @@ module.exports = {
         return res.render('pages/admin/alumni_list', { alumni: alumni });
     },
 
+    viewAlumniDetail: async function (req, res) {
+        const { nisn } = req.params;
+        const alumni = await Alumni.findOne({ nisn: nisn });
+        return res.render('pages/admin/alumni_detail', { alumni: alumni });
+    },
+
+    deleteAlumni: async function (req, res) {
+        try {
+            const { nisn } = req.params;
+            const alumni = await Alumni.findOneAndDelete({ nisn: nisn });
+            return res.redirect('/admin/alumni-list');
+        } catch (err) {
+            console.log(err);
+            return res.redirect('/admin/alumni-list/' + nisn);
+        }
+    }
 }
