@@ -8,6 +8,7 @@ const URL = 'mongodb://localhost:27017/tracer-study';
 const bodyParser = require('body-parser');
 const { checkLogin } = require('./middleware/auth');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 async function connectDb(URL) {
     try {
@@ -43,7 +44,7 @@ app.get('/loginPage', checkLogin, (req, res) => {
     res.render('pages/login');
 })
 
-
+app.use(methodOverride('_method'));
 app.use(authRouter);
 app.use(alumniRouter);
 app.use(adminRouter);
