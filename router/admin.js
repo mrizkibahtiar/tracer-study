@@ -15,4 +15,6 @@ router.delete('/admin/alumni-list/:nisn', isAdmin, adminController.deleteAlumni)
 router.route('/admin/alumni-edit/:nisn')
     .get(isAdmin, adminController.alumniEdit)
     .put(isAdmin, adminController.alumniUpdate);
+router.get('/admin/alumni-tracer', isAdmin, adminController.viewAlumniTracer);
+router.get('/admin/profile', isAdmin, adminController.profile);
 module.exports = router;
