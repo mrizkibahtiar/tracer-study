@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tracer Study SMK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="coderthemes" name="author">
+
+    <!-- App favicon -->
+    <link href="../assets/images/smk-bp.png" rel="icon" type="image/png">
+
+    <!-- App css -->
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons css -->
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme Config Js -->
+    <script src="../assets/js/config.js"></script>
+</head>
+
+<body>
+
+    <div class="flex wrapper">
+        <%- include('../../components/sidebar_admin') %>
+
+            <div class="page-content">
+                <%- include ('../../components/topbar_admin') %>
+
+                    <main class="flex-grow p-6">
+
+                        <!-- Page Title Start -->
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Tracer Study</h4>
+
+                            <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
+                                <div class="flex items-center gap-2">
+                                    <a href="/admin"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumni</a>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
+                                    <a href="/admin/alumni-tracer"
+                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Tracer
+                                        study</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page Title End -->
+
+                        <!-- Page Content Start -->
+                        <div class="grid grid-cols-1 gap-6 mb-6">
+                            <div class="grid grid-cols-1 gap-6">
+                                <div class="card p-6">
+                                    <h1>Ini adalah Halaman Tracer</h1>
+                                </div>
+                            </div>
+                        </div>
+
+                    </main>
+
+                    <%- include('../../components/footer') %>
+            </div>
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button data-toggle="back-to-top"
+        class="fixed hidden h-10 w-10 items-center justify-center rounded-full z-10 bottom-20 translate-x-52 end-14 p-2.5 bg-primary cursor-pointer shadow-lg text-white">
+        <i class="mgc_arrow_up_line text-lg"></i>
+    </button>
+
+
+    <!-- Plugin Js -->
+    <!-- Apex Chart Plugin Js -->
+    <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Apex Chart Demo Js -->
+    <script src="../assets/js/pages/charts-apex.js" type="text/javascript"></script>
+
+    <!-- Plugin Js -->
+    <script src="../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../assets/libs/feather-icons/feather.min.js"></script>
+    <script src="../assets/libs/%40frostui/tailwindcss/frostui.js"></script>
+
+    <!-- App Js -->
+    <script src="../assets/js/app.js"></script>
+
+</body>
+
+</html>
