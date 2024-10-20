@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 const { checkLogin } = require('./middleware/auth');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
+const { flashMessage } = require('./middleware/flash');
 
 async function connectDb(URL) {
     try {
@@ -18,6 +20,7 @@ async function connectDb(URL) {
         console.log(error);
     }
 }
+connectDb(URL)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,7 +34,8 @@ app.use(session({
     }
 }))
 
-connectDb(URL)
+app.use(flash());
+app.use(flashMessage);
 
 app.set('view engine', 'ejs')
 app.use('/assets', express.static('public'))
