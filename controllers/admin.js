@@ -83,5 +83,16 @@ module.exports = {
             req.flash('error_msg', 'Terjadi kesalahan. Mohon coba lagi.');
             return res.redirect('pages/admin/alumni-edit/' + nisn);
         }
+    },
+    viewAlumniTracer: async function (req, res) {
+        const alumni = await Alumni.find({});
+        return res.render('pages/admin/alumni_tracer', { alumni: alumni });
+    },
+
+    profile: async function (req, res) {
+        console.log(req.session.user);
+        const { email } = req.session.user._doc;
+        const admin = await Admin.findOne({ email: email });
+        return res.render('pages/admin/profile', { admin: admin });
     }
 }
