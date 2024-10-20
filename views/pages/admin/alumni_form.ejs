@@ -78,7 +78,16 @@
 
                                                     <form method="post" action="/admin/alumni-form">
                                                         <div class="grid grid-cols-1 md:grid-cols-2  gap-6 mb-3">
+
                                                             <div class="md:col-span-2">
+                                                                <label for="nisn"
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">NISN
+                                                                    <span class="text-red-500">*</span></label>
+                                                                <input type="text" class="form-input" id="nisn"
+                                                                    placeholder="Masukkan NISN" name="nisn" required
+                                                                    value="<%= typeof nisn !== 'undefined' ? nisn : '' %>">
+                                                            </div>
+                                                            <div>
                                                                 <label for="name"
                                                                     class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
                                                                     <span class="text-red-500">*</span></label>
@@ -89,20 +98,21 @@
                                                             </div>
 
                                                             <div>
-                                                                <label for="nisn"
-                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">NISN
-                                                                    <span class="text-red-500">*</span></label>
-                                                                <input type="text" class="form-input" id="nisn"
-                                                                    placeholder="Masukkan NISN" name="nisn" required
-                                                                    value="<%= typeof nisn !== 'undefined' ? nisn : '' %>">
-                                                            </div>
-                                                            <div>
                                                                 <label for="password"
-                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Password
-                                                                    <span class="text-red-500">*</span></label>
+                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">
+                                                                    Password <span class="text-red-500">*</span>
+                                                                </label>
                                                                 <input type="password" class="form-input" id="password"
                                                                     placeholder="Masukkan Password" required
                                                                     name="password" autocomplete="current-password">
+                                                                <div class="form-check mt-2">
+                                                                    <input type="checkbox"
+                                                                        class="form-checkbox rounded text-primary"
+                                                                        id="show-password">
+                                                                    <label class="ms-1.5 text-sm"
+                                                                        for="show-password">Lihat
+                                                                        Password</label>
+                                                                </div>
                                                             </div>
 
                                                             <div>
@@ -155,6 +165,19 @@
     <script src="../assets/js/app.js"></script>
 
     <script>
+        // toggle password
+        const passwordInput = document.getElementById('password');
+        const showPasswordCheckbox = document.getElementById('show-password');
+
+        showPasswordCheckbox.addEventListener('change', function () {
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+
+        // Alert
         const alerts = document.querySelectorAll('.alert')
         for (let i = 0; i < alerts.length; i++) {
             setTimeout(() => {
