@@ -29,7 +29,6 @@ module.exports = {
         } else {
             req.session.user = { ...admin, role: 'admin' };
             req.session.save();
-            console.log(req.session.user)
             return res.redirect('/admin');
         }
     },
