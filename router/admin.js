@@ -12,4 +12,7 @@ router.route('/admin/alumni-form')
 router.get('/admin/alumni-list', isAdmin, adminController.viewAlumniList);
 router.get('/admin/alumni-list/:nisn', isAdmin, adminController.viewAlumniDetail);
 router.delete('/admin/alumni-list/:nisn', isAdmin, adminController.deleteAlumni);
+router.route('/admin/alumni-edit/:nisn')
+    .get(isAdmin, adminController.alumniEdit)
+    .put(isAdmin, adminController.alumniUpdate);
 module.exports = router;
