@@ -78,20 +78,21 @@
                                         <div class="md:col-span-2">
                                             <p
                                                 class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
+                                                NISN</p>
+                                            <h2 class="dark:text-white">
+                                                <%= alumni.nisn %>
+                                            </h2>
+                                        </div>
+                                        <div>
+                                            <p
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
                                                 Nama</p>
                                             <h2 class="dark:text-white">
                                                 <%= alumni.name %>
                                             </h2>
                                         </div>
 
-                                        <div>
-                                            <p
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
-                                                NISN</p>
-                                            <h2 class="dark:text-white">
-                                                <%= alumni.nisn %>
-                                            </h2>
-                                        </div>
+
 
                                         <div>
                                             <p
@@ -129,8 +130,10 @@
                                             data-fc-target="default-modal" data-fc-type="modal" type="button">
                                             Hapus
                                         </button>
-                                        <button type="button"
-                                            class="btn bg-primary/25 text-primary hover:bg-primary hover:text-white">Edit</button>
+                                        <a href="/admin/alumni-edit/<%= alumni.nisn %>">
+                                            <button type="button"
+                                                class="btn bg-primary/25 text-primary hover:bg-primary hover:text-white">Edit</button>
+                                        </a>
 
                                         <!-- konfirmasi hapus modal -->
                                         <div id="default-modal"
