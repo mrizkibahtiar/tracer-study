@@ -32,30 +32,23 @@
                     <main class="flex-grow p-6">
 
                         <!-- Page Title Start -->
-                        <div class="flex justify-between items-center mb-6">
-                            <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Dashboard</h4>
+                        <div class="flex items-center">
+                            <!-- button back -->
+                            <a href="/admin" class="btn btn-ghost">
+                                <i class="mgc_left_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
+                            </a>
 
-                            <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
-                                <div class="flex items-center gap-2">
-                                    <a href="/admin"
-                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Dashboard</a>
-                                </div>
-
-                                <!-- <div class="flex items-center gap-2">
-                                    <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
-                                    <a href="#"
-                                        class="text-sm font-medium text-slate-700 dark:text-slate-400">Elements</a>
-                                </div> -->
-                            </div>
+                            <h4 class="text-slate-700 dark:text-slate-200 text-lg font-medium">
+                                Profile
+                            </h4>
                         </div>
                         <!-- Page Title End -->
 
                         <!-- Page Content Start -->
-                        <div class="grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 gap-6 mt-3">
                             <div class="col-span-12">
                                 <div class="card">
                                     <div class="card-body p-6">
-                                        <h4 class="card-title">Profile</h4>
                                         <div class="grid grid-cols-1 md:grid-cols-2  gap-6 mb-3 mt-3">
                                             <div>
                                                 <p
@@ -87,16 +80,6 @@
                                                     <%= admin.email || 'Kosong' %>
                                                 </h2>
                                             </div>
-
-                                            <div>
-                                                <p
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
-                                                    Tahun Lulus
-                                                </p>
-                                                <h2 class="dark:text-white">
-                                                    <%= admin.graduationYear || 'Kosong' %>
-                                                </h2>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -116,6 +99,25 @@
         <i class="mgc_arrow_up_line text-lg"></i>
     </button>
 
+    <script>
+        // hide password
+        const password = document.getElementById('passwordDisplay').dataset.password;
+        const passwordDisplay = document.getElementById('passwordDisplay');
+        // Fungsi untuk menyembunyikan password dengan bintang
+        function hidePassword() {
+            passwordDisplay.textContent = '*'.repeat(password.length);
+        }
+
+        passwordDisplay.addEventListener('mouseover', () => {
+            passwordDisplay.textContent = password;
+        })
+
+        passwordDisplay.addEventListener('mouseout', () => {
+            hidePassword();
+        })
+
+        hidePassword();
+    </script>
 
     <!-- Plugin Js -->
     <!-- Apex Chart Plugin Js -->
