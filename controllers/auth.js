@@ -2,8 +2,6 @@ const Alumni = require('../models/alumni');
 const Admin = require('../models/admin');
 const mongoose = require('mongoose');
 
-
-
 module.exports = {
 
     login: async (req, res) => {
