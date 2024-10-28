@@ -97,7 +97,7 @@
                                         <div>
                                             <p
                                                 class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
-                                                Password</p>
+                                                Password (hash)</p>
                                             <h2 id="passwordDisplay" class="dark:text-white flex-grow cursor-pointer"
                                                 data-password="<%= alumni.password %>">
                                                 <%= alumni.password %>
@@ -217,6 +217,10 @@
         function hidePassword() {
             passwordDisplay.textContent = '*'.repeat(password.length);
         }
+
+        window.addEventListener('load', () => {
+            hidePassword();
+        });
 
         passwordDisplay.addEventListener('mouseover', () => {
             passwordDisplay.textContent = password;
