@@ -1,6 +1,7 @@
 const Admin = require('../models/admin');
 const Alumni = require('../models/alumni');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
         if (!req.session.user) {
             return res.redirect('/loginPage'); // Redirect ke halaman login jika user belum login
         } else {
-            const { email, role } = req.session.user._doc;
+            const { email, role } = req.session.user;
             const admin = await Admin.findOne({ email: email });
             return res.render('pages/admin/dashboard', { admin: admin });
         }
@@ -21,11 +22,13 @@ module.exports = {
     store: async function (req, res) {
         const { name, nisn, password, email, graduationYear } = req.body;
         try {
+            // Hash password dengan bcrypt sebelum menyimpan
+            const hashedPassword = await bcrypt.hash(password.trim(), 10);
             // Membuat objek untuk alumni
             const alumniData = {
                 nisn: nisn.trim(),
                 name: name.trim(),
-                password: password.trim(),
+                password: hashedPassword,
                 ...(email && { email: email.trim() }),
                 ...(graduationYear && { graduationYear: graduationYear.trim() })
             };
@@ -75,13 +78,33 @@ module.exports = {
     alumniUpdate: async function (req, res) {
         const { nisn } = req.params;
         const { name, password, email, graduationYear } = req.body;
+
         try {
-            const alumni = await Alumni.findOneAndUpdate({ nisn: nisn }, { name: name.trim(), password: password.trim(), email: email.trim(), graduationYear: graduationYear.trim() }, { new: true });
+            // Persiapkan objek pembaruan
+            const updateData = {
+                name: name.trim(),
+                email: email.trim(),
+                graduationYear: graduationYear.trim()
+            };
+
+            // Hanya mengubah password jika field password diisi
+            if (password) {
+                const hashedPassword = await bcrypt.hash(password.trim(), 10);
+                updateData.password = hashedPassword;
+            }
+
+            const alumni = await Alumni.findOneAndUpdate(
+                { nisn: nisn },
+                updateData,
+                { new: true }
+            );
+
             req.flash('success_msg', 'Alumni berhasil diperbarui!');
             return res.redirect('/admin/alumni-edit/' + nisn);
         } catch (err) {
+            console.error(err); // Logging error untuk pengecekan
             req.flash('error_msg', 'Terjadi kesalahan. Mohon coba lagi.');
-            return res.redirect('pages/admin/alumni-edit/' + nisn);
+            return res.redirect('/admin/alumni-edit/' + nisn);
         }
     },
     viewAlumniTracer: async function (req, res) {
@@ -91,7 +114,7 @@ module.exports = {
 
     profile: async function (req, res) {
         console.log(req.session.user);
-        const { email } = req.session.user._doc;
+        const { email } = req.session.user;
         const admin = await Admin.findOne({ email: email });
         return res.render('pages/admin/profile', { admin: admin });
     }
