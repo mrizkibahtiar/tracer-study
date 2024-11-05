@@ -75,7 +75,7 @@
                             <div class="card">
                                 <div class="p-6">
                                     <div class="grid grid-cols-1 md:grid-cols-2  gap-6 mb-3">
-                                        <div class="md:col-span-2">
+                                        <div>
                                             <p
                                                 class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
                                                 NISN</p>
@@ -94,7 +94,7 @@
 
 
 
-                                        <div>
+                                        <div class="w-full">
                                             <p
                                                 class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
                                                 Password (hash)</p>
@@ -110,16 +110,6 @@
                                                 Email</p>
                                             <h2 class="dark:text-white">
                                                 <%= alumni.email || 'Kosong' %>
-                                            </h2>
-                                        </div>
-
-                                        <div>
-                                            <p
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2 dark:text-slate-400">
-                                                Tahun Lulus
-                                            </p>
-                                            <h2 class="dark:text-white">
-                                                <%= alumni.graduationYear || 'Kosong' %>
                                             </h2>
                                         </div>
                                     </div>
