@@ -1,184 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Mirrored from coderthemes.com/konrix/layouts/apps-calendar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Oct 2024 06:31:06 GMT -->
-
 <head>
     <meta charset="utf-8">
-    <title>Tracer Study - Dashboard</title>
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully featured alumni theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
     <meta content="coderthemes" name="author">
 
     <link href="assets/images/smk-bp.png" rel="icon" type="image/png">
 
     <!-- App css -->
-    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css">
 
     <!-- Icons css -->
-    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
 
     <!-- Theme Config Js -->
-    <script src="../assets/js/config.js"></script>
+    <script src="assets/js/config.js"></script>
 </head>
 
 <body>
 
     <div class="flex wrapper">
-
-        <!-- Sidenav Menu -->
-        <%- include ('../../components/sidebar_alumni') %>
-            <!-- Sidenav Menu End  -->
-
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+        <%- include('../../components/sidebar_alumni') %>
 
             <div class="page-content">
-
                 <!-- Topbar Start -->
-                <header class="app-header flex justify-between items-center px-4 gap-3">
-                    <!-- Sidenav Menu Toggle Button -->
-                    <button id="button-toggle-menu" class="nav-link p-2">
-                        <span class="sr-only">Menu Toggle Button</span>
-                        <span class="flex items-center justify-center h-6 w-6">
-                            <i class="mgc_menu_line text-xl"></i>
-                        </span>
-                    </button>
-                    <div class="flex gap-6">
-                        <!-- Fullscreen Toggle Button -->
-                        <div class="md:flex hidden">
-                            <button data-toggle="fullscreen" type="button" class="nav-link p-2">
-                                <span class="sr-only">Fullscreen Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_fullscreen_line text-2xl"></i>
+                <%- include('../../components/topbar_alumni') %>
+                    <!-- Topbar End -->
+
+
+
+                    <main class="flex-grow w-full p-6">
+
+                        <!-- Page Title Start -->
+                        <div class="flex justify-center items-center mb-6 text-xl w-full">
+                            <h4 class="text-slate-900 dark:text-slate-200 font-normal">Selamat Datang, <span
+                                    class="text-2xl font-semibold">
+                                    <%= alumni.name %>
                                 </span>
-                            </button>
+                            </h4>
                         </div>
+                        <!-- Page Title End -->
+                        <div class="col-span-2">
+                            <div class="card">
 
-                        <!-- Light/Dark Toggle Button -->
-                        <div class="flex">
-                            <button id="light-dark-mode" type="button" class="nav-link p-2">
-                                <span class="sr-only">Light/Dark Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_moon_line text-2xl"></i>
-                                </span>
-                            </button>
-                        </div>
+                                <div class="p-6">
+                                    <form>
+                                        <div class="grid grid-cols-1 md:grid-cols-2  gap-6">
+                                            <div>
+                                                <label for="inputEmail4"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                                <input type="email" class="form-input" id="inputEmail4"
+                                                    placeholder="Email" value="<%= alumni.nisn || '' %>">
+                                            </div>
+                                            <div>
+                                                <label for="inputEmail4"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                <input type="email" class="form-input" id="inputEmail4"
+                                                    placeholder="Email" value="<%= alumni.email || '' %>">
+                                            </div>
 
-                        <!-- Profile Dropdown Button -->
-                        <div class="relative">
-                            <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
-                                class="nav-link mt-2">
-                                <img src="../../assets/images/profile-icon-light.png" alt="user-image"
-                                    class="rounded-full h-10">
-                            </button>
-                            <div
-                                class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/admin">
-                                    <span class="font-semibold">
-                                        Profile
-                                    </span>
-                                </a>
-                                <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/logout">
-                                    <i class="mgc_exit_line  me-2"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                                            <div>
+                                                <label for="inputAddress2"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Address
+                                                    2</label>
+                                                <input type="text" class="form-input" id="inputAddress2"
+                                                    placeholder="Apartment, studio, or floor">
+                                            </div>
 
-                </header>
-                <!-- Topbar End -->
+                                            <div>
+                                                <label for="inputCity"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">City</label>
+                                                <input type="text" class="form-input" id="inputCity">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">State</label>
+                                                <select id="inputState" class="form-select">
+                                                    <option>Choose</option>
+                                                    <option>Option 1</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="inputZip"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Zip</label>
+                                                <input type="text" class="form-input" id="inputZip">
+                                            </div>
+                                        </div>
 
-                <!-- Topbar Search Modal -->
-                <div>
-                    <div id="topbar-search-modal" class="fc-modal hidden w-full h-full fixed top-0 start-0 z-50">
-                        <div
-                            class="fc-modal-open:opacity-100 fc-modal-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-12 sm:mx-auto">
-                            <div
-                                class="mx-auto max-w-2xl overflow-hidden rounded-xl bg-white shadow-2xl transition-all dark:bg-slate-800">
-                                <div class="relative">
-                                    <div
-                                        class="pointer-events-none absolute top-3.5 start-4 text-gray-900 text-opacity-40 dark:text-gray-200">
-                                        <i class="mgc_search_line text-xl"></i>
-                                    </div>
-                                    <input type="search"
-                                        class="h-12 w-full border-0 bg-transparent ps-11 pe-4 text-gray-900 placeholder-gray-500 dark:placeholder-gray-300 dark:text-gray-200 focus:ring-0 sm:text-sm"
-                                        placeholder="Search...">
+                                        <div class="flex items-center gap-2 my-3">
+                                            <input type="checkbox" class="form-checkbox rounded border border-gray-200"
+                                                id="customCheck11">
+                                            <label class="text-gray-800 text-sm font-medium inline-block"
+                                                for="customCheck11">Check this custom checkbox !</label>
+                                        </div>
+
+                                        <button type="submit" class="btn bg-primary text-white">Sign in</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </main>
 
-                <main class="flex-grow p-6">
-
-                    <!-- Page Title Start -->
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Isi Tracer Study</h4>
-
-                        <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
-                            <div class="flex items-center gap-2">
-                                <a href="/alumni"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumni</a>
-                            </div>
-
-                            <div class="flex items-center gap-2">
-                                <i class="mgc_right_line text-lg flex-shrink-0 text-slate-400 rtl:rotate-180"></i>
-                                <a href="/alumni/alumni-form"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Tracer Study</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Page Title End -->
-
-                    <div class="grid lg:grid-cols-4 gap-6">
-                        <!-- konten disini -->
-                        <h1>Ini Form</h1>
-                    </div>
-                </main>
-
-                <!-- Footer Start -->
-                <footer class="footer h-16 flex items-center px-6 bg-white shadow dark:bg-gray-800">
-                    <div class="flex justify-center w-full gap-4">
-                        <div>
-                            <script>document.write(new Date().getFullYear())</script> © SMK Serayu - All rights
-                            reserved
-                        </div>
-                    </div>
-                </footer>
-                <!-- Footer End -->
+                    <!-- Footer Start -->
+                    <%- include('../../components/footer_alumni') %>
+                        <!-- Footer End -->
 
             </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
 
     </div>
 
     <!-- Back to Top Button -->
     <button data-toggle="back-to-top"
-        class="fixed hidden h-10 w-10 items-center justify-center rounded-full z-10 bottom-20 end-14 p-2.5 bg-primary cursor-pointer shadow-lg text-white">
+        class="fixed hidden h-10 w-10 items-center justify-center rounded-full z-10 bottom-20 translate-x-52 end-14 p-2.5 bg-primary cursor-pointer shadow-lg text-white">
         <i class="mgc_arrow_up_line text-lg"></i>
     </button>
 
+
     <!-- Plugin Js -->
-    <script src="../assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="../assets/libs/feather-icons/feather.min.js"></script>
-    <script src="../assets/libs/%40frostui/tailwindcss/frostui.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <script src="assets/libs/%40frostui/tailwindcss/frostui.js"></script>
 
     <!-- App Js -->
-    <script src="../assets/js/app.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <!-- Apexcharts js -->
+    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Dashboard Project Page js -->
+    <script src="assets/js/pages/dashboard.js"></script>
 
 </body>
-
-
-<!-- Mirrored from coderthemes.com/konrix/layouts/apps-calendar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Oct 2024 06:31:06 GMT -->
 
 </html>
