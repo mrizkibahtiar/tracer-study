@@ -17,12 +17,7 @@ const alumniSchema = new mongoose.Schema({
         type: String,
         required: false,
         default: null
-    },
-    graduationYear: {
-        type: Number,
-        required: false,
-        default: null
-    },
+    }
 }, { timestamps: true });
 
 
