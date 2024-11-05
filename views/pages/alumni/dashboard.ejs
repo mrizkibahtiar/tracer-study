@@ -24,347 +24,152 @@
 
     <div class="flex wrapper">
         <%- include('../../components/sidebar_alumni') %>
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
 
             <div class="page-content">
                 <!-- Topbar Start -->
-                <header class="app-header flex justify-between items-center px-4 gap-3">
-                    <!-- Sidenav Menu Toggle Button -->
-                    <button id="button-toggle-menu" class="nav-link p-2">
-                        <span class="sr-only">Menu Toggle Button</span>
-                        <span class="flex items-center justify-center h-6 w-6">
-                            <i class="mgc_menu_line text-xl"></i>
-                        </span>
-                    </button>
-                    <div class="flex gap-6">
-                        <!-- Fullscreen Toggle Button -->
-                        <div class="md:flex hidden">
-                            <button data-toggle="fullscreen" type="button" class="nav-link p-2">
-                                <span class="sr-only">Fullscreen Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_fullscreen_line text-2xl"></i>
+                <%- include('../../components/topbar_alumni') %>
+                    <!-- Topbar End -->
+
+
+
+                    <main class="flex-grow w-full p-6">
+
+                        <!-- Page Title Start -->
+                        <div class="flex justify-center items-center mb-6 text-xl w-full">
+                            <h4 class="text-slate-900 dark:text-slate-200 font-normal">Selamat Datang, <span
+                                    class="text-2xl font-semibold">
+                                    <%= alumni.name %>
                                 </span>
-                            </button>
+                            </h4>
                         </div>
+                        <!-- Page Title End -->
+                        <div class="col-span-2">
+                            <div class="card">
 
-                        <!-- Light/Dark Toggle Button -->
-                        <div class="flex">
-                            <button id="light-dark-mode" type="button" class="nav-link p-2">
-                                <span class="sr-only">Light/Dark Mode</span>
-                                <span class="flex items-center justify-center h-6 w-6">
-                                    <i class="mgc_moon_line text-2xl"></i>
-                                </span>
-                            </button>
-                        </div>
-
-                        <!-- Profile Dropdown Button -->
-                        <div class="relative">
-                            <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button"
-                                class="nav-link mt-2">
-                                <img src="../../assets/images/profile-icon-light.png" alt="user-image"
-                                    class="rounded-full h-10">
-                            </button>
-                            <div
-                                class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-[margin,opacity] duration-300 mt-2 bg-white shadow-lg border rounded-lg p-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/admin">
-                                    <span class="font-semibold">
-                                        Profile
-                                    </span>
-                                </a>
-                                <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700">
-                                <a class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                                    href="/logout">
-                                    <i class="mgc_exit_line  me-2"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </header>
-                <!-- Topbar End -->
-
-
-
-                <main class="flex-grow w-full p-6">
-
-                    <!-- Page Title Start -->
-                    <div class="flex justify-between items-center mb-6">
-                        <h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Selamat Datang <%=
-                                alumni.name %>
-                        </h4>
-
-                        <div class="md:flex hidden items-center gap-2.5 text-sm font-semibold">
-                            <div class="flex items-center gap-2">
-                                <a href="/admin"
-                                    class="text-sm font-medium text-slate-700 dark:text-slate-400">Alumni</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Page Title End -->
-
-                    <div class="grid 2xl:grid-cols-4 gap-6 mb-6">
-
-                        <div class="2xl:col-span-3">
-
-                            <div class="grid lg:grid-cols-3 gap-6">
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <h4 class="card-title">Monthly Target</h4>
-
-                                            <div id="monthly-target" class="apex-charts my-8"
-                                                data-colors="#0acf97,#3073F1">
+                                <div class="p-6">
+                                    <form>
+                                        <div class="grid grid-cols-1 md:grid-cols-2  gap-6">
+                                            <div>
+                                                <label for="inputEmail4"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                <input type="email" class="form-input" id="inputEmail4"
+                                                    placeholder="Email">
+                                            </div>
+                                            <div>
+                                                <label for="inputPassword4"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Password</label>
+                                                <input type="password" class="form-input" id="inputPassword4"
+                                                    placeholder="Password">
                                             </div>
 
-                                            <div class="flex justify-center">
-                                                <div class="w-1/2 text-center">
-                                                    <h5>Pending</h5>
-                                                    <p class="fw-semibold text-muted">
-                                                        <i class="mgc_round_fill text-primary"></i> Projects
-                                                    </p>
-                                                </div>
-                                                <div class="w-1/2 text-center">
-                                                    <h5>Done</h5>
-                                                    <p class="fw-semibold text-muted">
-                                                        <i class="mgc_round_fill text-success"></i> Projects
-                                                    </p>
-                                                </div>
+                                            <div class="lg:col-span-2">
+                                                <label for="inputAddress"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Address</label>
+                                                <input type="text" class="form-input" id="inputAddress"
+                                                    placeholder="1234 Main St">
+                                            </div>
+
+                                            <div>
+                                                <label for="inputAddress2"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Address
+                                                    2</label>
+                                                <input type="text" class="form-input" id="inputAddress2"
+                                                    placeholder="Apartment, studio, or floor">
+                                            </div>
+
+                                            <div>
+                                                <label for="inputCity"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">City</label>
+                                                <input type="text" class="form-input" id="inputCity">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">State</label>
+                                                <select id="inputState" class="form-select">
+                                                    <option>Choose</option>
+                                                    <option>Option 1</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="inputZip"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Zip</label>
+                                                <input type="text" class="form-input" id="inputZip">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="lg:col-span-2">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex justify-between items-center">
-                                                <h4 class="card-title">Project Statistics</h4>
-                                                <div class="flex gap-2">
-                                                    <button type="button"
-                                                        class="btn btn-sm bg-primary/25 text-primary hover:bg-primary hover:text-white">
-                                                        All
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
-                                                        6M
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn btn-sm bg-gray-400/25 text-gray-400 hover:bg-gray-400 hover:text-white">
-                                                        1Y
-                                                    </button>
-                                                </div>
-                                            </div>
 
-                                            <div dir="ltr" class="mt-2">
-                                                <div id="crm-project-statistics" class="apex-charts"
-                                                    data-colors="#cbdcfc,#3073F1"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- Grid End -->
-
-
-                    <div class="flex w-full gap-6">
-                        <div class="flex w-full gap-6">
-                            <div class="2xl:col-span-2 md:col-span-2">
-                                <div class="card">
-                                    <div class="p-6">
-                                        <div class="flex justify-between items-center">
-                                            <h4 class="card-title">Project Overview</h4>
+                                        <div class="flex items-center gap-2 my-3">
+                                            <input type="checkbox" class="form-checkbox rounded border border-gray-200"
+                                                id="customCheck11">
+                                            <label class="text-gray-800 text-sm font-medium inline-block"
+                                                for="customCheck11">Check this custom checkbox !</label>
                                         </div>
 
-                                        <div class="grid md:grid-cols-2 items-center gap-4">
-                                            <div class="md:order-1 order-2">
-                                                <div class="flex flex-col gap-6">
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-primary/25 text-lg text-primary"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">Product Design</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>26</b> Total
-                                                                    Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>4</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-danger/25 text-lg text-danger"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">Web Development</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>30</b> Total
-                                                                    Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>5</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-success/25 text-lg text-success"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">Illustration Design</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>12</b> Total
-                                                                    Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>3</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex items-center">
-                                                        <div class="flex-shrink-0">
-                                                            <i
-                                                                class="mgc_round_fill h-10 w-10 flex justify-center items-center rounded-full bg-warning/25 text-lg text-warning"></i>
-                                                        </div>
-                                                        <div class="flex-grow ms-3">
-                                                            <h5 class="fw-semibold mb-1">UI/UX Design</h5>
-                                                            <ul class="flex items-center gap-2">
-                                                                <li class="list-inline-item"><b>8</b> Total Projects
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <div class="w-1 h-1 rounded bg-gray-400"></div>
-                                                                </li>
-                                                                <li class="list-inline-item"><b>4</b> Employees</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="md:order-2 order-1">
-                                                <div id="project-overview-chart" class="apex-charts"
-                                                    data-colors="#3073F1,#ff679b,#0acf97,#ffbc00"></div>
-                                            </div>
-                                        </div>
+                                        <button type="submit" class="btn bg-primary text-white">Sign in</button>
+                                    </form>
+                                    <div id="GridFormHtml"
+                                        class="hidden w-full overflow-hidden transition-[height] duration-300">
+                                        <pre class="language-html h-56">
+                                            <code>
+                                                &lt;form&gt;
+                                                    &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2  gap-6&quot;&gt;
+                                                        &lt;div&gt;
+                                                            &lt;label for=&quot;inputEmail4&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;Email&lt;/label&gt;
+                                                            &lt;input type=&quot;email&quot; class=&quot;form-input&quot; id=&quot;inputEmail4&quot; placeholder=&quot;Email&quot;&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;div&gt;
+                                                            &lt;label for=&quot;inputPassword4&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;Password&lt;/label&gt;
+                                                            &lt;input type=&quot;password&quot; class=&quot;form-input&quot; id=&quot;inputPassword4&quot; placeholder=&quot;Password&quot;&gt;
+                                                        &lt;/div&gt;
+    
+                                                        &lt;div class=&quot;lg:col-span-2&quot;&gt;
+                                                            &lt;label for=&quot;inputAddress&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;Address&lt;/label&gt;
+                                                            &lt;input type=&quot;text&quot; class=&quot;form-input&quot; id=&quot;inputAddress&quot; placeholder=&quot;1234 Main St&quot;&gt;
+                                                        &lt;/div&gt;
+    
+                                                        &lt;div&gt;
+                                                            &lt;label for=&quot;inputAddress2&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;Address 2&lt;/label&gt;
+                                                            &lt;input type=&quot;text&quot; class=&quot;form-input&quot; id=&quot;inputAddress2&quot; placeholder=&quot;Apartment, studio, or floor&quot;&gt;
+                                                        &lt;/div&gt;
+    
+                                                        &lt;div&gt;
+                                                            &lt;label for=&quot;inputCity&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;City&lt;/label&gt;
+                                                            &lt;input type=&quot;text&quot; class=&quot;form-input&quot; id=&quot;inputCity&quot;&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;div&gt;
+                                                            &lt;label for=&quot;inputState&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;State&lt;/label&gt;
+                                                            &lt;select id=&quot;inputState&quot; class=&quot;form-select&quot;&gt;
+                                                                &lt;option&gt;Choose&lt;/option&gt;
+                                                                &lt;option&gt;Option 1&lt;/option&gt;
+                                                                &lt;option&gt;Option 2&lt;/option&gt;
+                                                                &lt;option&gt;Option 3&lt;/option&gt;
+                                                            &lt;/select&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;div&gt;
+                                                            &lt;label for=&quot;inputZip&quot; class=&quot;text-gray-800 text-sm font-medium inline-block mb-2&quot;&gt;Zip&lt;/label&gt;
+                                                            &lt;input type=&quot;text&quot; class=&quot;form-input&quot; id=&quot;inputZip&quot;&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+    
+                                                    &lt;div class=&quot;flex items-center gap-2 my-3&quot;&gt;
+                                                        &lt;input type=&quot;checkbox&quot; class=&quot;form-checkbox rounded border border-gray-200&quot; id=&quot;customCheck11&quot;&gt;
+                                                        &lt;label class=&quot;text-gray-800 text-sm font-medium inline-block&quot; for=&quot;customCheck11&quot;&gt;Check this custom checkbox !&lt;/label&gt;
+                                                    &lt;/div&gt;
+    
+                                                    &lt;button type=&quot;submit&quot; class=&quot;btn bg-primary text-white&quot;&gt;Sign in&lt;/button&gt;
+                                                &lt;/form&gt;
+                                            </code>
+                                        </pre>
                                     </div>
                                 </div>
                             </div>
-                        </div> <!-- Grid End -->
-                        <div class="flex flex-col w-full">
-                            <div class="flex w-full gap-6 mb-6">
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-primary bg-primary/25">
-                                                        <i class="mgc_document_2_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Active Projects</h5>
-                                                    <p>85</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-success bg-success/25">
-                                                        <i class="mgc_group_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Total Employees</h5>
-                                                    <p>32</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex w-full gap-6 mb-6">
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-info bg-info/25">
-                                                        <i class="mgc_star_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Project Reviews</h5>
-                                                    <p>40</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="card">
-                                        <div class="p-6">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div
-                                                        class="w-12 h-12 flex justify-center items-center rounded text-info bg-warning/25">
-                                                        <i class="mgc_new_folder_line text-xl"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <h5 class="mb-1">Project Reviews</h5>
-                                                    <p>40</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div> <!-- Grid End -->
-
-
-                    </div>
-
-
-                </main>
-
-                <!-- Footer Start -->
-                <footer class="footer h-16 flex items-center px-6 bg-white shadow dark:bg-gray-800">
-                    <div class="flex justify-center w-full gap-4">
-                        <div>
-                            <script>document.write(new Date().getFullYear())</script> © SMK Serayu - All rights
-                            reserved
                         </div>
-                    </div>
-                </footer>
-                <!-- Footer End -->
+                    </main>
+
+                    <!-- Footer Start -->
+                    <%- include('../../components/footer_alumni') %>
+                        <!-- Footer End -->
 
             </div>
 
