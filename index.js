@@ -54,5 +54,5 @@ app.use(alumniRouter);
 app.use(adminRouter);
 
 app.listen(3000, function () {
-    console.log('server running');
+    console.log('server running on = ' + `localhost:3000`);
 })
