@@ -10,7 +10,7 @@ const adminSchema = new mongoose.Schema({
         required: true
 
     },
-    name: {
+    nama: {
         type: String,
         optional: true,
         default: null
