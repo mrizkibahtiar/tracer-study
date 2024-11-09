@@ -7,31 +7,33 @@ const berwirausahaSchema = new mongoose.Schema({
         ref: 'Alumni'
 
     },
-    businessName: {
+    namaUsaha: {
         type: String,
         required: true
 
     },
-    businessType: {
+    alamatUsaha: {
         type: String,
         required: true
 
     }, // Jenis usaha
-    duration: {
+    teleponUsaha: {
         type: Number,
         required: true
 
-    }, // Dalam bulan
-    revenue: {
-        type: Number,
-        required: false,
-        default: null
-    }, // Pendapatan jika ada
-    challenges: {
+    },
+    bidangUsaha: {
         type: String,
-        required: false,
-        default: null
-    }, // Tantangan yang dihadapi
+        required: true
+    },
+    jumlahKaryawan: {
+        type: Number,
+        required: true
+    },
+    tanggalMulai: {
+        type: Date,
+        required: true
+    },
 });
 
 const Berwirausaha = mongoose.model('Berwirausaha', berwirausahaSchema);
