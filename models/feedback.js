@@ -6,7 +6,7 @@ const FeedbackSchema = new mongoose.Schema({
         ref: 'Alumni',
         required: true
     },
-    message: {
+    pesan: {
         type: String,
         required: true
     },
