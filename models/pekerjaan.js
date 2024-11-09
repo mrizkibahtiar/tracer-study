@@ -4,33 +4,32 @@ const pekerjaanSchema = new mongoose.Schema({
     alumniId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true, ref: 'Alumni'
-
     },
-    companyName: {
+    namaPerusahaan: {
         type: String,
         required: true
 
     },
-    jobPosition: {
+    alamatPerusahaan: {
         type: String,
         required: true
-
     },
-    duration: {
-        type: Number,
+    teleponPerusahaan: {
+        type: String,
         required: true
-
+    },
+    sektorPerusahan: {
+        type: String,
+        required: true
+    },
+    posisi: {
+        type: String,
+        required: true
+    },
+    tanggalMasuk: {
+        type: Date,
+        required: true
     }, // Dalam bulan
-    salary: {
-        type: Number,
-        required: false,
-        default: null
-    }, // Opsional
-    responsibilities: {
-        type: String,
-        required: false,
-        default: null
-    }, // Tanggung jawab di pekerjaan
 });
 
 const Pekerjaan = mongoose.model('Pekerjaan', pekerjaanSchema);
