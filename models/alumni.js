@@ -9,7 +9,7 @@ const alumniSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    nama: {
         type: String,
         required: true
     },
