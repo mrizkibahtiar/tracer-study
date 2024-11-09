@@ -49,47 +49,56 @@
                                 <div class="p-6">
                                     <form>
                                         <div class="grid grid-cols-1 md:grid-cols-2  gap-6">
-                                            <div>
-                                                <label for="inputEmail4"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
-                                                <input type="email" class="form-input" id="inputEmail4"
-                                                    placeholder="Email" value="<%= alumni.nisn || '' %>">
-                                            </div>
-                                            <div>
-                                                <label for="inputEmail4"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
-                                                <input type="email" class="form-input" id="inputEmail4"
-                                                    placeholder="Email" value="<%= alumni.email || '' %>">
-                                            </div>
+                                            <% if (alumni.nisn) { %>
+                                                <div>
+                                                    <label for="inputEmail4"
+                                                        class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                                    <input type="email" class="form-input text-black" id="inputEmail4"
+                                                        placeholder="Email" value="<%= alumni.nisn || '' %>" readonly>
+                                                </div>
+                                                <% } else { %>
+                                                    <div>
+                                                        <label for="inputEmail4"
+                                                            class="text-gray-800 text-sm font-medium inline-block mb-2">NISN</label>
+                                                        <input type="email" class="form-input" id="inputEmail4"
+                                                            placeholder="Email" value="<%= alumni.nisn || '' %>">
+                                                    </div>
+                                                    <% } %>
+                                                        <div>
+                                                            <label for="inputEmail4"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                            <input type="email" class="form-input" id="inputEmail4"
+                                                                placeholder="Email" value="<%= alumni.email || '' %>">
+                                                        </div>
 
-                                            <div>
-                                                <label for="inputAddress2"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Address
-                                                    2</label>
-                                                <input type="text" class="form-input" id="inputAddress2"
-                                                    placeholder="Apartment, studio, or floor">
-                                            </div>
+                                                        <div>
+                                                            <label for="inputAddress2"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Address
+                                                                2</label>
+                                                            <input type="text" class="form-input" id="inputAddress2"
+                                                                placeholder="Apartment, studio, or floor">
+                                                        </div>
 
-                                            <div>
-                                                <label for="inputCity"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">City</label>
-                                                <input type="text" class="form-input" id="inputCity">
-                                            </div>
-                                            <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">State</label>
-                                                <select id="inputState" class="form-select">
-                                                    <option>Choose</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="inputZip"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Zip</label>
-                                                <input type="text" class="form-input" id="inputZip">
-                                            </div>
+                                                        <div>
+                                                            <label for="inputCity"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">City</label>
+                                                            <input type="text" class="form-input" id="inputCity">
+                                                        </div>
+                                                        <div>
+                                                            <label for="inputState"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">State</label>
+                                                            <select id="inputState" class="form-select">
+                                                                <option>Choose</option>
+                                                                <option>Option 1</option>
+                                                                <option>Option 2</option>
+                                                                <option>Option 3</option>
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <label for="inputZip"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Zip</label>
+                                                            <input type="text" class="form-input" id="inputZip">
+                                                        </div>
                                         </div>
 
                                         <div class="flex items-center gap-2 my-3">
