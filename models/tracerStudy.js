@@ -6,10 +6,18 @@ const tracerStudySchema = new mongoose.Schema({
         required: true,
         ref: 'Alumni'
     },
+    email: {
+        type: String,
+        required: true
+    },
+    graduationYear: {
+        type: Number,
+        required: true
+    },
     activity: {
         type: String,
         required: true,
-        enum: ["Bekerja", "Melanjutkan Studi", "Berwirausaha", "Belum ada kegiatan"]
+        enum: ["Bekerja", "Melanjutkan Studi", "Berwirausaha", "Belum ada kegiatan", "Kursus"]
     },
     pekerjaanId: {
         type: mongoose.Schema.Types.ObjectId,
