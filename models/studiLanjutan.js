@@ -7,25 +7,26 @@ const studiLanjutanSchema = new mongoose.Schema({
         ref: 'Alumni'
 
     },
-    universityName: {
+    namaUniveritas: {
         type: String,
         required: true
-
+    },
+    alamatUniveritas: {
+        type: String,
+        required: true
+    },
+    fakultas: {
+        type: String,
+        required: true
     },
     programStudi: {
         type: String,
         required: true
-
     },
-    duration: {
-        type: Number,
+    tanggalMasuk: {
+        type: Date,
         required: true
     }, // Dalam bulan
-    scholarship: {
-        type: String,
-        required: false,
-        default: null
-    }, // Beasiswa jika ada
 });
 
 const StudiLanjutan = mongoose.model('StudiLanjutan', studiLanjutanSchema);
