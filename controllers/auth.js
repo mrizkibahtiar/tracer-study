@@ -10,10 +10,7 @@ module.exports = {
         const { nisn, password } = req.body;
         // Cari alumni berdasarkan NISN atau email
         const alumni = await Alumni.findOne({
-            $or: [
-                { nisn: nisn.trim() },
-                { email: nisn.trim() }
-            ]
+            nisn: nisn.trim()
         });
         // Cari admin berdasarkan email
         const admin = await Admin.findOne({ email: nisn.trim() });
