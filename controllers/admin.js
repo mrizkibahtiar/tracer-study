@@ -20,7 +20,7 @@ module.exports = {
     },
 
     store: async function (req, res) {
-        const { nama, nisn, password, email } = req.body;
+        const { nama, nisn, password } = req.body;
         try {
             // Hash password dengan bcrypt sebelum menyimpan
             const hashedPassword = await bcrypt.hash(password.trim(), 10);
@@ -29,7 +29,6 @@ module.exports = {
                 nisn: nisn.trim(),
                 nama: nama.trim(),
                 password: hashedPassword,
-                ...(email && { email: email.trim() }),
             };
 
             // Membuat alumni
@@ -39,10 +38,10 @@ module.exports = {
             res.render('pages/admin/alumni_form', { success: 'Alumni berhasil ditambahkan!', alumni: alumni });
         } catch (err) {
             if (err.code === 11000 && err.keyPattern.nisn) {
-                return res.render('pages/admin/alumni_form', { error: 'NISN sudah terdaftar. Mohon gunakan NISN lain.', nama, nisn, email });
+                return res.render('pages/admin/alumni_form', { error: 'NISN sudah terdaftar. Mohon gunakan NISN lain.', nama, nisn });
             }
             // Error lainnya
-            return res.render('pages/admin/alumni_form', { error: 'Terjadi kesalahan. Mohon coba lagi.', nama, nisn, email });
+            return res.render('pages/admin/alumni_form', { error: 'Terjadi kesalahan. Mohon coba lagi.', nama, nisn });
         }
     },
 
@@ -76,13 +75,12 @@ module.exports = {
 
     alumniUpdate: async function (req, res) {
         const { nisn } = req.params;
-        const { nama, password, email } = req.body;
+        const { nama, password } = req.body;
 
         try {
             // Persiapkan objek pembaruan
             const updateData = {
                 nama: nama.trim(),
-                email: email.trim(),
             };
 
             // Hanya mengubah password jika field password diisi
