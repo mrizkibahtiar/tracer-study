@@ -10,11 +10,11 @@ const tracerStudySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    graduationYear: {
+    tahunLulus: {
         type: Number,
         required: true
     },
-    activity: {
+    kegiatan: {
         type: String,
         required: true,
         enum: ["Bekerja", "Melanjutkan Studi", "Berwirausaha", "Belum ada kegiatan", "Kursus"]
