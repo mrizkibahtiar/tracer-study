@@ -17,29 +17,28 @@ const tracerStudySchema = new mongoose.Schema({
     kegiatan: {
         type: String,
         required: true,
-        enum: ["Bekerja", "Melanjutkan Studi", "Berwirausaha", "Belum ada kegiatan", "Kursus"]
+        enum: ["Bekerja", "Melanjutkan Studi", "Berwirausaha", "Belum Ada Kegiatan", "Kursus"]
     },
-    pekerjaanId: {
+    kegiatanDetail: {
         type: mongoose.Schema.Types.ObjectId,
         required: false,
-        ref: 'Pekerjaan'
+        default: null,
+        refPath: 'kegiatanRef' // Dinamis berdasarkan kegiatan
     },
-    studiLanjutanId: {
-        type: mongoose.Schema.Types.ObjectId,
+    kegiatanRef: {
+        type: String,
         required: false,
-        ref: 'StudiLanjutan'
-    },
-    berwirausahaId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        ref: 'Berwirausaha'
+        default: null,
+        enum: ["Pekerjaan", "StudiLanjutan", "Berwirausaha", "Kursus"]
     },
     feedbackId: {
         type: mongoose.Schema.Types.ObjectId,
+        default: null,
         required: false,
         ref: 'Feedback'
     }
 });
+
 
 const TracerStudy = mongoose.model('TracerStudy', tracerStudySchema);
 module.exports = TracerStudy;
