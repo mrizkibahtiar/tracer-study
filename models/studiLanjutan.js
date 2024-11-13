@@ -30,3 +30,4 @@ const studiLanjutanSchema = new mongoose.Schema({
 });
 
 const StudiLanjutan = mongoose.model('StudiLanjutan', studiLanjutanSchema);
+module.exports = StudiLanjutan;
