@@ -33,3 +33,4 @@ const pekerjaanSchema = new mongoose.Schema({
 });
 
 const Pekerjaan = mongoose.model('Pekerjaan', pekerjaanSchema);
+module.exports = Pekerjaan;
