@@ -37,3 +37,4 @@ const berwirausahaSchema = new mongoose.Schema({
 });
 
 const Berwirausaha = mongoose.model('Berwirausaha', berwirausahaSchema);
+module.exports = Berwirausaha;
