@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
+    <meta content="coderthemes" name="author">
+
+    <link href="../../assets/images/smk-bp.png" rel="icon" type="image/png">
+
+    <!-- App css -->
+    <link href="../../assets/css/app.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Icons css -->
+    <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme Config Js -->
+    <script src="../../assets/js/config.js"></script>
+</head>
+
+<body>
+
+    <div class="flex wrapper">
+        <%- include('../../components/sidebar_alumni') %>
+            <div class="page-content">
+                <!-- Topbar Start -->
+                <%- include('../../components/topbar_alumni') %>
+                    <!-- Topbar End -->
+
+
+
+                    <main class="flex-grow w-full p-6">
+                        <div class="col-span-2">
+                            <div class="card">
+
+                                <div class="p-6">
+                                    <form method="post" action="">
+                                        <h1>Ini adalah halaman form kursus</h1>
+                                        <button type="submit"
+                                            class="btn bg-primary text-white mt-4 mx-auto">Lanjutkan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    <!-- Footer Start -->
+                    <%- include('../../components/footer_alumni') %>
+                        <!-- Footer End -->
+
+            </div>
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button data-toggle="back-to-top"
+        class="fixed hidden h-10 w-10 items-center justify-center rounded-full z-10 bottom-20 translate-x-52 end-14 p-2.5 bg-primary cursor-pointer shadow-lg text-white">
+        <i class="mgc_arrow_up_line text-lg"></i>
+    </button>
+
+
+    <!-- Plugin Js -->
+    <script src="../../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../../assets/libs/feather-icons/feather.min.js"></script>
+    <script src="../../assets/libs/%40frostui/tailwindcss/frostui.js"></script>
+
+    <!-- App Js -->
+    <script src="../../assets/js/app.js"></script>
+
+    <!-- Apexcharts js -->
+    <script src="../../assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Dashboard Project Page js -->
+    <script src="../../assets/js/pages/dashboard.js"></script>
+
+</body>
+
+</html>
