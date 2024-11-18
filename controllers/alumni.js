@@ -1,6 +1,11 @@
 
 const Alumni = require('../models/alumni');
 const TracerStudy = require('../models/tracerStudy');
+const Feedback = require('../models/feedback');
+const Pekerjaan = require('../models/pekerjaan');
+const StudiLanjutan = require('../models/studiLanjutan');
+const Berwirausaha = require('../models/berwirausaha');
+const Kursus = require('../models/kursus');
 const mongoose = require('mongoose');
 
 module.exports = {
@@ -10,7 +15,9 @@ module.exports = {
         } else {
             const { nisn } = req.session.user;
             const alumni = await Alumni.findOne({ nisn: nisn });
-            return res.render('pages/alumni/dashboard', { alumni: alumni })
+            const tracerStudy = await TracerStudy.find({ alumniId: alumni._id }).populate('kegiatanDetail').populate('feedback');
+            console.log(tracerStudy);
+            return res.render('pages/alumni/dashboard', { alumni: alumni, tracerStudy: tracerStudy });
         }
     },
     profile: async function (req, res) {
@@ -28,37 +35,120 @@ module.exports = {
         } else {
             const { nisn } = req.session.user;
             const alumni = await Alumni.findOne({ nisn: nisn });
-            console.log(alumni)
             return res.render('pages/alumni/alumni_form', { alumni: alumni });
         }
     },
 
-    saveForm1: async function (req, res) {
-        const { nisn } = req.session.user;
-        const email = req.body.email.trim();
-        const tahunLulus = req.body.tahunLulus.trim();
-        const kegiatan = req.body.kegiatan.trim();
+    saveForm: async function (req, res) {
         try {
-            const alumni = await Alumni.findOne({ nisn: nisn });
-            const newTracerStudy = {
-                alumniId: alumni._id,
-                email: email,
-                tahunLulus: tahunLulus,
-                kegiatan: kegiatan
+            const validRefs = {
+                "Bekerja": "Pekerjaan",
+                "Melanjutkan Studi": "StudiLanjutan",
+                "Berwirausaha": "Berwirausaha",
+                "Kursus": "Kursus"
             };
-            await TracerStudy.create(newTracerStudy);
-            const kegiatanUrl = kegiatan.toLowerCase().replace(/\s+/g, '-');
-            return res.redirect(`/alumni/alumni-form2-${kegiatanUrl}/${nisn}`);
-        } catch (err) {
-            console.error(err);
-            return res.render('pages/alumni/alumni_form', { error: 'Terjadi kesalahan. Mohon coba lagi.' });
-        }
-    },
 
-    showForm2Kursus: async function (req, res) {
-        const nisn = req.params.nisn;
-        const alumni = await Alumni.findOne({ nisn: nisn });
-        const form1 = await TracerStudy.findOne({ alumniId: alumni._id });
-        return res.render('pages/alumni/kursus', { form1: form1 });
+            const { nisn } = req.session.user;
+            const { email, tahunLulus, kegiatan, feedbackDetail } = req.body;
+
+            // Cari data alumni berdasarkan NISN
+            const alumni = await Alumni.findOne({ nisn: nisn });
+
+            let kegiatanRef = null;
+            let kegiatanDetailId = null;
+            let feedbackId = null;
+
+            // Proses penyimpanan berdasarkan jenis kegiatan
+            if (kegiatan in validRefs) {
+                kegiatanRef = validRefs[kegiatan];
+
+                // Dapatkan model berdasarkan kegiatanRef
+                const KegiatanModel = mongoose.model(kegiatanRef);
+
+                let kegiatanData;
+
+                // Pengkondisian untuk setiap kegiatan
+                if (kegiatan === "Bekerja") {
+                    const { namaPerusahaan, alamatPerusahaan, teleponPerusahaan, sektorPerusahaan, posisi, tanggalMasukBekerja } = req.body;
+                    kegiatanData = new KegiatanModel({
+                        alumniId: alumni._id,
+                        namaPerusahaan: namaPerusahaan,
+                        alamatPerusahaan: alamatPerusahaan,
+                        teleponPerusahaan: teleponPerusahaan,
+                        sektorPerusahaan: sektorPerusahaan,
+                        posisi: posisi,
+                        tanggalMasuk: tanggalMasukBekerja
+                    });
+                } else if (kegiatan === "Melanjutkan Studi") {
+                    const { namaUniversitas, alamatUniversitas, Fakultas, programStudi, tanggalMasukUniversitas } = req.body;
+                    kegiatanData = new KegiatanModel({
+                        alumniId: alumni._id,
+                        namaUniversitas: namaUniversitas,
+                        alamatUniversitas: alamatUniversitas,
+                        fakultas: Fakultas,
+                        programStudi: programStudi,
+                        tanggalMasuk: tanggalMasukUniversitas
+                    });
+                } else if (kegiatan === "Berwirausaha") {
+                    const { namaUsaha, alamatUsaha, teleponUsaha, bidangUsaha, jumlahKaryawan, tanggalMulaiUsaha } = req.body;
+                    kegiatanData = new KegiatanModel({
+                        alumniId: alumni._id,
+                        namaUsaha: namaUsaha,
+                        alamatUsaha: alamatUsaha,
+                        teleponUsaha: teleponUsaha,
+                        bidangUsaha: bidangUsaha,
+                        jumlahKaryawan: jumlahKaryawan,
+                        tanggalMulai: tanggalMulaiUsaha
+                    });
+                } else if (kegiatan === "Kursus") {
+                    const { namaKursus, alamatKursus, bidangKursus, tanggalMulaiKursus, tanggalSelesaiKursus } = req.body;
+                    kegiatanData = new KegiatanModel({
+                        alumniId: alumni._id,
+                        namaKursus: namaKursus,
+                        alamatKursus: alamatKursus,
+                        bidangKursus: bidangKursus,
+                        tanggalMulai: tanggalMulaiKursus,
+                        tanggalSelesai: tanggalSelesaiKursus
+                    });
+                }
+
+                // Simpan detail kegiatan
+                const savedKegiatan = await kegiatanData.save();
+                kegiatanDetailId = savedKegiatan._id;
+            } else if (kegiatan === "Belum Ada Kegiatan") {
+                kegiatanDetailId = null; // Tidak ada model untuk "Belum Ada Kegiatan"
+            }
+
+            // Simpan data feedback
+            const feedbackData = new Feedback({
+                alumniId: alumni._id,
+                pesan: feedbackDetail
+            });
+
+            const savedFeedback = await feedbackData.save();
+            feedbackId = savedFeedback._id;
+
+            // Simpan data tracer study
+            const tracerStudyData = new TracerStudy({
+                alumniId: alumni._id,
+                email: email.trim(),
+                tahunLulus: tahunLulus.trim(),
+                kegiatan: kegiatan.trim(),
+                kegiatanRef: kegiatanRef,
+                kegiatanDetail: kegiatanDetailId,
+                belumAdaKegiatanDetail: kegiatan === "Belum Ada Kegiatan" ? req.body.rencana : null,
+                feedback: feedbackId
+            });
+
+            const savedTracerStudy = await tracerStudyData.save();
+
+
+            // Redirect setelah berhasil menyimpan
+            return res.redirect('/alumni');
+        } catch (error) {
+            console.error("Error saving data:", error);
+            return res.status(500).send("Terjadi kesalahan saat menyimpan data.");
+        }
     }
+
 }
