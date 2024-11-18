@@ -12,9 +12,8 @@ router.route('/admin/alumni-form')
 router.get('/admin/alumni-list', isAdmin, adminController.viewAlumniList);
 router.get('/admin/alumni-list/:nisn', isAdmin, adminController.viewAlumniDetail);
 router.delete('/admin/alumni-list/:nisn', isAdmin, adminController.deleteAlumni);
-router.route('/admin/alumni-edit/:nisn')
-    .get(isAdmin, adminController.alumniEdit)
-    .put(isAdmin, adminController.alumniUpdate);
+router.put('/admin/alumni-edit/:nisn', isAdmin, adminController.alumniUpdate);
+router.put('/admin/alumni-edit/password/:nisn', isAdmin, adminController.alumniUpdatePassword);
 router.get('/admin/alumni-tracer', isAdmin, adminController.viewAlumniTracer);
 router.get('/admin/profile', isAdmin, adminController.profile);
 module.exports = router;
