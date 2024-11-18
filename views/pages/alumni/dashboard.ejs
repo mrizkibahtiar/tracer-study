@@ -191,7 +191,7 @@
                                                                 id="inputState" placeholder="Ekonomi dan Bisnis"
                                                                 name="fakultas"
                                                                 value="<%= tracerStudy[0].kegiatanDetail.fakultas %>"
-                                                                disabled>">
+                                                                disabled>
                                                         </div>
                                                         <div class="mb-6">
                                                             <label for="inputState"
@@ -328,17 +328,17 @@
                                                                     <label for="inputState"
                                                                         class="text-gray-800 text-sm font-medium inline-block">Tanggal
                                                                         Mulai</label>
-                                                                    <input type="date"
+                                                                    <input type="text"
                                                                         class="form-input focus:border-primary text-black dark:text-white"
                                                                         id="inputState" name="tanggalMulaiKursus"
                                                                         value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalMulai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
-                                                                        disabled">
+                                                                        disabled>
                                                                 </div>
                                                                 <div class="mb-6">
                                                                     <label for="inputState"
                                                                         class="text-gray-800 text-sm font-medium inline-block">Tanggal
                                                                         Selesai</label>
-                                                                    <input type="date"
+                                                                    <input type="text"
                                                                         class="form-input focus:border-primary text-black dark:text-white"
                                                                         id="inputState" name="tanggalSelesaiKursus"
                                                                         value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalSelesai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
@@ -359,7 +359,8 @@
                                                                             class="form-input text text-black dark:text-white"
                                                                             rows="5" id="inputRencana"
                                                                             placeholder="Mempersiapkan pendaftaran perkuliahan"
-                                                                            name="kegiatanDetail"><%= tracerStudy[0].kegiatanDetail %></textarea>
+                                                                            name="kegiatanDetail"
+                                                                            disabled><%= tracerStudy[0].belumAdaKegiatanDetail %></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <% } %>
