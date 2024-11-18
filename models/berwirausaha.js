@@ -16,7 +16,7 @@ const berwirausahaSchema = new mongoose.Schema({
         type: String,
         required: true
 
-    }, // Jenis usaha
+    },
     teleponUsaha: {
         type: Number,
         required: true
