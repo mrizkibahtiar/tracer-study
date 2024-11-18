@@ -533,66 +533,46 @@
                 <div class="relative">
                     <div class="swiper testi-swiper rounded-md relative px-1">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="p-6 rounded-xl border border-default-200">
-                                    <h3 class="text-xl font-semibold text-default-950">No doubt, spend. in is the best!
-                                    </h3>
-                                    <p class="text-base font-normal mt-4 mb-4 text-muted">
-                                        Without a doubt, Spend in stands out as the absolute best.Their exceptional
-                                        quality, reliablity, and customer service are unmatched. I have complete....
-                                    </p>
-                                    <div class="flex items-center gap-4">
-                                        <div>
-                                            <img src="assets/landing/images/user/client-04.jpg"
-                                                class="h-12 rounded-full" alt="">
+                            <% if(feedback.length> 0) { %>
+                                <% for(var i=0; i < feedback.length; i++) { %>
+                                    <div class="swiper-slide">
+                                        <div class="p-6 rounded-xl border border-default-200">
+                                            <p class="text-base font-normal mb-4 text-muted">
+                                                <%= feedback[i].feedback.pesan.split(' ').slice(0, 30).join(' ') %>...
+                                            </p>
+                                            <div class="flex items-center gap-4">
+                                                <div>
+                                                    <h3 class="text-lg font-semibold text-primary"><%= feedback[i].alumniId.nama %></h3>
+                                                    <% if(feedback[i].kegiatan == "Bekerja"){ %>
+                                                    <p class="text-sm font-medium mt-1"> Bekerja di <%= feedback[i].kegiatanDetail.namaPerusahaan %></p>
+                                                    <% } else if(feedback[i].kegiatan == "Melanjutkan Studi"){ %>
+                                                    <p class="text-sm font-medium mt-1"> Melanjutkan Studi di <%= feedback[i].kegiatanDetail.namaUniversitas %></p>
+                                                    <% } else if(feedback[i].kegiatan == "Berwirausaha"){ %>
+                                                    <p class="text-sm font-medium mt-1"> Owner <%= feedback[i].kegiatanDetail.namaUsaha %></p>
+                                                    <% } %>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 class="text-lg font-semibold text-primary">Moritika Kazuki</h3>
-                                            <p class="text-sm font-medium mt-1">Finance Manager at Mangan</p>
+                                    </div>
+                                <% } %>
+                            <% } else { %>
+                                <div class="swiper-slide">
+                                    <div class="p-6 rounded-xl border border-default-200">
+                                        <h3 class="text-xl font-semibold text-default-950">No doubt, spend.in is thebest!</h3>
+                                        <p class="text-base font-normal mt-4 mb-4 text-muted">
+                                            Without a doubt, Spend in stands out as the absolute best.Their exceptional quality, reliablity, and customer service are unmatched. I have complete....
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div>
+                                                <h3 class="text-lg font-semibold text-primary">Moritika
+                                                                Kazuki</h3>
+                                                <p class="text-sm font-medium mt-1">Finance Manager at
+                                                                Mangan</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="p-6 rounded-xl border border-default-200">
-                                    <h3 class="text-xl font-semibold text-default-950">No doubt, spend. in is the best!
-                                    </h3>
-                                    <p class="text-base font-normal mt-4 mb-4 text-muted">
-                                        Without a doubt, Spend in stands out as the absolute best.Their exceptional
-                                        quality, reliablity, and customer service are unmatched. I have complete....
-                                    </p>
-                                    <div class="flex items-center gap-4">
-                                        <div>
-                                            <img src="assets/landing/images/user/client-04.jpg"
-                                                class="h-12 rounded-full" alt="">
-                                        </div>
-                                        <div>
-                                            <h3 class="text-lg font-semibold text-primary">Moritika Kazuki</h3>
-                                            <p class="text-sm font-medium mt-1">Finance Manager at Mangan</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="p-6 rounded-xl border border-default-200">
-                                    <h3 class="text-xl font-semibold text-default-950">No doubt, spend. in is the best!
-                                    </h3>
-                                    <p class="text-base font-normal mt-4 mb-4 text-muted">
-                                        Without a doubt, Spend in stands out as the absolute best.Their exceptional
-                                        quality, reliablity, and customer service are unmatched. I have complete....
-                                    </p>
-                                    <div class="flex items-center gap-4">
-                                        <div>
-                                            <img src="assets/landing/images/user/client-04.jpg"
-                                                class="h-12 rounded-full" alt="">
-                                        </div>
-                                        <div>
-                                            <h3 class="text-lg font-semibold text-primary">Moritika Kazuki</h3>
-                                            <p class="text-sm font-medium mt-1">Finance Manager at Mangan</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <% } %>
                         </div>
                     </div>
 
@@ -793,6 +773,7 @@
 
 </body>
 
-<!-- Mirrored from zoyothemes.com/tailwind/evea/index-1 by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Oct 2024 16:06:29 GMT -->
+<!-- Mirrored from zoyothemes.com/tailwind/evea/index-1 by HTTrack Website Copier/3.x [XR&CO' 2014], Sun, 06 Oct 2024
+                                                    16:06:29 GMT -->
 
 </html>
