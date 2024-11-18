@@ -18,6 +18,14 @@
 
     <!-- Theme Config Js -->
     <script src="assets/js/config.js"></script>
+
+    <style>
+        textarea {
+            resize: none;
+            overflow: auto;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -33,30 +41,363 @@
 
 
                     <main class="flex-grow w-full p-6">
-
-                        <!-- Page Title Start -->
-                        <div class="flex justify-center items-center mb-6 text-xl w-full">
+                        <div class="flex justify-between items-center text-xl w-full">
                             <h4 class="text-slate-900 dark:text-slate-200 font-normal">Selamat Datang,
                                 <span class="text-2xl font-semibold">
                                     <%= alumni.nama %>
                                 </span>
                             </h4>
+                            <% if(tracerStudy.length> 0) { %>
+                                <a href="/alumni/alumni-form">
+                                    <button type="button" class="btn bg-danger text-white w-20">Edit</button>
+                                </a>
+                                <% } else { %>
+                                    <a href="/alumni/alumni-form">
+                                        <button type="button" class="btn bg-primary text-white ">Form</button>
+                                    </a>
+                                    <% } %>
                         </div>
-                        <!-- Page Title End -->
-                        <div class="col-span-2">
-                            <div class="card">
 
-                                <div class="p-6">
-                                    <h1>Anda Belum Mengisi Form, silahkan menuju <a href="/alumni/alumni-form"
-                                            class="text-primary">Halaman
-                                            Form</a></h1>
-                                </div>
+                        <% if(tracerStudy.length> 0) { %>
+                            <div class="col-span-2 mt-6">
+                                <form method="post" action="/alumni/alumni-form/<%= alumni.nisn %>">
+                                    <div class="card">
+                                        <div class="p-6">
+                                            <div class="grid grid-cols-1 gap-6">
+                                                <div>
+                                                    <label for="inputEmail4"
+                                                        class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                    <input type="email"
+                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                        id="inputEmail4" placeholder="Email" name="email"
+                                                        value="<%= tracerStudy[0].email %>" disabled>
+                                                </div>
+
+                                                <div>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
+                                                        Lulus</label>
+                                                    <input type="text"
+                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                        value="<%= tracerStudy[0].tahunLulus %>" disabled>
+                                                </div>
+                                                <div>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block mb-2">Kegiatan
+                                                        setelah Lulus</label>
+                                                    <input type="text"
+                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                        id="inputState" placeholder="Kegiatan" name="kegiatan"
+                                                        value="<%= tracerStudy[0].kegiatan %>" disabled>
+                                                </div>
+                                            </div>
+
+                                            <% if(tracerStudy[0].kegiatan=="Bekerja" ) { %>
+                                                <div id="bekerja" class="grid-cols-1 mt-6">
+                                                    <div class="mb-6">
+                                                        <label for="inputState"
+                                                            class="text-gray-800 text-sm font-medium inline-block">Nama
+                                                            Perusahaan</label>
+                                                        <input type="text"
+                                                            class="form-input focus:border-primary text-black dark:text-white"
+                                                            id="inputState" placeholder="PT. ABC" name="namaPerusahaan"
+                                                            value="<%= tracerStudy[0].kegiatanDetail.namaPerusahaan %>"
+                                                            disabled>
+                                                    </div>
+                                                    <div class="mb-6">
+                                                        <label for="inputState"
+                                                            class="text-gray-800 text-sm font-medium inline-block">Alamat
+                                                            Perusahaan</label>
+                                                        <input type="text"
+                                                            class="form-input focus:border-primary text-black dark:text-white"
+                                                            id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
+                                                            name="alamatPerusahaan"
+                                                            value="<%= tracerStudy[0].kegiatanDetail.alamatPerusahaan %>"
+                                                            disabled>
+                                                    </div>
+                                                    <div class="mb-6">
+                                                        <label for="inputState"
+                                                            class="text-gray-800 text-sm font-medium inline-block">Telepon
+                                                            Perusahaan</label>
+                                                        <input type="text"
+                                                            class="form-input focus:border-primary text-black dark:text-white"
+                                                            id="inputState"
+                                                            placeholder="08123456789 (masukkan nomor saja)"
+                                                            name="teleponPerusahaan"
+                                                            value="<%= tracerStudy[0].kegiatanDetail.teleponPerusahaan %>"
+                                                            disabled>
+                                                    </div>
+                                                    <div class="mb-6">
+                                                        <label for="inputState"
+                                                            class="text-gray-800 text-sm font-medium inline-block">Sektor
+                                                            Perusahaan</label>
+                                                        <input type="text"
+                                                            class="form-input focus:border-primary text-black dark:text-white"
+                                                            id="inputState" placeholder="Teknologi"
+                                                            name="sektorPerusahaan"
+                                                            value="<%= tracerStudy[0].kegiatanDetail.sektorPerusahaan %>"
+                                                            disabled>
+                                                    </div>
+                                                    <div class="mb-6">
+                                                        <label for="inputState"
+                                                            class="text-gray-800 text-sm font-medium inline-block">Posisi</label>
+                                                        <input type="text"
+                                                            class="form-input focus:border-primary text-black dark:text-white"
+                                                            id="inputState" placeholder="IT-Support" name="posisi"
+                                                            value="<%= tracerStudy[0].kegiatanDetail.posisi %>"
+                                                            disabled>
+                                                    </div>
+                                                    <div class="mb-6">
+                                                        <label for="inputState"
+                                                            class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                            Masuk</label>
+                                                        <input type="text"
+                                                            class="form-input focus:border-primary text-black dark:text-white"
+                                                            id="inputState" name="tanggalMasukBekerja"
+                                                            value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalMasuk).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
+                                                            disabled>
+                                                    </div>
+                                                </div>
+                                                <% } else if(tracerStudy[0].kegiatan=="Melanjutkan Studi" ) { %>
+                                                    <!-- melanjutkan studi -->
+                                                    <div id="melanjutkanStudi" class="grid-cols-1 gap-6 mt-6">
+                                                        <div class="mb-6">
+                                                            <label for="inputState"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                                Universitas</label>
+                                                            <input type="text"
+                                                                class="form-input focus:border-primary text-black dark:text-white"
+                                                                id="inputState" placeholder="Universitas ABC"
+                                                                name="namaUniversitas"
+                                                                value="<%= tracerStudy[0].kegiatanDetail.namaUniversitas %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="inputState"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Alamat
+                                                                Universitas</label>
+                                                            <input type="text"
+                                                                class="form-input focus:border-primary text-black dark:text-white"
+                                                                id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
+                                                                name="alamatUniversitas"
+                                                                value="<%= tracerStudy[0].kegiatanDetail.alamatUniversitas %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="inputState"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Fakultas</label>
+                                                            <input type="text"
+                                                                class="form-input focus:border-primary text-black dark:text-white"
+                                                                id="inputState" placeholder="Ekonomi dan Bisnis"
+                                                                name="fakultas"
+                                                                value="<%= tracerStudy[0].kegiatanDetail.fakultas %>"
+                                                                disabled>">
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="inputState"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Program
+                                                                Studi</label>
+                                                            <input type="text"
+                                                                class="form-input focus:border-primary text-black dark:text-white"
+                                                                id="inputState" placeholder="Akuntansi Keuangan Publik"
+                                                                name="programStudi"
+                                                                value="<%= tracerStudy[0].kegiatanDetail.programStudi %>"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="mb-6">
+                                                            <label for="inputState"
+                                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
+                                                                Masuk</label>
+                                                            <input type="date"
+                                                                class="form-input focus:border-primary text-black dark:text-white"
+                                                                id="inputState" name="tanggalMasukUniversitas"
+                                                                value="<%= tracerStudy[0].kegiatanDetail.tanggalMasuk %>"
+                                                                disabled>
+                                                        </div>
+                                                    </div>
+                                                    <% } else if(tracerStudy[0].kegiatan=="Berwirausaha" ) { %>
+                                                        <!-- Berwirausaha -->
+                                                        <div id="berwirausaha" class="grid-cols-1 gap-6 mt-6">
+                                                            <div class="mb-6">
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Nama
+                                                                    Usaha</label>
+                                                                <input type="text"
+                                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                                    id="inputState" placeholder="Ayam Geprek ABC"
+                                                                    name="namaUsaha"
+                                                                    value="<%= tracerStudy[0].kegiatanDetail.namaUsaha %>"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-6">
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Alamat
+                                                                    Usaha</label>
+                                                                <input type="text"
+                                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                                    id="inputState"
+                                                                    placeholder="Jl. ABC, No. 123, Jakarta"
+                                                                    name="alamatUsaha"
+                                                                    value="<%= tracerStudy[0].kegiatanDetail.alamatUsaha %>"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-6">
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Telepon
+                                                                    Usaha</label>
+                                                                <input type="text"
+                                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                                    id="inputState" placeholder="021-1234567"
+                                                                    name="teleponUsaha"
+                                                                    value="<%= tracerStudy[0].kegiatanDetail.teleponUsaha %>"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-6">
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Bidang
+                                                                    Usaha</label>
+                                                                <input type="text"
+                                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                                    id="inputState" placeholder="Makanan"
+                                                                    name="bidangUsaha"
+                                                                    value="<%= tracerStudy[0].kegiatanDetail.bidangUsaha %>"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-6">
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Jumlah
+                                                                    Karyawan</label>
+                                                                <input type="number"
+                                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                                    id="inputState" placeholder="isi 1 jika belum ada"
+                                                                    name="jumlahKaryawan"
+                                                                    value="<%= tracerStudy[0].kegiatanDetail.jumlahKaryawan %>"
+                                                                    disabled>
+                                                            </div>
+                                                            <div class="mb-6">
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                                    Mulai Usaha</label>
+                                                                <input type="text"
+                                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                                    id="inputState" name="tanggalMulaiUsaha"
+                                                                    value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalMulai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
+                                                                    disabled>
+                                                            </div>
+                                                        </div>
+
+                                                        <% } else if(tracerStudy[0].kegiatan=="Kursus" ) { %>
+                                                            <!-- kursus -->
+                                                            <div id="kursus" class="grid-cols-1 gap-6 mt-6">
+                                                                <div class="mb-6">
+                                                                    <label for="inputState"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Nama
+                                                                        Kursus</label>
+                                                                    <input type="text"
+                                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                                        id="inputState" placeholder="Pemrograman Web"
+                                                                        name="namaKursus"
+                                                                        value="<%= tracerStudy[0].kegiatanDetail.namaKursus %>"
+                                                                        disabled>
+                                                                </div>
+                                                                <div class="mb-6">
+                                                                    <label for="inputState"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Alamat
+                                                                        Kursus</label>
+                                                                    <input type="text"
+                                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                                        id="inputState"
+                                                                        placeholder="Jl. ABC, No. 123, Jakarta"
+                                                                        name="alamatKursus"
+                                                                        value="<%= tracerStudy[0].kegiatanDetail.alamatKursus %>"
+                                                                        disabled>
+                                                                </div>
+                                                                <div class="mb-6">
+                                                                    <label for="inputState"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Bidang
+                                                                        Kursus</label>
+                                                                    <input type="text"
+                                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                                        id="inputState"
+                                                                        placeholder="LPK Neptune Madiun "
+                                                                        name="bidangKursus"
+                                                                        value="<%= tracerStudy[0].kegiatanDetail.bidangKursus %>"
+                                                                        disabled>
+                                                                </div>
+                                                                <div class="mb-6">
+                                                                    <label for="inputState"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                                        Mulai</label>
+                                                                    <input type="date"
+                                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                                        id="inputState" name="tanggalMulaiKursus"
+                                                                        value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalMulai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
+                                                                        disabled">
+                                                                </div>
+                                                                <div class="mb-6">
+                                                                    <label for="inputState"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                                        Selesai</label>
+                                                                    <input type="date"
+                                                                        class="form-input focus:border-primary text-black dark:text-white"
+                                                                        id="inputState" name="tanggalSelesaiKursus"
+                                                                        value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalSelesai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
+                                                                        disabled">
+                                                                </div>
+                                                            </div>
+
+                                                            <% } else if(tracerStudy[0].kegiatan=="Belum Ada Kegiatan" )
+                                                                { %>
+                                                                <!-- belum ada kegiatan -->
+                                                                <div id="belumAdaKegiatan"
+                                                                    class="grid-cols-1 gap-6 mt-6">
+                                                                    <div class="mb-6">
+                                                                        <label for="inputRencana"
+                                                                            class="text-gray-800 text-sm font-medium inline-block">Kegiatan
+                                                                            Yang Dilakukan Sekarang</label>
+                                                                        <textarea
+                                                                            class="form-input text text-black dark:text-white"
+                                                                            rows="5" id="inputRencana"
+                                                                            placeholder="Mempersiapkan pendaftaran perkuliahan"
+                                                                            name="kegiatanDetail"><%= tracerStudy[0].kegiatanDetail %></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <% } %>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mt-6">
+                                        <div class="p-6">
+                                            <!-- feedback -->
+                                            <div id="feedback" class="grid-cols-1 gap-6">
+                                                <label for="feedback"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Feedback</label>
+                                                <textarea
+                                                    class="form-input text-black dark:text-white placeholder:text-black placeholder:dark:text-white"
+                                                    rows="5" name="feedbackDetail" rows="10"
+                                                    disabled><%= tracerStudy[0].feedback.pesan %></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
-                        </div>
+                            <% } else { %>
+                                <div class="col-span-2 mt-6">
+                                    <div class="card">
+
+                                        <div class="p-6">
+                                            <h1>Anda Belum Mengisi Form, silahkan menuju <a href="/alumni/alumni-form"
+                                                    class="text-primary">Halaman
+                                                    Form</a></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
                     </main>
 
                     <!-- Footer Start -->
-                    <%- include('../../components/footer_alumni') %>
+                    <%- include('../../components/footer') %>
                         <!-- Footer End -->
 
             </div>
@@ -77,9 +418,6 @@
 
     <!-- App Js -->
     <script src="assets/js/app.js"></script>
-
-    <!-- Apexcharts js -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
 
     <!-- Dashboard Project Page js -->
     <script src="assets/js/pages/dashboard.js"></script>
