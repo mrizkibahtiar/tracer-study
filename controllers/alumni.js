@@ -80,12 +80,12 @@ module.exports = {
                         tanggalMasuk: tanggalMasukBekerja
                     });
                 } else if (kegiatan === "Melanjutkan Studi") {
-                    const { namaUniversitas, alamatUniversitas, Fakultas, programStudi, tanggalMasukUniversitas } = req.body;
+                    const { namaUniversitas, alamatUniversitas, fakultas, programStudi, tanggalMasukUniversitas } = req.body;
                     kegiatanData = new KegiatanModel({
                         alumniId: alumni._id,
                         namaUniversitas: namaUniversitas,
                         alamatUniversitas: alamatUniversitas,
-                        fakultas: Fakultas,
+                        fakultas: fakultas,
                         programStudi: programStudi,
                         tanggalMasuk: tanggalMasukUniversitas
                     });
@@ -136,7 +136,7 @@ module.exports = {
                 kegiatan: kegiatan.trim(),
                 kegiatanRef: kegiatanRef,
                 kegiatanDetail: kegiatanDetailId,
-                belumAdaKegiatanDetail: kegiatan === "Belum Ada Kegiatan" ? req.body.rencana : null,
+                belumAdaKegiatanDetail: kegiatan === "Belum Ada Kegiatan" ? req.body.kegiatanDetail : null,
                 feedback: feedbackId
             });
 
