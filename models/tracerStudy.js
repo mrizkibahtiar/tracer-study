@@ -21,23 +21,26 @@ const tracerStudySchema = new mongoose.Schema({
     },
     kegiatanDetail: {
         type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        default: null,
-        refPath: 'kegiatanRef' // Dinamis berdasarkan kegiatan
+        refPath: 'kegiatanRef', // Dinamis berdasarkan kegiatan
+        default: null
     },
     kegiatanRef: {
         type: String,
-        required: false,
-        default: null,
-        enum: ["Pekerjaan", "StudiLanjutan", "Berwirausaha", "Kursus"]
+        enum: ["Pekerjaan", "StudiLanjutan", "Berwirausaha", "Kursus", null],
+        default: null
     },
-    feedbackId: {
+    belumAdaKegiatanDetail: {
+        type: String,
+        required: function () { return this.kegiatan === "Belum Ada Kegiatan"; }, // Hanya wajib jika kegiatan adalah "Belum Ada Kegiatan"
+        default: null
+    },
+    feedback: {
         type: mongoose.Schema.Types.ObjectId,
-        default: null,
-        required: false,
-        ref: 'Feedback'
+        ref: 'Feedback',
+        required: false
     }
 });
+
 
 
 const TracerStudy = mongoose.model('TracerStudy', tracerStudySchema);
