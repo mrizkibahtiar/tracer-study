@@ -7,11 +7,11 @@ const studiLanjutanSchema = new mongoose.Schema({
         ref: 'Alumni'
 
     },
-    namaUniveritas: {
+    namaUniversitas: {
         type: String,
         required: true
     },
-    alamatUniveritas: {
+    alamatUniversitas: {
         type: String,
         required: true
     },
