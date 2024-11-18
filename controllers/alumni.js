@@ -149,6 +149,18 @@ module.exports = {
             console.error("Error saving data:", error);
             return res.status(500).send("Terjadi kesalahan saat menyimpan data.");
         }
+    },
+    editForm: async function (req, res) {
+        const { alumniId } = req.params;
+        const tracerStudy = await TracerStudy.findOne({ alumniId: alumniId });
+        return res.render('pages/alumni/alumni-edit', { tracerStudy: tracerStudy });
+    }, updateForm: async function (req, res) {
+        const { nisn } = req.params;
+        const { nama, password } = req.body;
+        const alumni = await Alumni.findOne({ nisn: nisn });
+        alumni.nama = nama;
+        alumni.password = password;
+        await alumni.save();
+        return res.redirect('/alumni');
     }
-
 }
