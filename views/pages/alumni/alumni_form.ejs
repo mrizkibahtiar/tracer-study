@@ -18,6 +18,13 @@
 
     <!-- Theme Config Js -->
     <script src="../assets/js/config.js"></script>
+
+    <style>
+        textarea {
+            resize: none;
+            overflow: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,32 +36,43 @@
                 <%- include('../../components/topbar_alumni') %>
                     <!-- Topbar End -->
 
-
-
                     <main class="flex-grow w-full p-6">
-                        <div class="col-span-2">
-                            <div class="card">
+                        <div class="flex items-center">
+                            <!-- button back -->
+                            <a href="/alumni" class="btn btn-ghost">
+                                <i
+                                    class="mgc_arrow_left_circle_line text-3xl text-slate-700 rtl:rotate-180 dark:text-slate-200"></i>
+                            </a>
 
-                                <div class="p-6">
-                                    <form method="post" action="/alumni/alumni-form/<%= alumni.nisn %>">
-                                        <div class="grid grid-cols-1  gap-6">
+                            <h4 class="text-slate-700 dark:text-slate-200 text-lg font-medium">
+                                Form Alumni
+                            </h4>
+                        </div>
+                        <div class="col-span-2 mt-3">
+                            <form method="post" action="/alumni/alumni-form/<%= alumni.nisn %>">
+                                <div class="card">
+                                    <div class="p-6">
+                                        <div class="grid grid-cols-1 gap-6">
                                             <div>
                                                 <label for="inputEmail4"
                                                     class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
-                                                <input type="email" class="form-input" id="inputEmail4"
-                                                    placeholder="Email" name="email" required>
+                                                <input type="email"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputEmail4" placeholder="Email" name="email" required>
                                             </div>
 
                                             <div>
                                                 <label for="inputState"
                                                     class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
                                                     Lulus</label>
-                                                <select id="inputState" class="form-select" name="tahunLulus" required>
+                                                <select id="inputState"
+                                                    class="form-select focus:border-primary text-black dark:text-white"
+                                                    name="tahunLulus" required>
                                                     <option value="" disabled selected>Pilih Tahun</option>
                                                     <% const tahunMulai=2000; const tahunTerbaru=new
                                                         Date().getFullYear(); for (let i=tahunTerbaru; i>=
                                                         tahunMulai;i--) { %>
-                                                        <option value="<%= i %>">
+                                                        <option value="<%= i %>" class="text-black">
                                                             <%= i %>
                                                         </option>
                                                         <% } %>
@@ -64,29 +82,258 @@
                                                 <label for="inputState"
                                                     class="text-gray-800 text-sm font-medium inline-block mb-2">Kegiatan
                                                     setelah Lulus</label>
-                                                <select id="inputState" class="form-select" name="kegiatan" required>
-                                                    <option value="" disabled selected>Pilih Kegiatan
+                                                <select id="inputState"
+                                                    class="kegiatanLulus form-select focus:border-primary text-black dark:text-white"
+                                                    name="kegiatan" required>
+                                                    <option value="" disabled selected class="text-black">Pilih Kegiatan
                                                     </option>
-                                                    <option value="Bekerja">Bekerja</option>
-                                                    <option value="Melanjutkan Studi">Melanjutkan Studi
+                                                    <option value="Bekerja" class="text-black">Bekerja</option>
+                                                    <option value="Melanjutkan Studi" class="text-black">Melanjutkan
+                                                        Studi
                                                     </option>
-                                                    <option value="Berwirausaha">Berwirausaha</option>
-                                                    <option value="Kursus">Kursus</option>
-                                                    <option value="Belum Ada Kegiatan">Belum Ada Kegiatan
+                                                    <option value="Berwirausaha" class="text-black">Berwirausaha
+                                                    </option>
+                                                    <option value="Kursus" class="text-black">Kursus</option>
+                                                    <option value="Belum Ada Kegiatan" class="text-black">Belum Ada
+                                                        Kegiatan
                                                     </option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type="submit"
-                                            class="btn bg-primary text-white mt-4 mx-auto">Lanjutkan</button>
-                                    </form>
+
+                                        <!-- bekerja -->
+                                        <div id="bekerja" class="grid-cols-1 gap-6 mt-6 hidden">
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                    Perusahaan</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="PT. ABC" name="namaPerusahaan">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Alamat
+                                                    Perusahaan</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
+                                                    name="alamatPerusahaan">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Telepon
+                                                    Perusahaan</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="08123456789 (masukkan nomor saja)"
+                                                    name="teleponPerusahaan">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Sektor
+                                                    Perusahaan</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Teknologi" name="sektorPerusahaan">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Posisi</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="IT-Support" name="posisi">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
+                                                    Masuk</label>
+                                                <input type="date"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" name="tanggalMasukBekerja">
+                                            </div>
+                                        </div>
+
+                                        <!-- melanjutkan studi -->
+                                        <div id="melanjutkanStudi" class="grid-cols-1 gap-6 mt-6 hidden">
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                    Universitas</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Universitas ABC"
+                                                    name="namaUniversitas">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Alamat
+                                                    Universitas</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
+                                                    name="alamatUniversitas">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Fakultas</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Ekonomi dan Bisnis" name="fakultas">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Program
+                                                    Studi</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Akuntansi Keuangan Publik"
+                                                    name="programStudi">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
+                                                    Masuk</label>
+                                                <input type="date"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" name="tanggalMasukUniversitas">
+                                            </div>
+                                        </div>
+
+                                        <!-- Berwirausaha -->
+                                        <div id="berwirausaha" class="grid-cols-1 gap-6 mt-6 hidden">
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                    Usaha</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Ayam Geprek ABC" name="namaUsaha">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Alamat
+                                                    Usaha</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
+                                                    name="alamatUsaha">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Telepon
+                                                    Usaha</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="021-1234567" name="teleponUsaha">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Bidang
+                                                    Usaha</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Makanan" name="bidangUsaha">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Jumlah
+                                                    Karyawan</label>
+                                                <input type="number"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="isi 1 jika belum ada"
+                                                    name="jumlahKaryawan">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
+                                                    Mulai Usaha</label>
+                                                <input type="date"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" name="tanggalMulaiUsaha">
+                                            </div>
+                                        </div>
+
+                                        <!-- kursus -->
+                                        <div id="kursus" class="grid-cols-1 gap-6 mt-6 hidden">
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
+                                                    Kursus</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Pemrograman Web" name="namaKursus">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Alamat
+                                                    Kursus</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
+                                                    name="alamatKursus">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Bidang
+                                                    Kursus</label>
+                                                <input type="text"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" placeholder="LPK Neptune Madiun "
+                                                    name="bidangKursus">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
+                                                    Mulai</label>
+                                                <input type="date"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" name="tanggalMulaiKursus">
+                                            </div>
+                                            <div>
+                                                <label for="inputState"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
+                                                    Selesai</label>
+                                                <input type="date"
+                                                    class="form-input focus:border-primary text-black dark:text-white"
+                                                    id="inputState" name="tanggalSelesaiKursus">
+                                            </div>
+                                        </div>
+
+                                        <!-- belum ada kegiatan -->
+                                        <div id="belumAdaKegiatan" class="grid-cols-1 gap-6 mt-6 hidden">
+                                            <div>
+                                                <label for="inputRencana"
+                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Kegiatan
+                                                    Yang Dilakukan Sekarang</label>
+                                                <textarea class="form-input text text-black dark:text-white" rows="5"
+                                                    id="inputRencana"
+                                                    placeholder="Mempersiapkan pendaftaran perkuliahan"
+                                                    name="kegiatanDetail"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="card mt-6">
+                                    <div class="p-6">
+                                        <!-- feedback -->
+                                        <div id="feedback" class="grid-cols-1 gap-6">
+                                            <label for="feedback"
+                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Feedback</label>
+                                            <textarea class="form-input text text-black dark:text-white" rows="5"
+                                                name="feedbackDetail" rows="10"
+                                                placeholder="Masukkan feedback untuk kami" required></textarea>
+                                        </div>
+                                        <button type="submit"
+                                            class="btn bg-success text-white mt-4 mx-auto">Simpan</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </main>
 
                     <!-- Footer Start -->
-                    <%- include('../../components/footer_alumni') %>
+                    <%- include('../../components/footer') %>
                         <!-- Footer End -->
 
             </div>
@@ -108,11 +355,69 @@
     <!-- App Js -->
     <script src="../assets/js/app.js"></script>
 
-    <!-- Apexcharts js -->
-    <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
 
     <!-- Dashboard Project Page js -->
     <script src="../assets/js/pages/dashboard.js"></script>
+    <script>
+        function aktif(a) {
+            const kegiatan = document.getElementById(a);
+            kegiatan.classList.remove('hidden');
+            kegiatan.classList.add('grid')
+            const inputs = kegiatan.querySelectorAll('input, select, textarea');
+            console.log(inputs);
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].setAttribute('required', true);
+            }
+        }
+
+        function nonAktif(a) {
+            const kegiatan = document.getElementById(a);
+            kegiatan.classList.add('hidden');
+            kegiatan.classList.remove('grid');
+            const inputs = kegiatan.querySelectorAll('input', 'select', 'textarea');
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].removeAttribute('required');
+            }
+        }
+
+        const kegiatanLulus = document.querySelector('.kegiatanLulus');
+        kegiatanLulus.addEventListener('change', function () {
+            if (kegiatanLulus.value === 'Belum Ada Kegiatan') {
+                aktif('belumAdaKegiatan');
+                nonAktif('bekerja');
+                nonAktif('melanjutkanStudi');
+                nonAktif('berwirausaha');
+                nonAktif('kursus');
+            } else if (kegiatanLulus.value === 'Bekerja') {
+                aktif('bekerja');
+                nonAktif('belumAdaKegiatan');
+                nonAktif('melanjutkanStudi');
+                nonAktif('berwirausaha');
+                nonAktif('kursus');
+            } else if (kegiatanLulus.value === 'Melanjutkan Studi') {
+                aktif('melanjutkanStudi');
+                nonAktif('belumAdaKegiatan');
+                nonAktif('bekerja');
+                nonAktif('berwirausaha');
+                nonAktif('kursus');
+            } else if (kegiatanLulus.value === 'Berwirausaha') {
+                aktif('berwirausaha');
+                nonAktif('belumAdaKegiatan');
+                nonAktif('bekerja');
+                nonAktif('melanjutkanStudi');
+                nonAktif('kursus');
+            } else if (kegiatanLulus.value === 'Kursus') {
+                aktif('kursus');
+                nonAktif('belumAdaKegiatan');
+                nonAktif('bekerja');
+                nonAktif('melanjutkanStudi');
+                nonAktif('berwirausaha');
+            } else {
+                inputRencana.removeAttribute('required');
+                rencanaKegiatan.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 
