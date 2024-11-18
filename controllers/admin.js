@@ -57,50 +57,98 @@ module.exports = {
     },
 
     deleteAlumni: async function (req, res) {
+        const { nisn } = req.params;
         try {
-            const { nisn } = req.params;
             const alumni = await Alumni.findOneAndDelete({ nisn: nisn });
+
+            if (!alumni) {
+                req.flash('error_msg', 'Data alumni tidak ditemukan.');
+                return res.redirect('/admin/alumni-list');
+            }
+
+            req.flash('success_msg', `Data alumni dengan NISN ${nisn} berhasil dihapus.`);
             return res.redirect('/admin/alumni-list');
         } catch (err) {
+            console.error(err);
+            req.flash('error_msg', 'Terjadi kesalahan saat menghapus data.');
+            return res.redirect('/admin/alumni-list');
+        }
+    },
+
+    alumniUpdate: async function (req, res) {
+        const { nisn } = req.params; // NISN dari URL
+        const { nisnBaru, nama } = req.body; // Data dari form
+
+        try {
+            // Validasi apakah NISN baru sudah ada di database
+            if (nisnBaru !== nisn) {
+                const existingAlumni = await Alumni.findOne({ nisn: nisnBaru });
+                if (existingAlumni) {
+                    req.flash('error_msg', 'NISN baru sudah digunakan.');
+                    return res.redirect('/admin/alumni-list/' + nisn);
+                }
+            }
+
+            // Data yang akan diperbarui
+            const updateData = {
+                nisn: nisnBaru,
+                nama: nama,
+            };
+
+            // Update data alumni berdasarkan NISN lama
+            const alumni = await Alumni.findOneAndUpdate(
+                { nisn: nisn }, // Kondisi pencarian
+                updateData, // Data yang diperbarui
+                { new: true } // Mengembalikan data terbaru setelah update
+            );
+
+            // Flash pesan sukses
+            req.flash('success_msg', 'Alumni berhasil diperbarui!');
+            return res.redirect('/admin/alumni-list/' + nisnBaru);
+        } catch (err) {
+            console.error('Error saat update alumni:', err.message, err.stack);
+
+            // Flash pesan error dan redirect kembali
+            req.flash('error_msg', 'Terjadi kesalahan. Mohon coba lagi.');
             return res.redirect('/admin/alumni-list/' + nisn);
         }
     },
 
-    alumniEdit: async function (req, res) {
+    alumniUpdatePassword: async function (req, res) {
         const { nisn } = req.params;
-        const alumni = await Alumni.findOne({ nisn: nisn });
-        console.log(alumni);
-        return res.render('pages/admin/alumni_edit', { alumni: alumni });
-    },
+        const { password, confirmPassword } = req.body;
 
-    alumniUpdate: async function (req, res) {
-        const { nisn } = req.params;
-        const { nama, password } = req.body;
+        if (!password || !confirmPassword) {
+            req.flash('error_msg', 'Semua field wajib diisi.');
+            return res.redirect('/admin/alumni-list/' + nisn);
+        }
+
+        if (password !== confirmPassword) {
+            req.flash('error_msg', 'Password dan konfirmasi password tidak cocok.');
+            return res.redirect('/admin/alumni-list/' + nisn);
+        }
 
         try {
-            // Persiapkan objek pembaruan
-            const updateData = {
-                nama: nama.trim(),
-            };
-
-            // Hanya mengubah password jika field password diisi
-            if (password) {
-                const hashedPassword = await bcrypt.hash(password.trim(), 10);
-                updateData.password = hashedPassword;
-            }
+            // Hash password sebelum menyimpannya
+            const hashedPassword = await bcrypt.hash(password.trim(), 10);
 
             const alumni = await Alumni.findOneAndUpdate(
                 { nisn: nisn },
-                updateData,
+                { password: hashedPassword },
                 { new: true }
             );
 
-            req.flash('success_msg', 'Alumni berhasil diperbarui!');
-            return res.redirect('/admin/alumni-edit/' + nisn);
+            if (!alumni) {
+                req.flash('error_msg', 'Alumni tidak ditemukan.');
+                return res.redirect('/admin/alumni-list');
+            }
+
+            req.flash('success_msg', 'Password berhasil diperbarui!');
+            return res.redirect('/admin/alumni-list/' + nisn);
         } catch (err) {
-            console.error(err); // Logging error untuk pengecekan
+            console.error(err);
             req.flash('error_msg', 'Terjadi kesalahan. Mohon coba lagi.');
-            return res.redirect('/admin/alumni-edit/' + nisn);
+            return res.redirect('/admin/alumni-list/' + nisn);
         }
     },
     viewAlumniTracer: async function (req, res) {
