@@ -11,5 +11,8 @@ router.get('/alumni/profile', isAlumni, userController.profile)
 router.get('/alumni/alumni-form', isAlumni, userController.showForm)
 router.post('/alumni/alumni-form/:nisn', isAlumni, userController.saveForm)
 
+router.get('/alumni/alumni-form/edit/:alumniId', isAlumni, userController.editForm)
+router.put('/alumni/alumni-form/edit/:allumniId', isAlumni, userController.updateForm)
+
 
 module.exports = router
