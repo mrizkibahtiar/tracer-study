@@ -11,6 +11,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const { flashMessage } = require('./middleware/flash');
+const TracerStudy = require('./models/tracerStudy');
 
 async function connectDb(URL) {
     try {
@@ -40,8 +41,16 @@ app.use(flashMessage);
 app.set('view engine', 'ejs')
 app.use('/assets', express.static('public'))
 
-app.get('/', (req, res) => {
-    res.render('pages/index');
+app.get('/', async (req, res) => {
+    const tracerStudy = await TracerStudy.find({}).populate('feedback').populate('alumniId').populate('kegiatanDetail');
+    let feedback = [];
+    for (let i = 0; i < tracerStudy.length; i++) {
+        if (tracerStudy[i].kegiatan == "Bekerja" || tracerStudy[i].kegiatan == "Melanjutkan Studi" || tracerStudy[i].kegiatan == "Berwirausaha") {
+            feedback.push(tracerStudy[i]);
+        }
+    }
+    console.log(feedback);
+    res.render('pages/index', { feedback: feedback });
 })
 
 app.get('/loginPage', checkLogin, (req, res) => {
