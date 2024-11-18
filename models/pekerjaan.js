@@ -8,7 +8,6 @@ const pekerjaanSchema = new mongoose.Schema({
     namaPerusahaan: {
         type: String,
         required: true
-
     },
     alamatPerusahaan: {
         type: String,
@@ -18,7 +17,7 @@ const pekerjaanSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    sektorPerusahan: {
+    sektorPerusahaan: {
         type: String,
         required: true
     },
@@ -33,4 +32,4 @@ const pekerjaanSchema = new mongoose.Schema({
 });
 
 const Pekerjaan = mongoose.model('Pekerjaan', pekerjaanSchema);
-module.exports = Pekerjaan;
+module
