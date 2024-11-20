@@ -20,7 +20,7 @@
     <script src="assets/js/config.js"></script>
 
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=mail" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=mail,source_environment" />
 
     <style>
         textarea {
@@ -67,8 +67,14 @@
                                     <div class="p-6">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div>
-                                                <label for="inputEmail4"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        mail
+                                                    </span>
+                                                    <label for="inputEmail4"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Email</label>
+                                                </div>
                                                 <input type="email"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputEmail4" placeholder="Email" name="email"
@@ -76,17 +82,29 @@
                                             </div>
 
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
-                                                    Lulus</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        event
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Tahun
+                                                        Lulus</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     value="<%= tracerStudy[0].tahunLulus %>" disabled>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Kegiatan
-                                                    setelah Lulus</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        sprint
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Kegiatan
+                                                        setelah Lulus</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" placeholder="Kegiatan" name="kegiatan"
@@ -101,9 +119,15 @@
                                     <div class="card p-6 mt-6">
                                         <div id="bekerja" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
-                                                    Perusahaan</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        apartment
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Nama
+                                                        Perusahaan</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" placeholder="PT. ABC" name="namaPerusahaan"
@@ -111,9 +135,15 @@
                                                     disabled>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Alamat
-                                                    Perusahaan</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        view_stream
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Alamat
+                                                        Perusahaan</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
@@ -122,9 +152,15 @@
                                                     disabled>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Telepon
-                                                    Perusahaan</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        call
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Telepon
+                                                        Perusahaan</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" placeholder="08123456789 (masukkan nomor saja)"
@@ -133,9 +169,15 @@
                                                     disabled>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Sektor
-                                                    Perusahaan</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        variables
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Sektor
+                                                        Perusahaan</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" placeholder="Teknologi" name="sektorPerusahaan"
@@ -143,17 +185,29 @@
                                                     disabled>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Posisi</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        person
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Posisi</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" placeholder="IT-Support" name="posisi"
                                                     value="<%= tracerStudy[0].kegiatanDetail.posisi %>" disabled>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tanggal
-                                                    Masuk</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        event
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                        Masuk</label>
+                                                </div>
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                     id="inputState" name="tanggalMasukBekerja"
@@ -371,8 +425,14 @@
                                                         <div class="card mt-6 p-6">
                                                             <!-- feedback -->
                                                             <div id="feedback" class="grid-cols-1 gap-6">
-                                                                <label for="feedback"
-                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Feedback</label>
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        forum
+                                                                    </span>
+                                                                    <label for="feedback"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Feedback</label>
+                                                                </div>
                                                                 <textarea
                                                                     class="form-input text-black dark:text-white bg-yellow-50 dark:bg-gray-700 placeholder:text-black placeholder:dark:text-white"
                                                                     rows="5" name="feedbackDetail" rows="10"
