@@ -413,12 +413,18 @@
 
                                             <% } else if(tracerStudy[0].kegiatan=="Kursus" ) { %>
                                                 <!-- kursus -->
-                                                <div class="card p-6 mt-6s">
-                                                    <div id="kursus" class="grid-cols-1 gap-6 mt-6">
+                                                <div class="card p-6 mt-6">
+                                                    <div id="kursus" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                         <div>
-                                                            <label for="inputState"
-                                                                class="text-gray-800 text-sm font-medium inline-block">Nama
-                                                                Kursus</label>
+                                                            <div class="flex items-center gap-2 mb-2">
+                                                                <span
+                                                                    class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                    apartment
+                                                                </span>
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Nama
+                                                                    Kursus</label>
+                                                            </div>
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                                 id="inputState" placeholder="Pemrograman Web"
@@ -427,9 +433,15 @@
                                                                 disabled>
                                                         </div>
                                                         <div>
-                                                            <label for="inputState"
-                                                                class="text-gray-800 text-sm font-medium inline-block">Alamat
-                                                                Kursus</label>
+                                                            <div class="flex items-center gap-2 mb-2">
+                                                                <span
+                                                                    class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                    view_stream
+                                                                </span>
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Alamat
+                                                                    Kursus</label>
+                                                            </div>
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                                 id="inputState" placeholder="Jl. ABC, No. 123, Jakarta"
@@ -438,9 +450,15 @@
                                                                 disabled>
                                                         </div>
                                                         <div>
-                                                            <label for="inputState"
-                                                                class="text-gray-800 text-sm font-medium inline-block">Bidang
-                                                                Kursus</label>
+                                                            <div class="flex items-center gap-2 mb-2">
+                                                                <span
+                                                                    class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                    backpack
+                                                                </span>
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Bidang
+                                                                    Kursus</label>
+                                                            </div>
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                                 id="inputState" placeholder="LPK Neptune Madiun "
@@ -449,9 +467,15 @@
                                                                 disabled>
                                                         </div>
                                                         <div>
-                                                            <label for="inputState"
-                                                                class="text-gray-800 text-sm font-medium inline-block">Tanggal
-                                                                Mulai</label>
+                                                            <div class="flex items-center gap-2 mb-2">
+                                                                <span
+                                                                    class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                    event_upcoming
+                                                                </span>
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                                    Mulai</label>
+                                                            </div>
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                                 id="inputState" name="tanggalMulaiKursus"
@@ -459,9 +483,15 @@
                                                                 disabled>
                                                         </div>
                                                         <div>
-                                                            <label for="inputState"
-                                                                class="text-gray-800 text-sm font-medium inline-block">Tanggal
-                                                                Selesai</label>
+                                                            <div class="flex items-center gap-2 mb-2">
+                                                                <span
+                                                                    class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                    event_available
+                                                                </span>
+                                                                <label for="inputState"
+                                                                    class="text-gray-800 text-sm font-medium inline-block">Tanggal
+                                                                    Selesai</label>
+                                                            </div>
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                                 id="inputState" name="tanggalSelesaiKursus"
@@ -474,11 +504,17 @@
                                                 <% } else if(tracerStudy[0].kegiatan=="Belum Ada Kegiatan" ) { %>
                                                     <!-- belum ada kegiatan -->
                                                     <div class="card mt-6 p-6">
-                                                        <div id="belumAdaKegiatan" class="grid-cols-1 gap-6 mt-6">
+                                                        <div id="belumAdaKegiatan" class="grid-cols-1 gap-6">
                                                             <div>
-                                                                <label for="inputRencana"
-                                                                    class="text-gray-800 text-sm font-medium inline-block">Kegiatan
-                                                                    Yang Dilakukan Sekarang</label>
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        event_available
+                                                                    </span>
+                                                                    <label for="inputRencana"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Kegiatan
+                                                                        Yang Dilakukan Sekarang</label>
+                                                                </div>
                                                                 <textarea
                                                                     class="form-input text text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                                     rows="5" id="inputRencana"
