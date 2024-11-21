@@ -17,6 +17,10 @@
     <!-- Icons css -->
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=pin, id_card" />
+
+
     <!-- Theme Config Js -->
     <script src="../assets/js/config.js"></script>
 </head>
@@ -80,31 +84,54 @@
                                                         <div class="grid grid-cols-1  gap-6 mb-3">
 
                                                             <div>
-                                                                <label for="nisn"
-                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">NISN
-                                                                    <span class="text-red-500">*</span></label>
-                                                                <input type="text" class="form-input" id="nisn"
-                                                                    placeholder="Masukkan NISN" name="nisn" required
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        pin
+                                                                    </span>
+                                                                    <label for="nisn"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">NISN
+                                                                        <span class="text-red-500">*</span></label>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-input text-gray-800 dark:text-white"
+                                                                    id="nisn" placeholder="Masukkan NISN" name="nisn"
+                                                                    required
                                                                     value="<%= typeof nisn !== 'undefined' ? nisn : '' %>">
                                                             </div>
                                                             <div>
-                                                                <label for="nama"
-                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Nama
-                                                                    <span class="text-red-500">*</span></label>
-                                                                <input type="text" class="form-input" id="nama"
-                                                                    placeholder="Masukkan Nama Alumni " required
-                                                                    name="nama"
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        badge
+                                                                    </span>
+                                                                    <label for="nama"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Nama
+                                                                        <span class="text-red-500">*</span></label>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-input text-gray-800 dark:text-white"
+                                                                    id="nama" placeholder="Masukkan Nama Alumni "
+                                                                    required name="nama"
                                                                     value="<%= typeof nama !== 'undefined' ? nama : '' %>">
                                                             </div>
 
                                                             <div>
-                                                                <label for="password"
-                                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">
-                                                                    Password <span class="text-red-500">*</span>
-                                                                </label>
-                                                                <input type="password" class="form-input" id="password"
-                                                                    placeholder="Masukkan Password" required
-                                                                    name="password" autocomplete="current-password">
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        password
+                                                                    </span>
+                                                                    <label for="password"
+                                                                        class="text-gray-800 text-sm font-medium inline-block mb-2">
+                                                                        Password <span class="text-red-500">*</span>
+                                                                    </label>
+                                                                </div>
+                                                                <input type="password"
+                                                                    class="form-input text-gray-800 dark:text-white"
+                                                                    id="password" placeholder="Masukkan Password"
+                                                                    required name="password"
+                                                                    autocomplete="current-password">
                                                                 <div class="form-check mt-2">
                                                                     <input type="checkbox"
                                                                         class="form-checkbox rounded text-primary"
