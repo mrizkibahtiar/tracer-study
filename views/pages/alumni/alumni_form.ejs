@@ -16,6 +16,9 @@
     <!-- Icons css -->
     <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=mail" />
+
     <!-- Theme Config Js -->
     <script src="../assets/js/config.js"></script>
 
@@ -54,17 +57,29 @@
                                     <div class="p-6">
                                         <div class="grid grid-cols-1 gap-6">
                                             <div>
-                                                <label for="inputEmail4"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Email</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        mail
+                                                    </span>
+                                                    <label for="inputEmail4"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Email</label>
+                                                </div>
                                                 <input type="email"
                                                     class="form-input focus:border-primary text-black dark:text-white"
                                                     id="inputEmail4" placeholder="Email" name="email" required>
                                             </div>
 
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Tahun
-                                                    Lulus</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        calendar_month
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Tahun
+                                                        Lulus</label>
+                                                </div>
                                                 <select id="inputState"
                                                     class="form-select focus:border-primary text-black dark:text-white"
                                                     name="tahunLulus" required>
@@ -79,9 +94,15 @@
                                                 </select>
                                             </div>
                                             <div>
-                                                <label for="inputState"
-                                                    class="text-gray-800 text-sm font-medium inline-block mb-2">Kegiatan
-                                                    setelah Lulus</label>
+                                                <div class="flex items-center gap-2 mb-2">
+                                                    <span
+                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                        sprint
+                                                    </span>
+                                                    <label for="inputState"
+                                                        class="text-gray-800 text-sm font-medium inline-block">Kegiatan
+                                                        setelah Lulus</label>
+                                                </div>
                                                 <select id="inputState"
                                                     class="kegiatanLulus form-select focus:border-primary text-black dark:text-white"
                                                     name="kegiatan" required>
@@ -317,8 +338,13 @@
                                     <div class="p-6">
                                         <!-- feedback -->
                                         <div id="feedback" class="grid-cols-1 gap-6">
-                                            <label for="feedback"
-                                                class="text-gray-800 text-sm font-medium inline-block mb-2">Feedback</label>
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <span class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                    forum
+                                                </span>
+                                                <label for="feedback"
+                                                    class="text-gray-800 text-sm font-medium inline-block">Feedback</label>
+                                            </div>
                                             <textarea class="form-input text text-black dark:text-white" rows="5"
                                                 name="feedbackDetail" rows="10"
                                                 placeholder="Masukkan feedback untuk kami" required></textarea>
