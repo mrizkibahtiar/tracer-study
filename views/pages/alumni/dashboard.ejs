@@ -295,10 +295,10 @@
                                                             class="text-gray-800 text-sm font-medium inline-block">Tanggal
                                                             Masuk</label>
                                                     </div>
-                                                    <input type="date"
+                                                    <input type="text"
                                                         class="form-input focus:border-primary text-black dark:text-white bg-yellow-50 dark:bg-gray-700"
                                                         id="inputState" name="tanggalMasukUniversitas"
-                                                        value="<%= tracerStudy[0].kegiatanDetail.tanggalMasuk %>"
+                                                        value="<%= new Date(tracerStudy[0].kegiatanDetail.tanggalMasuk).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>"
                                                         disabled>
                                                 </div>
                                             </div>
