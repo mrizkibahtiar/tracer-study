@@ -154,8 +154,7 @@ module.exports = {
         const { alumniId } = req.params;
         const alumni = await Alumni.findOne({ nisn: req.session.user.nisn });
         console.log('alumni : ' + alumni);
-        const tracerStudy = await TracerStudy.findOne({ alumniId: alumniId });
-        console.log(tracerStudy);
+        const tracerStudy = await TracerStudy.findOne({ alumniId: alumniId }).populate('kegiatanDetail').populate('feedback');
         return res.render('pages/alumni/alumni-edit', { tracerStudy: tracerStudy, alumni: alumni });
     }, updateForm: async function (req, res) {
         const { nisn } = req.params;
