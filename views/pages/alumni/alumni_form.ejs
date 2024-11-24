@@ -501,71 +501,46 @@
     <!-- Dashboard Project Page js -->
     <script src="../assets/js/pages/dashboard.js"></script>
     <script>
-        function aktif(a) {
-            const kegiatan = document.getElementById(a);
-            kegiatan.classList.remove('hidden');
-            kegiatan.classList.add('grid')
-            const inputs = kegiatan.querySelectorAll('input, select, textarea');
-            console.log(inputs);
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].setAttribute('required', true);
-            }
-        }
+        function toggleKegiatan(activeId) {
+            const kegiatanIds = ['belumAdaKegiatan', 'bekerja', 'melanjutkanStudi', 'berwirausaha', 'kursus'];
 
-        function nonAktif(a) {
-            const kegiatan = document.getElementById(a);
-            kegiatan.classList.add('hidden');
-            kegiatan.classList.remove('grid');
-            const inputs = kegiatan.querySelectorAll('input', 'select', 'textarea');
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].removeAttribute('required');
-            }
+            kegiatanIds.forEach(id => {
+                const kegiatan = document.getElementById(id);
+                const inputs = kegiatan.querySelectorAll('input, select, textarea');
+
+                if (id === activeId) {
+                    kegiatan.classList.remove('hidden');
+                    kegiatan.classList.add('grid');
+                    inputs.forEach(input => input.setAttribute('required', true));
+                } else {
+                    kegiatan.classList.add('hidden');
+                    kegiatan.classList.remove('grid');
+                    inputs.forEach(input => input.removeAttribute('required'));
+                }
+            });
         }
 
         const kegiatanLulus = document.querySelector('.kegiatanLulus');
         const containerKegiatan = document.getElementById('containerKegiatan');
+
+        function toCamelCase(str) {
+            return str
+                .toLowerCase() // Ubah semua huruf menjadi huruf kecil
+                .split(' ')    // Pecah string berdasarkan spasi
+                .map((word, index) =>
+                    index === 0
+                        ? word // Kata pertama tetap huruf kecil
+                        : word.charAt(0).toUpperCase() + word.slice(1) // Kata berikutnya huruf pertama besar
+                )
+                .join(''); // Gabungkan kembali tanpa spasi
+        }
+
         kegiatanLulus.addEventListener('change', function () {
-            if (kegiatanLulus.value === 'Belum Ada Kegiatan') {
-                containerKegiatan.classList.remove('hidden');
-                aktif('belumAdaKegiatan');
-                nonAktif('bekerja');
-                nonAktif('melanjutkanStudi');
-                nonAktif('berwirausaha');
-                nonAktif('kursus');
-            } else if (kegiatanLulus.value === 'Bekerja') {
-                containerKegiatan.classList.remove('hidden');
-                aktif('bekerja');
-                nonAktif('belumAdaKegiatan');
-                nonAktif('melanjutkanStudi');
-                nonAktif('berwirausaha');
-                nonAktif('kursus');
-            } else if (kegiatanLulus.value === 'Melanjutkan Studi') {
-                containerKegiatan.classList.remove('hidden');
-                aktif('melanjutkanStudi');
-                nonAktif('belumAdaKegiatan');
-                nonAktif('bekerja');
-                nonAktif('berwirausaha');
-                nonAktif('kursus');
-            } else if (kegiatanLulus.value === 'Berwirausaha') {
-                containerKegiatan.classList.remove('hidden');
-                aktif('berwirausaha');
-                nonAktif('belumAdaKegiatan');
-                nonAktif('bekerja');
-                nonAktif('melanjutkanStudi');
-                nonAktif('kursus');
-            } else if (kegiatanLulus.value === 'Kursus') {
-                containerKegiatan.classList.remove('hidden');
-                aktif('kursus');
-                nonAktif('belumAdaKegiatan');
-                nonAktif('bekerja');
-                nonAktif('melanjutkanStudi');
-                nonAktif('berwirausaha');
-            } else {
-                inputRencana.removeAttribute('required');
-                rencanaKegiatan.style.display = 'none';
-            }
+            containerKegiatan.classList.remove('hidden');
+            toggleKegiatan(toCamelCase(kegiatanLulus.value));
         });
     </script>
+
 
 </body>
 
