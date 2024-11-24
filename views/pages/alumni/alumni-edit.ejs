@@ -88,9 +88,24 @@
                                                         class="text-gray-800 text-sm font-medium inline-block">Tahun
                                                         Lulus</label>
                                                 </div>
-                                                <input type="text"
-                                                    class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
-                                                    value="<%= tracerStudy.tahunLulus %>">
+                                                <select id="inputState"
+                                                    class="form-select focus:border-primary text-black dark:text-white"
+                                                    name="tahunLulus" required>
+                                                    <option value="" disabled selected>Pilih Tahun</option>
+                                                    <% const tahunMulai=2000; const tahunTerbaru=new
+                                                        Date().getFullYear(); for (let i=tahunTerbaru; i>=
+                                                        tahunMulai;i--) { %>
+                                                        <% if(i==tracerStudy.tahunLulus) { %>
+                                                            <option value="<%= i %>" class="text-black" selected>
+                                                                <%= i %>
+                                                            </option>
+                                                            <% } else { %>
+                                                                <option value="<%= i %>" class="text-black">
+                                                                    <%= i %>
+                                                                </option>
+                                                                <% } %>
+                                                                    <% } %>
+                                                </select>
                                             </div>
                                             <div>
                                                 <div class="flex items-center gap-2 mb-2">
@@ -102,10 +117,27 @@
                                                         class="text-gray-800 text-sm font-medium inline-block">Kegiatan
                                                         setelah Lulus</label>
                                                 </div>
-                                                <input type="text"
-                                                    class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
-                                                    id="inputState" placeholder="Kegiatan" name="kegiatan"
-                                                    value="<%= tracerStudy.kegiatan %>">
+                                                <select id="inputState"
+                                                    class="kegiatanLulus form-select focus:border-primary text-black dark:text-white"
+                                                    name="kegiatan" required>
+                                                    <option value="" disabled class="text-black">Pilih Kegiatan</option>
+                                                    <option value="Bekerja" class="text-black"
+                                                        <%=tracerStudy.kegiatan==="Bekerja" ? "selected" : "" %>>Bekerja
+                                                    </option>
+                                                    <option value="Melanjutkan Studi" class="text-black"
+                                                        <%=tracerStudy.kegiatan==="Melanjutkan Studi" ? "selected" : ""
+                                                        %>>Melanjutkan Studi</option>
+                                                    <option value="Berwirausaha" class="text-black"
+                                                        <%=tracerStudy.kegiatan==="Berwirausaha" ? "selected" : "" %>
+                                                        >Berwirausaha</option>
+                                                    <option value="Kursus" class="text-black"
+                                                        <%=tracerStudy.kegiatan==="Kursus" ? "selected" : "" %>>Kursus
+                                                    </option>
+                                                    <option value="Belum Ada Kegiatan" class="text-black"
+                                                        <%=tracerStudy.kegiatan==="Belum Ada Kegiatan" ? "selected" : ""
+                                                        %>>Belum Ada Kegiatan</option>
+                                                </select>
+
                                             </div>
                                         </div>
 
@@ -204,7 +236,7 @@
                                                 <input type="text"
                                                     class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
                                                     id="inputState" name="tanggalMasukBekerja"
-                                                    value="<%= tracerStudy.kegiatanDetail.tanggalMasuk %>">
+                                                    value="<%= new Date(tracerStudy.kegiatanDetail.tanggalMasuk).toISOString().split('T')[0] %>">
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +319,8 @@
                                                     <input type="date"
                                                         class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
                                                         id="inputState" name="tanggalMasukUniversitas"
-                                                        value="<%= tracerStudy.kegiatanDetail.tanggalMasuk %>">
+                                                        value="<%= new Date(tracerStudy.kegiatanDetail.tanggalMasuk).toISOString().split('T')[0] %>">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -385,10 +418,10 @@
                                                                 class="text-gray-800 text-sm font-medium inline-block">Tanggal
                                                                 Mulai Usaha</label>
                                                         </div>
-                                                        <input type="text"
+                                                        <input type="date"
                                                             class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
                                                             id="inputState" name="tanggalMulaiUsaha"
-                                                            value="<%= new Date(tracerStudy.kegiatanDetail.tanggalMulai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>">
+                                                            value="<%= new Date(tracerStudy.kegiatanDetail.tanggalMulai).toISOString().split('T')[0] %>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -458,7 +491,7 @@
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
                                                                 id="inputState" name="tanggalMulaiKursus"
-                                                                value="<%= new Date(tracerStudy.kegiatanDetail.tanggalMulai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>">
+                                                                value="<%= new Date(tracerStudy.kegiatanDetail.tanggalMulai).toISOString().split('T')[0] %>">
                                                         </div>
                                                         <div>
                                                             <div class="flex items-center gap-2 mb-2">
@@ -473,65 +506,64 @@
                                                             <input type="text"
                                                                 class="form-input focus:border-primary text-black dark:text-white bg-gray-50 dark:bg-gray-700"
                                                                 id="inputState" name="tanggalSelesaiKursus"
-                                                                value="<%= new Date(tracerStudy.kegiatanDetail.tanggalSelesai).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>" ">
+                                                                value="<%= new Date(tracerStudy.kegiatanDetail.tanggalSelesai).toISOString().split('T')[0] %>">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <% } else if(tracerStudy.kegiatan==" Belum Ada Kegiatan" ) { %>
-                                                            <!-- belum ada kegiatan -->
-                                                            <div class="card mt-6 p-6">
-                                                                <div id="belumAdaKegiatan" class="grid-cols-1 gap-6">
-                                                                    <div>
-                                                                        <div class="flex items-center gap-2 mb-2">
-                                                                            <span
-                                                                                class="material-symbols-rounded text-gray-800 dark:text-white">
-                                                                                event_available
-                                                                            </span>
-                                                                            <label for="inputRencana"
-                                                                                class="text-gray-800 text-sm font-medium inline-block">Kegiatan
-                                                                                Yang Dilakukan Sekarang</label>
-                                                                        </div>
-                                                                        <textarea
-                                                                            class="form-input text text-black dark:text-white bg-gray-50 dark:bg-gray-700"
-                                                                            rows="5" id="inputRencana"
-                                                                            placeholder="Mempersiapkan pendaftaran perkuliahan"
-                                                                            name="kegiatanDetail"><%= tracerStudy.belumAdaKegiatanDetail %></textarea>
-                                                                    </div>
+                                                    <!-- belum ada kegiatan -->
+                                                    <div class="card mt-6 p-6">
+                                                        <div id="belumAdaKegiatan" class="grid-cols-1 gap-6">
+                                                            <div>
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        event_available
+                                                                    </span>
+                                                                    <label for="inputRencana"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Kegiatan
+                                                                        Yang Dilakukan Sekarang</label>
                                                                 </div>
+                                                                <textarea
+                                                                    class="form-input text text-black dark:text-white bg-gray-50 dark:bg-gray-700"
+                                                                    rows="5" id="inputRencana"
+                                                                    placeholder="Mempersiapkan pendaftaran perkuliahan"
+                                                                    name="kegiatanDetail"><%= tracerStudy.belumAdaKegiatanDetail %></textarea>
                                                             </div>
-                                                            <% } %>
-                                                                <div class="card mt-6 p-6">
-                                                                    <!-- feedback -->
-                                                                    <div id="feedback" class="grid-cols-1 gap-6">
-                                                                        <div class="flex items-center gap-2 mb-2">
-                                                                            <span
-                                                                                class="material-symbols-rounded text-gray-800 dark:text-white">
-                                                                                forum
-                                                                            </span>
-                                                                            <label for="feedback"
-                                                                                class="text-gray-800 text-sm font-medium inline-block">Feedback</label>
-                                                                        </div>
-                                                                        <textarea
-                                                                            class="form-input text-black dark:text-white bg-gray-50 dark:bg-gray-700 placeholder:text-black placeholder:dark:text-white"
-                                                                            rows="5" name="feedbackDetail"
-                                                                            rows="10"><%= tracerStudy.feedback.pesan %></textarea>
-                                                                    </div>
-                                                                </div>
                                                         </div>
-                                                        <% } else { %>
-                                                            <div class="col-span-2 mt-6">
-                                                                <div class="card">
-
-                                                                    <div class="p-6">
-                                                                        <h1>Anda Belum Mengisi Form, silahkan menuju <a
-                                                                                href="/alumni/alumni-form"
-                                                                                class="text-primary">Halaman
-                                                                                Form</a></h1>
-                                                                    </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <div class="card mt-6 p-6">
+                                                            <!-- feedback -->
+                                                            <div id="feedback" class="grid-cols-1 gap-6">
+                                                                <div class="flex items-center gap-2 mb-2">
+                                                                    <span
+                                                                        class="material-symbols-rounded text-gray-800 dark:text-white">
+                                                                        forum
+                                                                    </span>
+                                                                    <label for="feedback"
+                                                                        class="text-gray-800 text-sm font-medium inline-block">Feedback</label>
                                                                 </div>
+                                                                <textarea
+                                                                    class="form-input text-black dark:text-white bg-gray-50 dark:bg-gray-700 placeholder:text-black placeholder:dark:text-white"
+                                                                    rows="5" name="feedbackDetail"
+                                                                    rows="10"><%= tracerStudy.feedback.pesan %></textarea>
                                                             </div>
-                                                            <% } %>
+                                                        </div>
+                            </div>
+                            <% } else { %>
+                                <div class="col-span-2 mt-6">
+                                    <div class="card">
+
+                                        <div class="p-6">
+                                            <h1>Anda Belum Mengisi Form, silahkan menuju <a href="/alumni/alumni-form"
+                                                    class="text-primary">Halaman
+                                                    Form</a></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
                     </main>
 
                     <!-- Footer Start -->
