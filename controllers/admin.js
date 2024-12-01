@@ -2,6 +2,12 @@ const Admin = require('../models/admin');
 const Alumni = require('../models/alumni');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const TracerStudy = require('../models/tracerStudy');
+const Kursus = require('../models/kursus');
+const Pekerjaan = require('../models/pekerjaan');
+const StudiLanjutan = require('../models/studiLanjutan');
+const Berwirausaha = require('../models/berwirausaha');
+const Feedback = require('../models/feedback');
 
 
 module.exports = {
@@ -59,13 +65,43 @@ module.exports = {
     deleteAlumni: async function (req, res) {
         const { nisn } = req.params;
         try {
+            // Hapus data alumni berdasarkan NISN
             const alumni = await Alumni.findOneAndDelete({ nisn: nisn });
 
+            // Jika alumni tidak ditemukan
             if (!alumni) {
                 req.flash('error_msg', 'Data alumni tidak ditemukan.');
                 return res.redirect('/admin/alumni-list');
             }
 
+            // Hapus tracer study yang terkait
+            const tracerStudy = await TracerStudy.findOne({ alumniId: alumni._id });
+
+            // Jika tracer study ditemukan, hapus data terkait berdasarkan kegiatan
+            if (tracerStudy) {
+                const deletions = [];
+
+                if (tracerStudy.kegiatan === "Bekerja") {
+                    deletions.push(Pekerjaan.findOneAndDelete({ alumniId: alumni._id }));
+                } else if (tracerStudy.kegiatan === "Melanjutkan Studi") {
+                    deletions.push(StudiLanjutan.findOneAndDelete({ alumniId: alumni._id }));
+                } else if (tracerStudy.kegiatan === "Berwirausaha") {
+                    deletions.push(Berwirausaha.findOneAndDelete({ alumniId: alumni._id }));
+                } else if (tracerStudy.kegiatan === "Kursus") {
+                    deletions.push(Kursus.findOneAndDelete({ alumniId: alumni._id }));
+                }
+
+                if (tracerStudy.kegiatan === "Feedback") {
+                    deletions.push(Feedback.findOneAndDelete({ alumniId: alumni._id }));
+                }
+
+                // Jalankan semua operasi penghapusan terkait secara paralel
+                await Promise.all(deletions);
+            }
+
+            tracerStudy && await TracerStudy.findOneAndDelete({ alumniId: alumni._id });
+
+            // Jika berhasil, kirim pesan sukses
             req.flash('success_msg', `Data alumni dengan NISN ${nisn} berhasil dihapus.`);
             return res.redirect('/admin/alumni-list');
         } catch (err) {
@@ -73,7 +109,8 @@ module.exports = {
             req.flash('error_msg', 'Terjadi kesalahan saat menghapus data.');
             return res.redirect('/admin/alumni-list');
         }
-    },
+    }
+    ,
 
     alumniUpdate: async function (req, res) {
         const { nisn } = req.params; // NISN dari URL
