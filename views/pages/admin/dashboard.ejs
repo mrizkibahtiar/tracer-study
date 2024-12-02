@@ -60,14 +60,16 @@
                                     <div class="flex justify-between items-center mb-6">
                                         <h5 class="text-base font-semibold">Presentase Penyelesain Tracer Study
                                         </h5>
-                                        <h5 class="text-gray-600 dark:text-gray-300"> <span
-                                                class="text-primary">65%</span> / 100% alumni</h5>
+                                        <h5 class="text-gray-600 dark:text-gray-300"> <span class="text-primary">
+                                                <%= percentage %>%
+                                            </span> / 100% alumni
+                                        </h5>
                                     </div>
                                     <div
                                         class="flex w-full h-1 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700 ">
                                         <div class="flex flex-col justify-center overflow-hidden bg-primary"
-                                            style="width: 65%" role="progressbar" aria-valuenow="25" aria-valuemin="65"
-                                            aria-valuemax="100">
+                                            style="width: <%= percentage %>%" role="progressbar" aria-valuenow="25"
+                                            aria-valuemin="65" aria-valuemax="100">
                                         </div>
                                     </div>
                                 </div>
@@ -77,19 +79,23 @@
                                     <div class="col-span-1">
                                         <div class="card">
                                             <div class="p-6">
-                                                <h4 class="card-title">Keaktifan Alumnni</h4>
+                                                <h4 class="card-title">Perbandingan Kegiatan</h4>
 
-                                                <div id="monthly-target" class="apex-charts my-8"></div>
+                                                <div id="perbandingan-kegiatan" class="apex-charts my-8"
+                                                    data-berkegiatan="<%= JSON.stringify(berkegiatan) %>"
+                                                    data-belumadakegiatan="<%= JSON.stringify(belumAdaKegiatan) %>">
+                                                </div>
 
                                                 <div class="flex justify-center">
                                                     <div class="w-1/2 text-center">
                                                         <p class="fw-semibold text-muted">
-                                                            <i class="mgc_round_fill text-primary"></i> Kegiatan
+                                                            <i class="mgc_round_fill text-red-500"></i> Belum Ada
+                                                            Kegiatan
                                                         </p>
                                                     </div>
                                                     <div class="w-1/2 text-center">
                                                         <p class="fw-semibold text-muted">
-                                                            <i class="mgc_round_fill text-success"></i> Belum ada
+                                                            <i class="mgc_round_fill text-green-500"></i> Berkegiatan
                                                         </p>
                                                     </div>
                                                 </div>
@@ -100,7 +106,13 @@
                                         <div class="card">
                                             <div class="p-6">
                                                 <h4 class="card-title">Detail Kegiatan Alumni</h4>
-                                                <div id="bar_chart" class="apex-charts" dir="ltr"></div>
+                                                <div id="bar_chart" class="apex-charts" dir="ltr"
+                                                    data-bekerja="<%= JSON.stringify(bekerja) %>"
+                                                    data-melanjutkanstudi="<%= JSON.stringify(studiLanjutan) %>"
+                                                    data-berwirausaha="<%= JSON.stringify(berwirausaha) %>"
+                                                    data-kursus="<%= JSON.stringify(kursus) %>"
+                                                    data-belumadakegiatan="<%= JSON.stringify(belumAdaKegiatan) %>">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -321,11 +333,17 @@
         function renderBarChart() {
             var colors = ["#3073F1", "#0acf97", "#f1b44c", "#c16363", "#bb9451"];
             var dataColors = document.querySelector("#bar_chart").dataset.colors;
+            var dataBekerja = JSON.parse(document.querySelector("#bar_chart").dataset.bekerja);
+            var dataMelanjutkanStudi = JSON.parse(document.querySelector("#bar_chart").dataset.melanjutkanstudi);
+            var dataKursus = JSON.parse(document.querySelector("#bar_chart").dataset.kursus);
+            var dataBerwirausaha = JSON.parse(document.querySelector("#bar_chart").dataset.berwirausaha);
+            var dataBelumAdaKegiatan = JSON.parse(document.querySelector("#bar_chart").dataset.belumadakegiatan);
+            console.log(dataBekerja, dataMelanjutkanStudi, dataKursus, dataBerwirausaha, dataBelumAdaKegiatan);
             var options = {
                 chart: { height: 350, type: "bar", toolbar: { show: !1 } },
                 plotOptions: { bar: { horizontal: !0 } },
                 dataLabels: { enabled: !1 },
-                series: [{ data: [380, 430, 450, 475, 550] }],
+                series: [{ data: [dataBekerja, dataMelanjutkanStudi, dataKursus, dataBerwirausaha, dataBelumAdaKegiatan] }],
                 colors: colors,
                 grid: { borderColor: [] },
                 xaxis: { categories: ["Bekerja", "Melanjutkan Studi", "Kursus", "Usaha", "Belum ada Kegiatan"] },
@@ -336,17 +354,19 @@
 
         function renderDonutChart() {
             var colors = ["#0acf97", "#bb9451"];
-            var dataColors = document.querySelector("#monthly-target").dataset.colors;
+            var dataColors = document.querySelector("#perbandingan-kegiatan").dataset.colors;
+            var dataBerkegiatan = JSON.parse(document.querySelector("#perbandingan-kegiatan").dataset.berkegiatan);
+            var dataBelumAdaKegiatan = JSON.parse(document.querySelector("#perbandingan-kegiatan").dataset.belumadakegiatan);
             var options = {
                 chart: { height: 280, type: "donut" },
                 legend: { show: !1 },
                 stroke: { colors: ["transparent"] },
-                series: [500, 200],
+                series: [dataBerkegiatan, dataBelumAdaKegiatan],
                 labels: ["Berkegiatan", "Belum ada Kegiatan"],
                 colors: (colors = dataColors ? dataColors.split(",") : colors),
                 responsive: [{ breakpoint: 480, options: { chart: { width: 200 }, legend: { position: "bottom" } } }],
             };
-            var chart = new ApexCharts(document.querySelector("#monthly-target"), options);
+            var chart = new ApexCharts(document.querySelector("#perbandingan-kegiatan"), options);
             chart.render();
         }
 
