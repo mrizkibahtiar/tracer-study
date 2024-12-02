@@ -16,7 +16,6 @@ module.exports = {
             const { nisn } = req.session.user;
             const alumni = await Alumni.findOne({ nisn: nisn });
             const tracerStudy = await TracerStudy.find({ alumniId: alumni._id }).populate('kegiatanDetail').populate('feedback');
-            console.log(tracerStudy);
             return res.render('pages/alumni/dashboard', { alumni: alumni, tracerStudy: tracerStudy });
         }
     },
