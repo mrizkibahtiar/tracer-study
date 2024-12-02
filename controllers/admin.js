@@ -15,9 +15,37 @@ module.exports = {
         if (!req.session.user) {
             return res.redirect('/loginPage'); // Redirect ke halaman login jika user belum login
         } else {
-            const { email, role } = req.session.user;
+            const { email } = req.session.user;
             const admin = await Admin.findOne({ email: email });
-            return res.render('pages/admin/dashboard', { admin: admin });
+            const tracerStudy = await TracerStudy.find({});
+            let berkegiatan = 0;
+            let belumAdaKegiatan = 0;
+            let bekerja = 0
+            let berwirausaha = 0;
+            let studiLanjutan = 0;
+            let kursus = 0;
+
+            for (let i = 0; i < tracerStudy.length; i++) {
+                if (tracerStudy[i].kegiatan === "Bekerja") {
+                    berkegiatan++;
+                    bekerja++;
+                } else if (tracerStudy[i].kegiatan === "Melanjutkan Studi") {
+                    berkegiatan++;
+                    studiLanjutan++;
+                } else if (tracerStudy[i].kegiatan === "Berwirausaha") {
+                    berkegiatan++;
+                    berwirausaha++;
+                } else if (tracerStudy[i].kegiatan === "Kursus") {
+                    berkegiatan++;
+                    kursus++;
+                } else if (tracerStudy[i].kegiatan === "Belum Ada Kegiatan") {
+                    belumAdaKegiatan++;
+                }
+            }
+
+            const alumni = await Alumni.find({});
+            let percentage = Math.round((tracerStudy.length / alumni.length) * 100);
+            return res.render('pages/admin/dashboard', { admin: admin, percentage: percentage, berkegiatan: berkegiatan, belumAdaKegiatan: belumAdaKegiatan, bekerja: bekerja, berwirausaha: berwirausaha, studiLanjutan: studiLanjutan, kursus: kursus });
         }
     },
 
