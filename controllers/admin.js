@@ -53,13 +53,19 @@ module.exports = {
 
     viewAlumniList: async function (req, res) {
         const alumni = await Alumni.find({});
-        return res.render('pages/admin/alumni_list', { alumni: alumni });
+        let dataTracerStudy = [];
+        for (var i = 0; i < alumni.length; i++) {
+            const tracerStudy = await TracerStudy.find({ alumniId: alumni[i]._id });
+            dataTracerStudy.push(tracerStudy[0]);
+        }
+        return res.render('pages/admin/alumni_list', { alumni: alumni, tracerStudy: dataTracerStudy });
     },
 
     viewAlumniDetail: async function (req, res) {
         const { nisn } = req.params;
         const alumni = await Alumni.findOne({ nisn: nisn });
-        return res.render('pages/admin/alumni_detail', { alumni: alumni });
+        const tracerStudy = await TracerStudy.find({ alumniId: alumni._id }).populate('kegiatanDetail').populate('feedback')
+        return res.render('pages/admin/alumni_detail', { alumni: alumni, tracerStudy: tracerStudy });
     },
 
     deleteAlumni: async function (req, res) {
@@ -188,6 +194,7 @@ module.exports = {
             return res.redirect('/admin/alumni-list/' + nisn);
         }
     },
+
     viewAlumniTracer: async function (req, res) {
         const alumni = await Alumni.find({});
         return res.render('pages/admin/alumni_tracer', { alumni: alumni });
