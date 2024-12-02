@@ -89,7 +89,8 @@
                             </div> -->
                             <div class="p-6">
                                 <div class="table-responsive overflow-x-visible">
-                                    <div id="table-gridjs" data-alumni="<%= JSON.stringify(alumni) %>"></div>
+                                    <div id="table-gridjs" data-alumni="<%= JSON.stringify(alumni)%>"
+                                        data-tracer="<%= JSON.stringify(tracerStudy)%>"></div>
                                 </div>
                             </div>
                         </div>
@@ -119,10 +120,16 @@
     <script>
         const alumniTableElement = document.getElementById("table-gridjs");
         const dataAlumni = JSON.parse(alumniTableElement.getAttribute("data-alumni"));
+        const dataTracer = JSON.parse(alumniTableElement.getAttribute("data-tracer"));
+        dataTarcerMap = dataTracer.map((tracer, index) => [
+            tracer != null ? 'Sudah' : 'Belum',
+        ])
+        console.log(dataTarcerMap);
         const dataAlumniMap = dataAlumni.map((alumni, index) => [
             index + 1,
             alumni.nama,
             alumni.nisn,
+            dataTarcerMap[index],
         ]);
         class GridDatatable {
             init() {
@@ -146,10 +153,19 @@
                             },
                             "NISN",
                             {
+                                name: "Tracer Study",
+                                formatter: function (e) {
+                                    if (e == "Sudah") {
+                                        return gridjs.html('<span class="text-green-500 font-semibold">' + e + ' Mengisi' + "</span>");
+                                    } else {
+                                        return gridjs.html('<span class="text-red-200 font-semibold">' + e + ' Mengisi' + "</span>");
+                                    }
+                                },
+                            },
+                            {
                                 name: "Actions",
                                 formatter: function (cell, row) {
                                     const nisn = row.cells[2].data;
-                                    console.log(nisn);
                                     return gridjs.html("<a href='/admin/alumni-list/" + nisn + "' class='underline text-primary'>Detail</a>");
                                 },
                             },
