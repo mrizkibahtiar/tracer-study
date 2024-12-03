@@ -251,9 +251,42 @@ module.exports = {
     },
 
     profile: async function (req, res) {
-        console.log(req.session.user);
-        const { email } = req.session.user;
-        const admin = await Admin.findOne({ email: email });
+        const { adminId } = req.session.user;
+        const admin = await Admin.findOne({ _id: adminId });
         return res.render('pages/admin/profile', { admin: admin });
+    },
+    profileUpdate: async function (req, res) {
+        const { adminId } = req.params;
+        const { nama, email } = req.body;
+        const semuaAdmin = await Admin.find({});
+        const admin = await Admin.findOneAndUpdate({ _id: adminId }, { nama: nama, email: email }, { new: true });
+        // cek jika ada email yang sama maka tampilkan error
+        for (let i = 0; i < semuaAdmin.length; i++) {
+            if (semuaAdmin[i].email == email && semuaAdmin[i]._id != adminId) {
+                req.flash('error_msg', 'Email sudah digunakan oleh admin lain.');
+                return res.redirect('/admin/profile');
+            }
+        }
+        req.flash('success_msg', 'Profil berhasil diperbarui!');
+
+        return res.redirect('/admin/profile');
+    },
+    profileUpdatePassword: async function (req, res) {
+        const { email } = req.session.user;
+        const { passwordLama, passwordBaru, confirmPassword } = req.body;
+        const admin = await Admin.findOne({ email: email });
+        const isPasswordValid = await bcrypt.compare(passwordLama.trim(), admin.password);
+        if (!isPasswordValid) {
+            req.flash('error_msg', 'Password lama salah.');
+            return res.redirect('/admin/profile');
+        }
+        if (passwordBaru !== confirmPassword) {
+            req.flash('error_msg', 'Password dan konfirmasi password tidak cocok.');
+            return res.redirect('/admin/profile');
+        }
+        const hashedPassword = await bcrypt.hash(passwordBaru.trim(), 10);
+        await Admin.findOneAndUpdate({ email: email }, { password: hashedPassword }, { new: true });
+        req.flash('success_msg', 'Password berhasil diperbarui!');
+        return res.redirect('/admin/profile');
     }
 }
