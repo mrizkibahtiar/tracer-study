@@ -14,38 +14,61 @@ module.exports = {
     index: async function (req, res) {
         if (!req.session.user) {
             return res.redirect('/loginPage'); // Redirect ke halaman login jika user belum login
-        } else {
+        }
+
+        try {
             const { email } = req.session.user;
             const admin = await Admin.findOne({ email: email });
             const tracerStudy = await TracerStudy.find({});
+            const alumni = await Alumni.find({});
+
+            // Inisialisasi variabel statistik
             let berkegiatan = 0;
             let belumAdaKegiatan = 0;
-            let bekerja = 0
-            let berwirausaha = 0;
-            let studiLanjutan = 0;
-            let kursus = 0;
+            let bekerja = 0, berwirausaha = 0, studiLanjutan = 0, kursus = 0;
 
-            for (let i = 0; i < tracerStudy.length; i++) {
-                if (tracerStudy[i].kegiatan === "Bekerja") {
-                    berkegiatan++;
-                    bekerja++;
-                } else if (tracerStudy[i].kegiatan === "Melanjutkan Studi") {
-                    berkegiatan++;
-                    studiLanjutan++;
-                } else if (tracerStudy[i].kegiatan === "Berwirausaha") {
-                    berkegiatan++;
-                    berwirausaha++;
-                } else if (tracerStudy[i].kegiatan === "Kursus") {
-                    berkegiatan++;
-                    kursus++;
-                } else if (tracerStudy[i].kegiatan === "Belum Ada Kegiatan") {
-                    belumAdaKegiatan++;
+            // Iterasi data tracer study
+            tracerStudy.forEach((item) => {
+                switch (item.kegiatan) {
+                    case "Bekerja":
+                        berkegiatan++;
+                        bekerja++;
+                        break;
+                    case "Melanjutkan Studi":
+                        berkegiatan++;
+                        studiLanjutan++;
+                        break;
+                    case "Berwirausaha":
+                        berkegiatan++;
+                        berwirausaha++;
+                        break;
+                    case "Kursus":
+                        berkegiatan++;
+                        kursus++;
+                        break;
+                    case "Belum Ada Kegiatan":
+                        belumAdaKegiatan++;
+                        break;
                 }
-            }
+            });
 
-            const alumni = await Alumni.find({});
-            let percentage = Math.round((tracerStudy.length / alumni.length) * 100);
-            return res.render('pages/admin/dashboard', { admin: admin, percentage: percentage, berkegiatan: berkegiatan, belumAdaKegiatan: belumAdaKegiatan, bekerja: bekerja, berwirausaha: berwirausaha, studiLanjutan: studiLanjutan, kursus: kursus });
+            // Hitung persentase
+            const percentage =
+                alumni.length > 0 ? Math.round((tracerStudy.length / alumni.length) * 100) : 0;
+
+            return res.render('pages/admin/dashboard', {
+                admin,
+                percentage,
+                berkegiatan,
+                belumAdaKegiatan,
+                bekerja,
+                berwirausaha,
+                studiLanjutan,
+                kursus
+            });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).send('Terjadi kesalahan pada server.');
         }
     },
 
