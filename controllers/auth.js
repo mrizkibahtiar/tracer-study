@@ -33,7 +33,7 @@ module.exports = {
             req.session.save();
             return res.redirect('/alumni');
         } else {  // Jika user adalah admin
-            req.session.user = { ...admin.toObject(), role: 'admin' };
+            req.session.user = { ...admin.toObject(), role: 'admin', adminId: admin._id };
             req.session.save();
             return res.redirect('/admin');
         }
