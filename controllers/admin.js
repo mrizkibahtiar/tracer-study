@@ -21,6 +21,7 @@ module.exports = {
             const admin = await Admin.findOne({ email: email });
             const tracerStudy = await TracerStudy.find({});
             const alumni = await Alumni.find({});
+            const jumlahAdmin = (await Admin.find({})).length;
 
             // Inisialisasi variabel statistik
             let berkegiatan = 0;
@@ -64,7 +65,10 @@ module.exports = {
                 bekerja,
                 berwirausaha,
                 studiLanjutan,
-                kursus
+                kursus,
+                jumlahAdmin,
+                jumlahAlumni: alumni.length,
+                jumlahTracer: tracerStudy.length
             });
         } catch (err) {
             console.error(err);
