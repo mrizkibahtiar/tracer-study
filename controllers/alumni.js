@@ -141,12 +141,11 @@ module.exports = {
 
             const savedTracerStudy = await tracerStudyData.save();
 
-
-            // Redirect setelah berhasil menyimpan
+            req.flash('success_msg', 'Data berhasil disimpan.');
             return res.redirect('/alumni');
         } catch (error) {
-            console.error("Error saving data:", error);
-            return res.status(500).send("Terjadi kesalahan saat menyimpan data.");
+            req.flash('error_msg', 'Gagal menyimpan data.');
+            return res.redirect('/alumni');
         }
     },
     editForm: async function (req, res) {
@@ -313,10 +312,12 @@ module.exports = {
 
             await tracerStudy.save();
 
+            req.flash('success_msg', 'Data berhasil diubah.');
+
             // Redirect setelah berhasil menyimpan
             return res.redirect('/alumni');
         } catch (error) {
-            console.error("Error editing data:", error);
+            req.flash('error_msg', 'Gagal mengubah data. Silakan coba lagi.');
             return res.status(500).send("Terjadi kesalahan saat mengedit data.");
         }
     }
