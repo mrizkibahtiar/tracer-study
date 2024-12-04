@@ -259,14 +259,14 @@ module.exports = {
         const { adminId } = req.params;
         const { nama, email } = req.body;
         const semuaAdmin = await Admin.find({});
-        const admin = await Admin.findOneAndUpdate({ _id: adminId }, { nama: nama, email: email }, { new: true });
-        // cek jika ada email yang sama maka tampilkan error
+        // cek jika ada email yang sama maka tampilkan error, tapi jika email sama dengan email sebelumnya maka tidak tampilkan error
         for (let i = 0; i < semuaAdmin.length; i++) {
-            if (semuaAdmin[i].email == email && semuaAdmin[i]._id != adminId) {
+            if (semuaAdmin[i].email === email && semuaAdmin[i]._id != adminId) {
                 req.flash('error_msg', 'Email sudah digunakan oleh admin lain.');
                 return res.redirect('/admin/profile');
             }
         }
+        const admin = await Admin.findOneAndUpdate({ _id: adminId }, { nama: nama, email: email }, { new: true });
         req.flash('success_msg', 'Profil berhasil diperbarui!');
 
         return res.redirect('/admin/profile');
