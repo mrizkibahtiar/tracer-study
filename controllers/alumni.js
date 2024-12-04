@@ -7,6 +7,7 @@ const StudiLanjutan = require('../models/studiLanjutan');
 const Berwirausaha = require('../models/berwirausaha');
 const Kursus = require('../models/kursus');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     index: async function (req, res) {
@@ -27,6 +28,31 @@ module.exports = {
             const alumni = await Alumni.findOne({ nisn: nisn });
             return res.render('pages/alumni/profile', { alumni: alumni })
         }
+    },
+    profileUpdate: async function (req, res) {
+        const { nisn } = req.params;
+        const { nama } = req.body;
+        const alumni = await Alumni.findOneAndUpdate({ nisn: nisn }, { nama: nama }, { new: true });
+        req.flash('success_msg', 'Profil berhasil diperbarui!');
+        return res.redirect('/alumni/profile');
+    },
+    profileUpdatePassword: async function (req, res) {
+        const { nisn } = req.params;
+        const { passwordLama, passwordBaru, confirmPassword } = req.body;
+        const alumni = await Alumni.findOne({ nisn: nisn });
+        const isPasswordValid = await bcrypt.compare(passwordLama.trim(), alumni.password);
+        if (!isPasswordValid) {
+            req.flash('error_msg', 'Password lama salah.');
+            return res.redirect('/alumni/profile');
+        }
+        if (passwordBaru !== confirmPassword) {
+            req.flash('error_msg', 'Password dan konfirmasi password tidak cocok.');
+            return res.redirect('/alumni/profile');
+        }
+        const hashedPassword = await bcrypt.hash(passwordBaru.trim(), 10);
+        await Alumni.findOneAndUpdate({ nisn: nisn }, { password: hashedPassword }, { new: true });
+        req.flash('success_msg', 'Password berhasil diperbarui!');
+        return res.redirect('/alumni/profile');
     },
     showForm: async function (req, res) {
         if (!req.session.user) {
