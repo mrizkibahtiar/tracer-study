@@ -30,6 +30,24 @@
                 <%- include ('../../components/topbar_alumni') %>
 
                     <main class="flex-grow p-6">
+                        <div class="fixed top-0 right-0 left-0 z-50 flex items-center justify-center">
+                            <% if (success_msg && success_msg.length> 0) { %>
+                                <div class="alert-success fixed bg-green-500 text-sm text-white rounded-md p-4 z-50 2xl:w-1/4 lg:w-1/3 w-3/4 mb-9 top-7"
+                                    role="alert">
+                                    <p>
+                                        <%= success_msg %>
+                                    </p>
+                                </div>
+                                <% } %>
+                                    <% if (error_msg && error_msg.length> 0) { %>
+                                        <div class="alert-error fixed bg-red-500 text-sm text-white rounded-md z-50 p-4 2xl:w-1/4 lg:w-1/3 w-3/4 mb-9 top-7"
+                                            role="alert">
+                                            <p>
+                                                <%= error_msg %>
+                                            </p>
+                                        </div>
+                                        <% } %>
+                        </div>
 
                         <!-- Page Title Start -->
                         <div class="flex items-center">
@@ -92,7 +110,8 @@
                                                             <span class="material-symbols-rounded">close</span>
                                                         </button>
                                                     </div>
-                                                    <form method="POST" action="/admin/profile-edit//?_method=PUT">
+                                                    <form method="POST"
+                                                        action="/alumni/profile-edit/<%= alumni.nisn %>/?_method=PUT">
                                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-3 px-4">
                                                             <div class="md:col-span-2">
                                                                 <label for="nama"
@@ -142,7 +161,7 @@
                                                         </button>
                                                     </div>
                                                     <form method="POST"
-                                                        action="/admin/profile-edit/password//?_method=PUT">
+                                                        action="/alumni/profile-edit/password/<%= alumni.nisn %>/?_method=PUT">
                                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-3 px-4">
                                                             <div class="md:col-span-2">
                                                                 <label for="passwordLama"
