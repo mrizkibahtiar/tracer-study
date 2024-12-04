@@ -60,11 +60,17 @@
                                             placeholder="Masukkan NISN" autocomplete="username">
                                     </div>
 
-                                    <div class="mb-4">
+                                    <div>
                                         <label class="block text-sm font-medium text-gray-600 dark:text-gray-200 mb-2"
-                                            for="loggingPassword">Password</label>
-                                        <input id="loggingPassword" class="form-input" type="password" name="password"
+                                            for="loginPassword">Password</label>
+                                        <input id="loginPassword" class="form-input" type="password" name="password"
                                             placeholder="Masukkan password anda" autocomplete="current-password">
+                                    </div>
+                                    <div class="form-check my-2">
+                                        <input type="checkbox" class="form-checkbox rounded text-primary"
+                                            id="show-password">
+                                        <label class="ms-1.5 text-sm" for="show-password">Lihat
+                                            Password</label>
                                     </div>
 
                                     <div class="flex justify-center mb-6">
@@ -112,6 +118,18 @@
     </div>
 
     <script>
+        // toggle password
+        const passwordInput = document.getElementById('loginPassword');
+        const showPasswordCheckbox = document.getElementById('show-password');
+
+        showPasswordCheckbox.addEventListener('change', function () {
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+
         const alertError = document.querySelector('.alert-error');
         if (alertError) {
             setTimeout(() => {
