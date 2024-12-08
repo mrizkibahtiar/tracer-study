@@ -265,6 +265,21 @@
     <!-- App Js -->
     <script src="../assets/js/app.js"></script>
 
+    <script>
+        const alertSuccess = document.querySelector('.alert-success');
+        if (alertSuccess) {
+            setTimeout(() => {
+                alertSuccess.remove();
+            }, 2000);
+        }
+        const alertError = document.querySelector('.alert-error');
+        if (alertError) {
+            setTimeout(() => {
+                alertError.remove();
+            }, 2000);
+        }
+    </script>
+
 </body>
 
 </html>
