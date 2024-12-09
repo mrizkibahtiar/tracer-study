@@ -31,8 +31,8 @@ module.exports = {
     },
     profileUpdate: async function (req, res) {
         const { nisn } = req.params;
-        const { nama } = req.body;
-        const alumni = await Alumni.findOneAndUpdate({ nisn: nisn }, { nama: nama }, { new: true });
+        const { nama, jenisKelamin } = req.body;
+        const alumni = await Alumni.findOneAndUpdate({ nisn: nisn }, { nama: nama, jenisKelamin: jenisKelamin }, { new: true });
         req.flash('success_msg', 'Profil berhasil diperbarui!');
         return res.redirect('/alumni/profile');
     },
