@@ -81,7 +81,7 @@ module.exports = {
     },
 
     store: async function (req, res) {
-        const { nama, nisn, password } = req.body;
+        const { nama, nisn, jenisKelamin, password } = req.body;
         try {
             // Hash password dengan bcrypt sebelum menyimpan
             const hashedPassword = await bcrypt.hash(password.trim(), 10);
@@ -89,8 +89,15 @@ module.exports = {
             const alumniData = {
                 nisn: nisn.trim(),
                 nama: nama.trim(),
+                jenisKelamin: jenisKelamin.trim(),
                 password: hashedPassword,
             };
+
+            // Mengecek apakah NISN sudah terdaftar
+            const existingAlumni = await Alumni.findOne({ nisn: alumniData.nisn });
+            if (existingAlumni) {
+                return res.render('pages/admin/alumni_form', { error: 'NISN sudah terdaftar. Mohon gunakan NISN lain.', nama, nisn });
+            }
 
             // Membuat alumni
             const alumni = await Alumni.create(alumniData);
