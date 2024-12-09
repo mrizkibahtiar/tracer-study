@@ -182,7 +182,7 @@ module.exports = {
 
     alumniUpdate: async function (req, res) {
         const { nisn } = req.params; // NISN dari URL
-        const { nisnBaru, nama } = req.body; // Data dari form
+        const { nisnBaru, nama, jenisKelamin } = req.body; // Data dari form
 
         try {
             // Validasi apakah NISN baru sudah ada di database
@@ -198,6 +198,7 @@ module.exports = {
             const updateData = {
                 nisn: nisnBaru,
                 nama: nama,
+                jenisKelamin: jenisKelamin
             };
 
             // Update data alumni berdasarkan NISN lama
