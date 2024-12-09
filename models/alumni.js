@@ -12,6 +12,11 @@ const alumniSchema = new mongoose.Schema({
     nama: {
         type: String,
         required: true
+    },
+    jenisKelamin: {
+        type: String,
+        required: true,
+        enum: ["Laki-laki", "Perempuan"]
     }
 }, { timestamps: true });
 
