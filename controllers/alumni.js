@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     index: async function (req, res) {
         if (!req.session.user) {
-            return res.redirect('/loginPage'); // Redirect ke halaman login jika user belum login
+            return res.redirect('/loginPage');
         } else {
             const { nisn } = req.session.user;
             const alumni = await Alumni.findOne({ nisn: nisn });
