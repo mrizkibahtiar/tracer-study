@@ -11,12 +11,14 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const { flashMessage } = require('./middleware/flash');
 const TracerStudy = require('./models/tracerStudy');
+require('dotenv').config();
 
-// Ganti dengan kredensial MongoDB Atlas Anda
-const DB_USERNAME = 'tracer-study';
-const DB_PASSWORD = 'tracerStudy';
-const DB_NAME = 'tracer-study';
-const ATLAS_URL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.7wix7.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_NAME = process.env.DB_NAME;
+const DB_SESSION_SECRET = process.env.DB_SESSION_SECRET;
+const ATLAS_URL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.pkv9h.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
+console.log(ATLAS_URL);
 
 async function connectDb(URL) {
     try {
@@ -31,7 +33,7 @@ connectDb(ATLAS_URL);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-    secret: '12345-67890-09876-54321',
+    secret: DB_SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
