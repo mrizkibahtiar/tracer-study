@@ -18,7 +18,6 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
 const DB_SESSION_SECRET = process.env.DB_SESSION_SECRET;
 const ATLAS_URL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.pkv9h.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
-console.log(ATLAS_URL);
 
 async function connectDb(URL) {
     try {
@@ -56,7 +55,6 @@ app.get('/', async (req, res) => {
             feedback.push(tracerStudy[i]);
         }
     }
-    console.log(feedback);
     res.render('pages/index', { feedback: feedback });
 });
 
